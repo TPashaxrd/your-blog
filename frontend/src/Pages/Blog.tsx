@@ -1,0 +1,114 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+
+interface Post {
+  _id: string;
+  title: string;
+  coverImageUrl?: string;
+  category?: string;
+  createdAt: string;
+}
+
+export default function App() {
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
+
+  useEffect(() => {
+    async function fetchPosts() {
+      try {
+        const res = await axios.get<Post[]>("http://localhost:5000/api/post");
+        setPosts(res.data);
+      } catch (err) {
+        console.error("Failed to fetch posts", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchPosts();
+  }, []);
+
+  const categories = ["All", ...Array.from(new Set(posts.map(p => p.category || "Uncategorized")))];
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen text-purple-500 text-xl">
+        Loading posts...
+      </div>
+    );
+  }
+
+  const filteredPosts = selectedCategory === "All"
+    ? posts
+    : posts.filter(p => (p.category || "Uncategorized") === selectedCategory);
+
+  return (
+    <>
+      <Header />
+      <div className="bg-gradient-to-b from-purple-50 to-white min-h-screen">
+        <div className="px-6 py-12 max-w-7xl mx-auto">
+          <div className="mb-8">
+            <span className="text-black font-bold text-5xl text-start">
+              #{selectedCategory.toLowerCase()}
+            </span>
+            <h1 className="mt-2 text-sm font-bold text-gray-900">
+              Discover & Explore Topics That Excite You
+            </h1>
+            <p className="mt-2 text-gray-500 sm:text-lg">
+              Filter posts by category and find content that sparks your curiosity.
+            </p>
+          </div>
+
+          <div className="border border-black mb-3"></div>
+          <div className="flex flex-wrap justify-center gap-4 mb-4">
+            {categories.map(category => (
+              <button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`px-5 py-2 rounded-full font-semibold text-sm sm:text-base transition-all duration-300 ${
+                  selectedCategory === category
+                    ? "bg-black text-white font-inter shadow-lg scale-105"
+                    : "bg-white text-black hover:bg-black/70 hover:text-white"
+                }`}
+              >
+                #{category.toLowerCase()}
+              </button>
+            ))}
+          </div>
+          <div className="border border-black mb-9"></div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredPosts.map(post => (
+              <div
+                key={post._id}
+                className="rounded-2xl overflow-hidden cursor-pointer"
+                onClick={() => window.location.href = `/blog/${post._id}`}
+              >
+                <div className="relative w-full aspect-square overflow-hidden group">
+                  <img
+                    src={post.coverImageUrl ? `http://localhost:5000${post.coverImageUrl}` : "https://via.placeholder.com/400"}
+                    alt={post.title}
+                    className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 group-hover:scale-110"
+                  />
+                </div>
+                <div className="p-5 flex flex-col gap-3">
+                <span className="text-sm font-inter text-purple-500 font-medium uppercase">{post.category || "Uncategorized"}</span>
+                  <h1 className='font-bold text-black capitalize text-xl font-inter'>
+                    <span className='bg-gradient-to-r from-purple-500 to-purple-500 bg-[length:0px_6px] hover:bg-[length:100%_6px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500'>
+                      {post.title}
+                    </span>
+                  </h1>
+                  <p className="text-gray-400 text-sm">{new Date(post.createdAt).toLocaleDateString()}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <Footer />
+    </>
+  );
+}

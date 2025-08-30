@@ -2,8 +2,8 @@ const Post = require("../models/Post");
 
 const createPost = async(req, res) => {
     try {
-        const { title, slug, content, published } = req.body;
-        if(!title || !slug || !content) {
+        const { title, slug, content, category, published } = req.body;
+        if(!title || !slug || !content || !category) {
             return res.status(400).json({ message: "Already have this slug."})
         }
         const exists = await Post.findOne({ slug })
@@ -18,6 +18,7 @@ const createPost = async(req, res) => {
             title,
             slug,
             content,
+            category,
             coverImageUrl,
             published: published === "true" || published === true,
         })

@@ -1,28 +1,21 @@
 const mongoose = require("mongoose")
 
-const PostSchema = new mongoose.Schema({
+const ContactSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true
     },
-    slug: {
+    message: {
         type: String,
         required: true
     },
-    content: {
+    email: {
         type: String,
         required: true
     },
-    coverImageUrl: {
-        type: String,
-        required: false
-    },
-    category: {
+    IP_Address: {
         type: String,
         required: true
-    },
-    published: {
-        type: String
     },
     createdAt: {
         type: Date,
@@ -30,4 +23,4 @@ const PostSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model("Posts", PostSchema)
+module.exports = mongoose.model("Contact", ContactSchema)
