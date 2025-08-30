@@ -1,7 +1,6 @@
-import { BiMoon } from "react-icons/bi";
+import { BiMoon, BiWorld } from "react-icons/bi";
 import { BsTwitter } from "react-icons/bs";
-import { DiGithub, DiGithubBadge } from "react-icons/di";
-import { PiLinkSimpleDuotone } from "react-icons/pi";
+import { DiGithubBadge } from "react-icons/di";
 
 export default function BlogHeader() {
     return (
@@ -14,7 +13,7 @@ export default function BlogHeader() {
             className="w-16 h-16 rounded-full object-cover border-2 border-black"
           />
           <div>
-            <h1 className="text-2xl font-bold">YourBlog</h1>
+            <h1 className="text-2xl font-montserrat ">YourBlog</h1>
           </div>
         </div>
   
@@ -26,10 +25,10 @@ export default function BlogHeader() {
         </div>
 
 
-        <div>
+        <div className="gap-3 flex">
             <button title="Github"><DiGithubBadge size={35} /></button>
             <button title="Twitter"><BsTwitter size={30} /></button>
-            <button></button>
+            <button title="Internet"><BiWorld size={30} /></button>
         </div>
 
         
