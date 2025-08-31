@@ -1,4 +1,50 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+
 export default function Footer() {
+  const [email, setEmail] = useState("")
+  const [IP_Address, setIP_Address] = useState("")
+  const [error, setError] = useState("")
+
+  async function Submit() {
+    if (!email) {
+      return setError("All fields are required.");
+    }
+  
+    if (email.length < 11) {
+      return setError("Write your real email.");
+    }
+  
+    try {
+      const res = await axios.post("http://localhost:5000/api/subs", {
+        email,
+        IP_Address,
+      });
+  
+      if (res.status === 200 || res.status === 201) {
+        setError("Successfully submitted!")
+      } else {
+        setError(`Unexpected status: ${res.status}`);
+      }
+    } catch (error: any) {
+      setError(error.response?.data?.message || error.message);
+    }
+  }
+  
+
+  useEffect(() => {
+    const fetchIP = async () => {
+      try {
+        const res = await axios.get("https://api.ipify.org?format=json")
+        setIP_Address(res.data.ip)
+      } catch (error) {
+        setError("Failed to fetch IP.")
+      } finally {
+      }
+    }
+    fetchIP()
+  }, [])
+
   return (
     <>
     <div className="border border-black"></div>
@@ -15,17 +61,20 @@ export default function Footer() {
           <span className="font-semibold text-yellow-400">5000+ members</span>{" "}
           community to stay up to date with latest news.
         </p>
-
-        <form className="flex flex-col sm:flex-row items-center gap-3 w-full max-w-md">
+        <span className={error?.includes("Successfully") ? "text-green-600" : "text-red-600"}>
+          {error}
+        </span>
+        <div className="flex flex-col sm:flex-row items-center gap-3 w-full max-w-md">
           <input
             type="email"
+            onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your email"
             className="w-full flex-1 px-4 py-2 rounded text-black focus:outline-none"
           />
-          <button className="px-6 py-2 rounded hover:text-white/50 bg-black hover:bg-black/50 font-semibold text-white transition">
-            Gönder
+          <button onClick={Submit} className="px-6 py-2 rounded hover:text-white/50 bg-black hover:bg-black/50 font-semibold text-white transition">
+            Submit
           </button>
-        </form>
+        </div>
 
         <div className="flex gap-4 mt-4">
           <a href="#" aria-label="LinkedIn">
