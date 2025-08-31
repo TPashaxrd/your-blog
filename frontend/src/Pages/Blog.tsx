@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 interface Post {
   _id: string;
   title: string;
+  slug: string;
   coverImageUrl?: string;
   category?: string;
   createdAt: string;
@@ -84,7 +85,7 @@ export default function App() {
               <div
                 key={post._id}
                 className="rounded-2xl overflow-hidden cursor-pointer"
-                onClick={() => window.location.href = `/blog/${post._id}`}
+                onClick={() => window.location.href = `/blog/${post.slug}`}
               >
                 <div className="relative w-full aspect-square overflow-hidden group">
                   <img

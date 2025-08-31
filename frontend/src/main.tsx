@@ -5,6 +5,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import NoPage from './Pages/NoPage.tsx'
 import Blog from './Pages/Blog.tsx'
 import Contact from './Pages/Contact.tsx'
+import Blogs from './Pages/Blogs.tsx'
+import CreateBlog from './Pages/CreateBlog.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
@@ -12,6 +14,8 @@ createRoot(document.getElementById('root')!).render(
     <Route path="/" element={<App/>}/>
     <Route path="/blog" element={<Blog/>}/>
     <Route path="/contact" element={<Contact/>}/>
+    <Route path="/blog/:slug" element={<Blogs/>}/>
+    <Route path="/admin" element={<CreateBlog/>}/>
     <Route path="*" element={<NoPage/>}/>
    </Routes>
   </BrowserRouter>

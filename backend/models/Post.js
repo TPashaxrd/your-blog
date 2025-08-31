@@ -24,6 +24,10 @@ const PostSchema = new mongoose.Schema({
     published: {
         type: String
     },
+    views: {
+        type: Number,
+        default: 0
+    },
     createdAt: {
         type: Date,
         default: Date.now()

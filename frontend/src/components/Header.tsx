@@ -16,7 +16,7 @@ export default function Header() {
             alt="Profile"
             className="w-16 h-16 rounded-full object-cover border-2 border-black"
           />
-          <h1 className="text-2xl font-montserrat">YourBlog</h1>
+          <h1 onClick={() => window.location.href = "/" } className="text-2xl cursor-pointer font-bold font-montserrat">YourBlog</h1>
         </div>
 
         <button
@@ -36,7 +36,7 @@ export default function Header() {
         `}
       >
         <button onClick={() => window.location.href = "/" } className={`${isOpen && 'text-xl font-bold border-b border-black inline-block'}`}>Home</button>
-        <button className={`${isOpen && 'text-xl font-bold border-b border-black inline-block'}`}>About</button>
+        <button onClick={() => window.location.href = "/blog" } className={`${isOpen && 'text-xl font-bold border-b border-black inline-block'}`}>Blogs</button>
         <button onClick={() => window.location.href = "/contact" } className={`${isOpen && 'text-xl font-bold border-b border-black inline-block'}`}>Contact</button>
         <button title="Thema">
           <BiMoon
