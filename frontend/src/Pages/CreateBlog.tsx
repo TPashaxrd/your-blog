@@ -52,7 +52,7 @@ const CreateBlog = () => {
       .replace(/[^\w-]+/g, "");
   
   const handleSubmit = async () => {
-    if (!title || !category || !content) return alert("Fill all fields");
+    if (!title || !category || !content) return alert("All fields are required");
   
     const slug = slugify(title);
     const formData = new FormData();
@@ -243,7 +243,6 @@ const CreateBlog = () => {
             <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Admin Login</h2>
 
             <input
-              type="text"
               placeholder="Username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -251,7 +250,6 @@ const CreateBlog = () => {
             />
 
             <input
-              type="password"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}

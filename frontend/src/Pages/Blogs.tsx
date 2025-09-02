@@ -37,6 +37,19 @@ export default function BlogPost() {
     if (slug) fetchPost();
   }, [slug]);
 
+  useEffect(() => {
+    if (!slug) return; 
+    const postView = async () => {
+      try {
+        await axios.patch(`http://localhost:5000/api/post/${slug}/view`);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    postView();
+  }, [slug]);
+  
+
   if (loading) return <div className="text-center py-10">Loading...</div>;
   if (error) return <div className="text-red-500 text-center py-10">{error}</div>;
 
@@ -135,6 +148,7 @@ export default function BlogPost() {
     <>
       <Header />
       <div className="max-w-4xl mx-auto px-4 py-8">
+
         {post ? (
           <article className="bg-white shadow-lg rounded-2xl overflow-hidden">
             {post.coverImageUrl && (
@@ -172,6 +186,9 @@ export default function BlogPost() {
                 <button className="flex items-center gap-2 hover:text-green-500">
                   <FaShareAlt /> <span>Share</span>
                 </button>
+                <div className="text-center text-gray-500">
+                {post.views} Views
+              </div>
               </div>
             {post && (
             <div className="mt-10 border-t pt-6">

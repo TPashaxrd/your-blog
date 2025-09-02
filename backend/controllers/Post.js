@@ -50,7 +50,22 @@ const showPostBySlug = async (req, res) => {
       console.error(error);
       res.status(500).json({ message: "Server Error" });
     }
+};
+
+const incrementViews = async (req, res) => {
+    try {
+      const { slug } = req.params;
+      const post = await Post.findOne({ slug });
+      if (!post) return res.status(404).json({ message: "Post not found." });
+  
+      post.views += 1;
+      await post.save();
+  
+      res.status(200).json({ views: post.views });
+    } catch (error) {
+      res.status(500).json({ message: "Server Error" });
+    }
   };
   
 
-module.exports = { createPost, showPosts, showPostBySlug }
+module.exports = { createPost, showPosts, showPostBySlug, incrementViews }

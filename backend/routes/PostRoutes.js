@@ -2,7 +2,7 @@ const express = require("express")
 const path = require("path")
 const fs = require("fs")
 const multer = require("multer")
-const { createPost, showPosts, showPostBySlug } = require("../controllers/Post")
+const { createPost, showPosts, showPostBySlug, incrementViews } = require("../controllers/Post")
 const checkIPMiddleware = require("../middleware/IPCheck")
 const Post = require("../models/Post")
 const router = express.Router()
@@ -38,5 +38,6 @@ router.get("/related", async (req, res) => {
 });
 
 router.get("/:slug", showPostBySlug)
+router.patch("/:slug/view", incrementViews)
 
 module.exports = router
