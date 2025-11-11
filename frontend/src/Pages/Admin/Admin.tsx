@@ -112,32 +112,33 @@ const CreateBlog = () => {
   }
 
   const checkPassw = async () => {
-    setError("");
-    if (!username || !password) return setError("Fill all fields");
-  
-    try {
-      const res = await axios.post(`${config.api}/api/login`, { username, password });
-      const res2 = await axios.post(`${config.api}/api/admin/all-subs`, { username, password });
-      const res3 = await axios.post(`${config.api}/api/admin/all-contacts`, { username, password })
-  
-      if (res.data.success || res2.data.success || res3.data.success) {
-        setIsLoggedIn(true);
-        setError("");
-        setSubs(res2.data)
-        setContacts(res3.data)
-      } else {
-        setError(res.data.message || "Invalid username or password");
-      }
-    } catch (err: any) {
-      if (err.response) {
-        setError(`Error ${err.response.status}: ${err.response.data.message || err.response.data.error}`);
-      } else if (err.request) {
-        setError("No response from server");
-      } else {
-        setError(`Error: ${err.message}`);
-      }
+  setError("");
+  if (!username || !password) return setError("Fill all fields");
+
+  try {
+    const res = await axios.post(`${config.api}/api/login`, { username, password });
+    const res2 = await axios.post(`${config.api}/api/admin/all-subs`, { username, password });
+    const res3 = await axios.post(`${config.api}/api/admin/all-contacts`, { username, password })
+
+    if (res.data.success || res2.data.success || res3.data.success) {
+      setIsLoggedIn(true);
+      setError("");
+      setSubs(res2.data)
+      setContacts(res3.data)
+    } else {
+      setError(res.data.message || "Invalid username or password");
     }
-  };
+  } catch (err: any) {
+    if (err.response) {
+      setError(`Error ${err.response.status}: ${err.response.data.message || err.response.data.error}`);
+    } else if (err.request) {
+      setError("No response from server");
+    } else {
+      setError(`Error: ${err.message}`);
+    }
+  }
+};
+
   
 
     return (

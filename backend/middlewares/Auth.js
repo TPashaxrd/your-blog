@@ -1,9 +1,11 @@
+require("dotenv").config()
+
 const authMiddleware = (req, res, next) => {
     try {
       const { username, password } = req.body;
-      const ADMIN_USERNAME = "Toprak";
-      const ADMIN_PASSWORD = "Altinn";
-  
+      const ADMIN_USERNAME = process.env.USERNAME
+      const ADMIN_PASSWORD = process.env.PASSWORD
+
       if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
         next();
       } else {
