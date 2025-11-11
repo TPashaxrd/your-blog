@@ -1,37 +1,60 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import axios from "axios";
 
-export default function App() {
-  const [posts, setPosts] = useState<any[]>([]);
-  const [loading, setLoading] = useState(false);
+interface Post {
+  _id: string;
+  title: string;
+  coverImageUrl: string;
+  category: string;
+  excerpt?: string;
+  slug?: string;
+  createdAt: string;
+}
+
+const App: React.FC = () => {
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchPopular() {
+    async function fetchPosts() {
       try {
         const res = await axios.get("http://localhost:5000/api/post");
         setPosts(res.data);
-        setLoading(true);
       } catch (err) {
         console.error("Failed to fetch posts", err);
+      } finally {
+        setLoading(false);
       }
     }
-    fetchPopular();
+    fetchPosts();
   }, []);
 
-  
-  if (!loading) {
+  if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-        <div className="p-6 sm:p-8 bg-white rounded-2xl shadow-xl text-center">
-          <h2 className="text-xl sm:text-2xl font-bold text-purple-600 mb-3 sm:mb-4">Oops!</h2>
-          <p className="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">
+      <div className="flex flex-col items-center justify-center h-screen bg-black text-white">
+        <div className="p-8 bg-gray-900 rounded-2xl shadow-[0_0_30px_rgba(168,85,247,0.4)] text-center animate-pulse">
+          <h2 className="text-3xl font-bold text-purple-500 mb-4">
+            Loading Content...
+          </h2>
+          <p className="text-gray-400">Please wait while we bloom the pixels.</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (posts.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen bg-black text-white">
+        <div className="p-8 bg-gray-900 rounded-2xl shadow-[0_0_30px_rgba(220,38,38,0.4)] text-center">
+          <h2 className="text-3xl font-bold text-red-500 mb-4">Oops!</h2>
+          <p className="text-gray-400 mb-6">
             Sorry, we couldn't load the content. Please try again later.
           </p>
           <button
             onClick={() => window.location.reload()}
-            className="px-4 sm:px-6 py-2 bg-purple-500 text-white rounded-full hover:bg-purple-600 transition-colors text-sm sm:text-base"
+            className="px-6 py-2 bg-purple-600 text-white rounded-full hover:bg-purple-700 transition-colors transform hover:scale-105"
           >
             Retry
           </button>
@@ -40,120 +63,154 @@ export default function App() {
     );
   }
 
+  const getImageUrl = (post: Post, width = 600, height = 400) =>
+    post.coverImageUrl
+      ? `http://localhost:5000${post.coverImageUrl}`
+      : `https://via.placeholder.com/${width}x${height}`;
+
   return (
-    <>
+    <div className="bg-black text-gray-200">
       <Header />
 
-      <main className="flex flex-col items-center justify-center px-3 sm:px-6 mt-4 sm:mt-6 mb-12 gap-6 w-full">
-        <div className="relative w-full max-w-7xl rounded-2xl overflow-hidden shadow-lg">
+      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="relative w-full rounded-2xl overflow-hidden shadow-lg mb-16">
           <img
-            className="w-full h-auto object-cover brightness-50"
-            src="https://png.pngtree.com/thumb_back/fh260/background/20230715/pngtree-co-working-office-3d-rendering-of-modern-website-screens-with-responsive-image_3883155.jpg"
+            className="w-full h-[50vh] object-cover brightness-50"
+            src="https://picsum.photos/seed/hero/1600/900"
             alt="Hero"
           />
-          <div className="absolute bottom-4 left-4 sm:bottom-8 sm:left-8 flex flex-col items-start text-left gap-2 sm:gap-3 px-2 sm:px-0">
-          <button onClick={() => window.location.href = "/blog/web-development"} className="group hover:scale-105 font-inter bg-white/10 backdrop-blur-md text-white px-5 py-2 rounded-full border border-white/20 hover:bg-white/20 transition-all duration-300 text-sm sm:text-base">
-          Web Development
-          <span className="ml-2 inline-block transition-transform group-hover:translate-x-1">
-            →
-          </span>
-          </button>
-          <h1 className='font-bold text-white capitalize text-lg sm:text-xl md:text-3xl lg:text-4xl'>
-            <span className='bg-gradient-to-r from-purple-500 to-purple-500 bg-[length:0px_6px] hover:bg-[length:100%_6px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500'>
-            Building Progressive Web Apps: Bridging the Gap Between Web and Mobile
-            </span>
-          </h1>
-            <span className="text-white/80 text-xs sm:text-sm md:text-lg max-w-3xl sm:max-w-3xl md:max-w-3xl">
-              Integrating mindfulness practices helps developers cultivate present-moment awareness, fostering focus, problem-solving, and work-life balance.
-            </span>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+          <div className="absolute bottom-8 left-8 flex flex-col items-start gap-4 px-2">
+            <a
+              href="#"
+              className="group hover:scale-105 font-medium bg-white/10 backdrop-blur-md text-white px-5 py-2 rounded-full border border-white/20 hover:bg-white/20 transition-all duration-300 text-sm sm:text-base shadow-md"
+            >
+              Web Development
+              <span className="ml-2 inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+                →
+              </span>
+            </a>
+            <h1 className="font-bold text-white text-2xl sm:text-3xl md:text-5xl max-w-4xl">
+              <a className="bg-gradient-to-r from-purple-500 to-purple-500 bg-[length:0px_6px] hover:bg-[length:100%_6px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500">
+                Building Progressive Web Apps: Bridging the Gap Between Web and
+                Mobile
+              </a>
+            </h1>
+            <p className="text-white/80 text-sm md:text-lg max-w-3xl hidden sm:block">
+              {posts[0]?.excerpt || "Integrating mindfulness practices helps developers cultivate focus and balance."}
+            </p>
           </div>
         </div>
 
-        <div className="w-full flex justify-start items-center mt-6 sm:mt-8">
-          <h1 className="text-start font-inter px-4 sm:px-6 py-2 sm:py-3 ml-2 sm:ml-4 text-xl sm:text-3xl font-bold border-b-4 border-purple-700">
+        <div className="mb-12">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-white relative inline-block">
             Featured Posts
-          </h1>
+            <span className="absolute -bottom-2 left-0 w-2/3 h-1 bg-purple-600"></span>
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {posts[0] && (
+              <a
+                href={`/blog/${posts[0].slug}`}
+                className="md:col-span-2 group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-purple-500/20 transition-all duration-500 transform hover:-translate-y-1"
+              >
+                <img
+                  src={getImageUrl(posts[0], 800, 420)}
+                  alt={posts[0].title}
+                  className="w-full w-max-xl  object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col justify-end p-6">
+                  <h3 className="font-bold text-white text-2xl md:text-4xl">
+                    <span className="bg-gradient-to-r from-purple-500 to-purple-500 bg-[length:0px_6px] group-hover:bg-[length:100%_6px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500">
+                      {posts[0].title}
+                    </span>
+                  </h3>
+                  <span className="text-gray-400 text-sm mt-2">
+                    {new Date(posts[0].createdAt).toLocaleDateString()}
+                  </span>
+                </div>
+              </a>
+            )}
+
+            <div className="flex flex-col gap-6">
+              {posts.slice(1, 3).map((post) => (
+                <a
+                  key={post._id}
+                  href={`/blog/${post.slug}`}
+                  className="flex items-start gap-4 group p-4 rounded-xl bg-gray-900/50 hover:bg-gray-900 transition-all duration-300 border border-gray-800 hover:border-purple-600"
+                >
+                  <img
+                    src={getImageUrl(post, 150, 150)}
+                    alt={post.title}
+                    className="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-lg flex-shrink-0"
+                  />
+                  <div className="flex-1 flex flex-col justify-center gap-1">
+                    <span className="text-purple-400 font-semibold text-xs sm:text-sm uppercase tracking-wider">
+                      {post.category}
+                    </span>
+                    <h3 className="text-base sm:text-lg font-bold text-gray-200 group-hover:text-white transition-colors">
+                      {post.title}
+                    </h3>
+                    <span className="text-gray-500 text-xs sm:text-sm">
+                      {new Date(post.createdAt).toLocaleDateString()}
+                    </span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
 
-        <div className="w-full max-w-7xl mt-4 sm:mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-          {posts[0] && (
-            <div className="md:col-span-2 relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02]">
-              <img
-                src={posts[0].coverImageUrl ? `http://localhost:5000${posts[0].coverImageUrl}` : "https://via.placeholder.com/600x400"}
-                alt={posts[0].title}
-                className="w-full h-48 sm:h-64 md:h-80 lg:h-[420px] object-cover transition-transform duration-700 hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-3 sm:p-6">
-                <button className="group w-fit mb-2 px-3 sm:px-5 py-1.5 sm:py-2 text-xs sm:text-sm hover:scale-105 font-inter bg-white/10 backdrop-blur-md text-white rounded-full border border-white/20 hover:bg-white/20 transition-all duration-300">
-                  Web Development
-                  <span className="ml-1 sm:ml-2 inline-block transition-transform group-hover:translate-x-1">→</span>
-                </button>
-                <h1 className="font-bold text-white capitalize text-lg sm:text-2xl md:text-3xl lg:text-4xl">
-                  <span className="bg-gradient-to-r from-purple-500 to-purple-500 bg-[length:0px_4px] sm:bg-[length:0px_6px] hover:bg-[length:100%_4px] sm:hover:bg-[length:100%_6px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500">
-                    {posts[0].title}
-                  </span>
-                </h1>
-                <span className="text-gray-300 text-xs sm:text-sm">{new Date(posts[0].createdAt).toLocaleDateString()}</span>
-              </div>
-            </div>
-          )}
+        <div>
+          <div className="flex justify-between items-baseline mb-8">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white relative inline-block">
+              Recent Posts
+              <span className="absolute -bottom-2 left-0 w-2/3 h-1 bg-purple-600"></span>
+            </h2>
+            <a
+              href="/blogs"
+              className="text-purple-400 hover:text-purple-300 font-semibold group transition-colors"
+            >
+              View all
+              <span className="ml-1 inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+                →
+              </span>
+            </a>
+          </div>
 
-          <div className="flex flex-col gap-4">
-            {posts.slice(1, 3).map((post) => (
-              <div key={post._id} className="flex flex-col sm:flex-row items-start sm:items-center rounded-xl border border-gray-200 transition-all duration-300 hover:border-2 hover:border-purple-500">
-                <img
-                  src={post.coverImageUrl ? `http://localhost:5000${post.coverImageUrl}` : "https://via.placeholder.com/150"}
-                  alt={post.title}
-                  className="w-full sm:w-40 h-40 object-cover rounded-t-xl sm:rounded-l-xl sm:rounded-tr-none"
-                />
-                <div className="flex-1 p-3 sm:p-4 flex flex-col justify-center gap-2">
-                  <span className="text-purple-500 font-medium text-xs sm:text-sm uppercase">{post.category || "Web Development"}</span>
-                  <h3 className="text-base sm:text-lg font-semibold relative after:absolute after:bottom-0 after:left-0 after:h-1 after:w-0 after:bg-purple-500 after:transition-all after:duration-500 hover:after:w-full">{post.title}</h3>
-                  <span className="text-gray-400 text-xs sm:text-sm">{new Date(post.createdAt).toLocaleDateString()}</span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12">
+            {posts.slice(0, 6).map((post) => (
+              <a
+                key={post._id}
+                href={`/blog/${post.slug}`}
+                className="group flex flex-col gap-3"
+              >
+                <div className="w-full aspect-video overflow-hidden rounded-lg shadow-lg">
+                  <img
+                    src={getImageUrl(post)}
+                    alt={post.title}
+                    className="w-full h-full object-cover rounded-lg transition-transform duration-500 group-hover:scale-105"
+                  />
                 </div>
-              </div>
+                <div className="flex flex-col gap-1">
+                  <span className="text-purple-400 font-semibold text-sm uppercase tracking-wider">
+                    {post.category}
+                  </span>
+                  <h3 className="font-bold text-xl text-gray-200 group-hover:text-white transition-colors">
+                    {post.title}
+                  </h3>
+                  <span className="text-gray-500 text-sm">
+                    {new Date(post.createdAt).toLocaleDateString()}
+                  </span>
+                </div>
+              </a>
             ))}
           </div>
-        </div>
-
-        <div className="w-full flex flex-col sm:flex-row justify-between items-center mb-6 sm:mb-7 mt-6 sm:mt-8 gap-4 sm:gap-0">
-          <h1 className="text-start font-inter px-4 sm:px-6 py-2 sm:py-3 ml-2 sm:ml-4 text-xl sm:text-3xl font-bold border-b-4 border-purple-700">Recent Posts</h1>
-          <button
-            onClick={() => (window.location.href = "/blogs")}
-            className="text-start font-inter px-4 sm:px-6 py-2 sm:py-3 ml-2 sm:ml-4 text-base sm:text-xl lg:text-2xl text-black hover:text-black/50 hover:underline font-bold border-b-4"
-          >
-            View all
-          </button>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
-          {posts.slice(0, 6).map((post) => (
-            <div key={post._id} className="flex flex-col items-start gap-2 sm:gap-3">
-              <div className="w-full aspect-square overflow-hidden rounded-lg">
-                <img
-                  src={post.coverImageUrl ? `http://localhost:5000${post.coverImageUrl}` : "https://via.placeholder.com/150"}
-                  alt={post.title}
-                  className="w-full h-full object-cover rounded-lg transition-transform duration-300 hover:scale-105"
-                />
-              </div>
-
-              <span onClick={() => window.location.href = "/blog"} className="text-purple-500 font-medium text-xs sm:text-sm uppercase cursor-pointer">
-                {post.category?.toUpperCase() || "Web Development"}
-              </span>
-
-              <h1 className="font-bold capitalize text-base sm:text-lg md:text-xl">
-                <span onClick={() => window.location.href = `/blog/${post.slug}`} className="cursor-pointer bg-gradient-to-r from-purple-500 to-purple-500 bg-[length:0px_4px] sm:bg-[length:0px_6px] hover:bg-[length:100%_4px] sm:hover:bg-[length:100%_6px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500">
-                  {post.title}
-                </span>
-              </h1>
-
-              <span className="text-gray-400 text-xs sm:text-sm mb-5">{new Date(post.createdAt).toLocaleDateString()}</span>
-            </div>
-          ))}
         </div>
       </main>
 
       <Footer />
-    </>
+    </div>
   );
-}
+};
+
+export default App;

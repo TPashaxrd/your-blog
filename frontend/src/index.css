@@ -28,17 +28,17 @@
 ! font-family: "Roboto", sans-serif;
 */ 
 body {
-  /* background-color: black; */
-  /* color: white; */
+  background-color: black;
+  color: white;
 }
 /* body { */
   /* font-family: 'Space Grotesk', serif; */
 /* } */
 /* Selection */
-::selection {
+/* ::selection {
   background-color: black;
   color: white;
-}
+} */
 ::-webkit-scrollbar {
     display: none;
     background-color: transparent;

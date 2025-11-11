@@ -1,9 +1,8 @@
-// middleware/authMiddleware.js
 const authMiddleware = (req, res, next) => {
     try {
       const { username, password } = req.body;
-      const ADMIN_USERNAME = "admin";
-      const ADMIN_PASSWORD = "admin";
+      const ADMIN_USERNAME = "Toprak";
+      const ADMIN_PASSWORD = "Altinn";
   
       if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
         next();
@@ -15,4 +14,4 @@ const authMiddleware = (req, res, next) => {
     }
   };
   
-  module.exports = authMiddleware;  
+  module.exports = authMiddleware;

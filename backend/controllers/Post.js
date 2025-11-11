@@ -31,6 +31,25 @@ const createPost = async(req, res) => {
     }
 }
 
+const deletePosts = async(req, res) => {
+    try {
+        const { postId } = req.body;
+        if(!postId) {
+            return res.status(400).json({ message: "All fields are required."})
+        }
+        const post = await Post.findById(postId)
+        if(!post) {
+            return res.status(400).json({ message: "Post not found."})
+        }
+
+        const deletePost = await Post.findByIdAndDelete(postId)
+
+        res.status(201).json(deletePost)
+    } catch (error) {
+        res.status(500).json({ message: error })
+    }
+}
+
 const showPosts = async(req, res) => {
     try {
         const posts = await Post.find()
@@ -68,4 +87,4 @@ const incrementViews = async (req, res) => {
   };
   
 
-module.exports = { createPost, showPosts, showPostBySlug, incrementViews }
+module.exports = { createPost, showPosts, showPostBySlug, incrementViews, deletePosts }

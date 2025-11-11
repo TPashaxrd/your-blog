@@ -31,8 +31,8 @@ const createContact = async(req, res) => {
 
 const showAllContacts = async(req, res) => {
     try {
-        const contacts = await Contact.find()
-        res.status(201).json(contacts)
+        // const contacts = await Contact.find()
+        res.status(201).json({ message: "hehe "})
     } catch (error) {
         res.status(500).json({ message: `Server error: ${error}`})
     }

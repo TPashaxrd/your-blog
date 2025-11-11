@@ -2,7 +2,7 @@ const express = require("express")
 const path = require("path")
 const fs = require("fs")
 const multer = require("multer")
-const { createPost, showPosts, showPostBySlug, incrementViews } = require("../controllers/Post")
+const { createPost, showPosts, showPostBySlug, incrementViews, deletePosts } = require("../controllers/Post")
 const checkIPMiddleware = require("../middleware/IPCheck")
 const Post = require("../models/Post")
 const router = express.Router()
@@ -22,8 +22,8 @@ if(!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir)
       const upload = multer({ storage });
 
 router.post('/', upload.single("cover"), checkIPMiddleware, createPost)
+router.delete("/", checkIPMiddleware, deletePosts)
 router.get("/", showPosts)
-
 router.get("/related", async (req, res) => {
   const { category, exclude } = req.query;
   try {

@@ -1,6 +1,6 @@
 const axios = require("axios")
 
-const allowedIP = "104.28.216.171";
+const allowedIP = process.env.IP;
 
 const checkIPMiddleware = async(req, res, next) => {
     try {

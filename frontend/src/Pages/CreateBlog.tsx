@@ -5,6 +5,8 @@ import { FaBold, FaItalic, FaCode, FaLink, FaImage } from "react-icons/fa";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import axios from "axios";
+import Posts from "./components/Posts";
+import { config } from "../components/config";
 
 // const generateSlug = (title: string) => {
 //   return title
@@ -63,7 +65,7 @@ const CreateBlog = () => {
     if (cover) formData.append("cover", cover);
   
     try {
-      const res = await axios.post("http://localhost:5000/api/post", formData, {
+      const res = await axios.post(`${config.api}/api/post`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       console.log(res.data);
@@ -89,7 +91,7 @@ const CreateBlog = () => {
     if (!username || !password) return setError("Fill all fields");
   
     try {
-      const res = await axios.post("http://localhost:5000/api/login", { username, password });
+      const res = await axios.post(`${config.api}`, { username, password });
   
       if (res.data.success) {
         setIsLoggedIn(true);
@@ -237,6 +239,10 @@ const CreateBlog = () => {
       </div>
       )}
 
+      {isLoggedIn && (
+              <Posts />
+      )}
+
         {!isLoggedIn && (
           <div className="flex justify-center items-center min-h-screen bg-gray-100">
           <div className="w-full max-w-sm bg-white p-8 rounded-2xl shadow-xl border border-gray-200">
@@ -267,7 +273,6 @@ const CreateBlog = () => {
           </div>
         </div>
       )}
-
 
       <Footer />
     </>
