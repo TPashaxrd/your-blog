@@ -80,8 +80,22 @@ function Contact() {
     }
   
     return (
-      <div className="min-h-screen bg-gray-900 text-gray-100">
-        <Header />
+    <div className="relative min-h-screen overflow-hidden bg-[#050505] text-gray-100">
+      <div className="absolute inset-0 pointer-events-none">
+        {Array.from({ length: 25 }).map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-white/20 rounded-full animate-float"
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 10}s`,
+              animationDuration: `${10 + Math.random() * 10}s`,
+            }}
+          ></div>
+        ))}
+      </div>
+      <Header />
         
         <div className="max-w-xl mx-auto py-16 px-6 sm:px-8">
           <div className="p-8 bg-gray-800 shadow-2xl rounded-xl border border-gray-700">
@@ -96,7 +110,7 @@ function Contact() {
             )}
             {successfully && (
               <p className="p-3 mb-4 bg-green-900/50 text-green-300 rounded-lg border border-green-700">
-                ✅ Başarılı: {successfully}
+                Successfully: {successfully}
               </p>
             )}
     

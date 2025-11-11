@@ -76,14 +76,29 @@ const App: React.FC = () => {
       : `https://via.placeholder.com/${width}x${height}`;
 
   return (
-    <div className="bg-black text-gray-200">
+    <div className="relative min-h-screen overflow-hidden bg-[#050505] text-gray-100">
+      <div className="absolute inset-0 pointer-events-none">
+        {Array.from({ length: 25 }).map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-white/20 rounded-full animate-float"
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 10}s`,
+              animationDuration: `${10 + Math.random() * 10}s`,
+            }}
+          ></div>
+        ))}
+      </div>
+
       <Header />
 
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="relative w-full rounded-2xl overflow-hidden shadow-lg mb-16">
           <img
             className="w-full h-[50vh] object-cover brightness-50"
-            src="https://picsum.photos/seed/hero/1600/900"
+            src="https://raw.githubusercontent.com/TPashaxrd/your-blog/refs/heads/main/toprak-banner.png"
             alt="Hero"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
@@ -92,7 +107,7 @@ const App: React.FC = () => {
               href="/blogs"
               className="group hover:scale-105 font-medium bg-white/10 backdrop-blur-md text-white px-5 py-2 rounded-full border border-white/20 hover:bg-white/20 transition-all duration-300 text-sm sm:text-base shadow-md"
             >
-              Web Development
+              My Blogs (as Student)
               <span className="ml-2 inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
                 →
               </span>

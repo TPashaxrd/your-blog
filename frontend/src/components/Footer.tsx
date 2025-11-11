@@ -112,7 +112,7 @@ const Footer: React.FC = () => {
               <span className="text-purple-500">Blogs</span>
             </a>
             <p className="text-gray-400 text-base">
-              Blog website for Toprak
+              Blog website for
             </p>
             <div className="flex space-x-6">
               <a href="#" className="text-gray-400 hover:text-purple-500 transition-colors">

@@ -36,8 +36,19 @@ export default function App() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-screen text-purple-400 text-xl bg-gray-900">
-        Loading posts...
+      <div className="min-h-screen items-center justify-center flex flex-col">
+        <div className="loader">
+        <div className="text"><span>Loading</span></div>
+        <div className="text"><span>Loading</span></div>
+        <div className="text"><span>Loading</span></div>
+        <div className="text"><span>Loading</span></div>
+        <div className="text"><span>Loading</span></div>
+        <div className="text"><span>Loading</span></div>
+        <div className="text"><span>Loading</span></div>
+        <div className="text"><span>Loading</span></div>
+        <div className="text"><span>Loading</span></div>
+        <div className="line"></div>
+      </div>
       </div>
     );
   }
@@ -49,8 +60,21 @@ export default function App() {
   return (
     <>
       <Header />
-      <div className="bg-gray-900 min-h-screen text-gray-200">
-        <div className="px-6 py-12 max-w-7xl mx-auto">
+    <div className="relative min-h-screen overflow-hidden bg-[#050505] text-gray-100">
+      <div className="absolute inset-0 pointer-events-none">
+        {Array.from({ length: 25 }).map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-white/20 rounded-full animate-float"
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 10}s`,
+              animationDuration: `${10 + Math.random() * 10}s`,
+            }}
+          ></div>
+        ))}
+      </div>        <div className="px-6 py-12 max-w-7xl mx-auto">
           <div className="mb-8">
             <span className="text-white font-bold text-5xl text-start">
               #{selectedCategory.toLowerCase()}
