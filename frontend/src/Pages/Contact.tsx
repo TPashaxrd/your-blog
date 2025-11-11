@@ -19,7 +19,7 @@ function Contact() {
           const res = await axios.get("https://api.ipify.org?format=json")
           setIP_Address(res.data.ip)
         } catch (error) {
-          setError("Failed to fetch IP.")
+          console.error("Failed to fetch IP:", error);
         } finally {
           setLoading(false)
         }
@@ -28,8 +28,11 @@ function Contact() {
     }, [])
   
     async function Submit() {
+      setError("")
+      setSuccessfully("")
+
       if (!title || !message || !email) {
-        setError("All fields are required.")
+        setError("All fields are required..")
         return
       }
   
@@ -40,69 +43,95 @@ function Contact() {
           message,
           IP_Address: IP_Address,
         })
-        if(res.status == 201) {
-            setSuccessfully("Successfully submitted.")
+
+        if(res.status === 201) {
+            setSuccessfully("Mesajınız başarıyla gönderildi!")
         }
-        setError("")
+        
         setTitle("")
         setMessage("")
         setEmail("")
-        } catch (error: any) {
+      } catch (error: any) {
         if (axios.isAxiosError(error)) {
-          setError(`Failed to submit form. ${error.response?.data?.message || error.message}`);
+          setError(`Gönderme işlemi başarısız. ${error.response?.data?.message || error.message}`);
         } else {
-          setError("An unexpected error occurred.");
+          setError("Beklenmedik bir hata oluştu.");
         }
       }
-      
     }
   
     if (loading) {
-      return (
-        <div className="flex items-center justify-center h-screen text-purple-500 text-xl">
-          Loading...
-        </div>
-      )
+    return (
+      <div className="min-h-screen items-center justify-center flex flex-col">
+        <div className="loader">
+        <div className="text"><span>Loading</span></div>
+        <div className="text"><span>Loading</span></div>
+        <div className="text"><span>Loading</span></div>
+        <div className="text"><span>Loading</span></div>
+        <div className="text"><span>Loading</span></div>
+        <div className="text"><span>Loading</span></div>
+        <div className="text"><span>Loading</span></div>
+        <div className="text"><span>Loading</span></div>
+        <div className="text"><span>Loading</span></div>
+        <div className="line"></div>
+      </div>
+      </div>
+    );
     }
   
     return (
-      <>
+      <div className="min-h-screen bg-gray-900 text-gray-100">
         <Header />
-        <div className="max-w-lg mx-auto mt-12 p-6 bg-white shadow-xl rounded-2xl">
-          <h1 className="text-2xl font-bold text-purple-600 mb-4">Contact Us</h1>
-  
-          {error && <p className="text-red-500 mb-4">{error}</p>}
-          {successfully && <p className="text-green-500 mb-4">{successfully}</p>}
-  
-          <input
-            type="text"
-            placeholder="Enter Title"
-            className="w-full mb-3 p-3 border rounded-lg"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <input
-            type="email"
-            placeholder="Your Email"
-            className="w-full mb-3 p-3 border rounded-lg"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <textarea
-            placeholder="Your Message"
-            className="w-full mb-3 p-3 border rounded-lg"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-          />
-          <button
-            onClick={Submit}
-            className="w-full bg-black text-white font-inter hover:bg-black/80 duration-300  hover:text-black/80 py-3 rounded-lg transition"
-          >
-            Send Message
-          </button>
+        
+        <div className="max-w-xl mx-auto py-16 px-6 sm:px-8">
+          <div className="p-8 bg-gray-800 shadow-2xl rounded-xl border border-gray-700">
+            <h1 className="text-3xl font-extrabold text-indigo-400 mb-6 text-center">
+              Contact with Us
+            </h1>
+    
+            {error && (
+              <p className="p-3 mb-4 bg-red-900/50 text-red-300 rounded-lg border border-red-700">
+                ⚠️ Hata: {error}
+              </p>
+            )}
+            {successfully && (
+              <p className="p-3 mb-4 bg-green-900/50 text-green-300 rounded-lg border border-green-700">
+                ✅ Başarılı: {successfully}
+              </p>
+            )}
+    
+            <input
+              type="text"
+              placeholder="Subject Title"
+              className="w-full mb-4 p-4 text-gray-100 bg-gray-700 border border-gray-600 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-200 placeholder-gray-400"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            <input
+              type="email"
+              placeholder="E-Mail address"
+              className="w-full mb-4 p-4 text-gray-100 bg-gray-700 border border-gray-600 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-200 placeholder-gray-400"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <textarea
+              placeholder="Your Message..."
+              rows={5}
+              className="w-full mb-6 p-4 text-gray-100 bg-gray-700 border border-gray-600 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-200 placeholder-gray-400 resize-none"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+            />
+            
+            <button
+              onClick={Submit}
+              className="w-full bg-indigo-600 text-white font-bold py-3 rounded-lg hover:bg-indigo-700 transition duration-300 transform hover:scale-[1.01] shadow-lg shadow-indigo-600/50"
+            >
+              Submit Message
+            </button>
+          </div>
         </div>
         <Footer />
-      </>
+      </div>
     )
   }
   

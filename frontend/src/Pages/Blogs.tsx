@@ -49,7 +49,24 @@ export default function BlogPost() {
     postView();
   }, [slug]);
 
-  if (loading) return <div className="text-center py-10 text-gray-300">Loading...</div>;
+  if (loading) {
+        return (
+      <div className="min-h-screen items-center justify-center flex flex-col">
+        <div className="loader">
+        <div className="text"><span>Loading</span></div>
+        <div className="text"><span>Loading</span></div>
+        <div className="text"><span>Loading</span></div>
+        <div className="text"><span>Loading</span></div>
+        <div className="text"><span>Loading</span></div>
+        <div className="text"><span>Loading</span></div>
+        <div className="text"><span>Loading</span></div>
+        <div className="text"><span>Loading</span></div>
+        <div className="text"><span>Loading</span></div>
+        <div className="line"></div>
+      </div>
+      </div>
+    );
+  }
   if (error) return <div className="text-red-500 text-center py-10">{error}</div>;
 
   const MarkdownComponents = {

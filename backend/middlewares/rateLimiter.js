@@ -1,8 +1,8 @@
 const rateLimiter = require("express-rate-limit")
 
 const authLimiter = rateLimiter({
-    windowMs: 15 * 60 * 1000,
-    max: 15,
+   windowMs: 15 * 60 * 1000,
+   max: 15,
    standartHeaders: true,
    legacyHeaders: false,
    message: {
@@ -22,7 +22,19 @@ const contactLimiter = rateLimiter({
     }
 })
 
+const subscribeLimiter = rateLimiter({
+    windowMs: 15 * 60 * 1000,
+    max: 3,
+    standartHeaders: true,
+    legacyHeaders: false,
+    message: {
+        success: false,
+        message: "Too many subscribe attempts. Please try again later."
+    }
+})
+
 module.exports = {
     authLimiter,
-    contactLimiter
+    contactLimiter,
+    subscribeLimiter
 }

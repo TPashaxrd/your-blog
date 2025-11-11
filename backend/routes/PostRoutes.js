@@ -3,7 +3,7 @@ const path = require("path")
 const fs = require("fs")
 const multer = require("multer")
 const { createPost, showPosts, showPostBySlug, incrementViews, deletePosts } = require("../controllers/Post")
-const checkIPMiddleware = require("../middleware/IPCheck")
+const checkIPMiddleware = require("../middlewares/IPCheck")
 const Post = require("../models/Post")
 const router = express.Router()
 

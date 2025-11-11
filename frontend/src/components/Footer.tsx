@@ -112,15 +112,15 @@ const Footer: React.FC = () => {
               <span className="text-purple-500">Blogs</span>
             </a>
             <p className="text-gray-400 text-base">
-              A sleek, modern blog interface with a captivating dark theme.
+              Blog website for Toprak
             </p>
             <div className="flex space-x-6">
               <a href="#" className="text-gray-400 hover:text-purple-500 transition-colors">
-                <span className="sr-only">Twitter</span>
+                <span onClick={() => window.location.href = "https://x.com/toprakcordision"} className="sr-only">Twitter</span>
                 <TwitterIcon />
               </a>
               <a href="#" className="text-gray-400 hover:text-purple-500 transition-colors">
-                <span className="sr-only">GitHub</span>
+                <span onClick={() => window.location.href = "https://github.com/TPashaxrd"} className="sr-only">GitHub</span>
                 <GithubIcon />
               </a>
             </div>

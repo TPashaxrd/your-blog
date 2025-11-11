@@ -48,9 +48,9 @@ export default function Header() {
       </div>
 
       <div className="gap-3 flex">
-        <button className={`${isOpen && 'hidden'}`} title="Github"><DiGithubBadge size={35} /></button>
-        <button className={`${isOpen && 'hidden'}`} title="Twitter"><BsTwitter size={30} /></button>
-        <button className={`${isOpen && 'hidden'}`} title="Internet"><BiWorld size={30} /></button>
+        <button onClick={() => window.location.href = "https://github.com/TPashaxrd"} className={`${isOpen && 'hidden'}`} title="Github"><DiGithubBadge size={35} /></button>
+        <button onClick={() => window.location.href = "https://x.com/toprakcordision"} className={`${isOpen && 'hidden'}`} title="Twitter"><BsTwitter size={30} /></button>
+        <button onClick={() => window.location.href = "https://toprak.xyz"} className={`${isOpen && 'hidden'}`} title="Internet"><BiWorld size={30} /></button>
       </div>
     </header>
   );

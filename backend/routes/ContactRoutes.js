@@ -1,6 +1,6 @@
 const express = require("express")
 const { createContact, showAllContacts } = require("../controllers/Contact")
-const { contactLimiter } = require("../middleware/rateLimiter")
+const { contactLimiter } = require("../middlewares/rateLimiter")
 
 const router = express.Router()
 

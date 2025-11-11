@@ -34,13 +34,19 @@ const App: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen bg-black text-white">
-        <div className="p-8 bg-gray-900 rounded-2xl shadow-[0_0_30px_rgba(168,85,247,0.4)] text-center animate-pulse">
-          <h2 className="text-3xl font-bold text-purple-500 mb-4">
-            Loading Content...
-          </h2>
-          <p className="text-gray-400">Please wait while we bloom the pixels.</p>
-        </div>
+      <div className="min-h-screen items-center justify-center flex flex-col">
+        <div className="loader">
+        <div className="text"><span>Loading</span></div>
+        <div className="text"><span>Loading</span></div>
+        <div className="text"><span>Loading</span></div>
+        <div className="text"><span>Loading</span></div>
+        <div className="text"><span>Loading</span></div>
+        <div className="text"><span>Loading</span></div>
+        <div className="text"><span>Loading</span></div>
+        <div className="text"><span>Loading</span></div>
+        <div className="text"><span>Loading</span></div>
+        <div className="line"></div>
+      </div>
       </div>
     );
   }
