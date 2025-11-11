@@ -60,7 +60,7 @@ export default function BlogPost() {
     h5: ({node, ...props}: any) => <h5 className="text-lg font-medium mt-1 mb-1 text-white" {...props} />,
     h6: ({node, ...props}: any) => <h6 className="text-md font-medium mt-1 mb-1 text-white" {...props} />,
     p: ({node, ...props}: any) => <p className="text-gray-300 my-2" {...props} />,
-    code: ({ node, inline, className, children, ...props }: any) => {
+    code: ({ node, inline, className, children }: any) => {
         const match = /language-(\w+)/.exec(className || '');
         if (inline) {
           return (

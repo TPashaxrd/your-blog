@@ -2,6 +2,7 @@ import axios from "axios"
 import Footer from "../components/Footer"
 import Header from "../components/Header"
 import { useEffect, useState } from "react"
+import { config } from "../components/config"
 
 function Contact() {
     const [title, setTitle] = useState("")
@@ -33,7 +34,7 @@ function Contact() {
       }
   
       try {
-        const res = await axios.post("http://localhost:5000/api/contact", {
+        const res = await axios.post(`${config.api}/api/contact`, {
           title,
           email,
           message,

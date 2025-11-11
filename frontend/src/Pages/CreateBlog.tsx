@@ -209,7 +209,7 @@ const CreateBlog = () => {
                     <a {...props} className="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer" />
                   ),
                   code: ({ node, inline, className, children, ...props }: any) => {
-                    const match = /language-(\w+)/.exec(className || '');
+                    // const match = /language-(\w+)/.exec(className || '');
                     if (inline) {
                       return (
                         <code className="bg-gray-200 text-red-600 px-1 rounded">{children}</code>

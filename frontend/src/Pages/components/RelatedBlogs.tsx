@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { config } from "../../components/config";
 
 interface RelatedPostsProps {
   category: string;
@@ -14,7 +15,7 @@ export default function RelatedPosts({ category, currentId }: RelatedPostsProps)
   useEffect(() => {
     const fetchRelated = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/post/related?category=${category}&exclude=${currentId}`);
+        const res = await axios.get(`${config.api}/api/post/related?category=${category}&exclude=${currentId}`);
         setRelated(res.data);
       } catch (err) {
         console.error(err);
