@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import axios from "axios";
+import { config } from "./components/config";
 
 interface Post {
   _id: string;
@@ -20,7 +21,7 @@ const App: React.FC = () => {
   useEffect(() => {
     async function fetchPosts() {
       try {
-        const res = await axios.get("http://localhost:5000/api/post");
+        const res = await axios.get(`${config.api}/api/post`);
         setPosts(res.data);
       } catch (err) {
         console.error("Failed to fetch posts", err);
@@ -65,7 +66,7 @@ const App: React.FC = () => {
 
   const getImageUrl = (post: Post, width = 600, height = 400) =>
     post.coverImageUrl
-      ? `http://localhost:5000${post.coverImageUrl}`
+      ? `${config.api}${post.coverImageUrl}`
       : `https://via.placeholder.com/${width}x${height}`;
 
   return (
@@ -82,7 +83,7 @@ const App: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
           <div className="absolute bottom-8 left-8 flex flex-col items-start gap-4 px-2">
             <a
-              href="#"
+              href="/blogs"
               className="group hover:scale-105 font-medium bg-white/10 backdrop-blur-md text-white px-5 py-2 rounded-full border border-white/20 hover:bg-white/20 transition-all duration-300 text-sm sm:text-base shadow-md"
             >
               Web Development

@@ -165,7 +165,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
         <div className="mt-12 border-t border-gray-800 pt-8">
-          <p className="text-base text-gray-500 xl:text-center">&copy; 2024 MidnightBloom, Inc. All rights reserved.</p>
+          <p className="text-base text-gray-500 xl:text-center">&copy; 2024 ToprakBlogs, Inc. All rights reserved.</p>
         </div>
       </div>
     </footer>

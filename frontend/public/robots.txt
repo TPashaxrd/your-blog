@@ -1,0 +1,6 @@
+# Tüm botlara genel kurallar
+User-agent: *
+Disallow: /admin        # Admin paneli botlardan gizle
+Disallow: /private      # Özel içerikler (varsa)
+Allow: /                # Geri kalan her şey indexlensin
+Sitemap: https://toprak.xyz/sitemap.xml

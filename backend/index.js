@@ -19,6 +19,12 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api', SecureRoutes)
 app.use('/api/subs', SubsRoutes)
 
+// express örneği
+app.get('/', (req, res) => {
+  res.send('API tunnel çalışıyor!');
+});
+
+
 const PORT = 5000;
 
 app.listen(PORT, () => {

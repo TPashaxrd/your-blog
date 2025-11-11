@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { config } from "../components/config";
 
 interface Post {
   _id: string;
@@ -20,7 +21,7 @@ export default function App() {
   useEffect(() => {
     async function fetchPosts() {
       try {
-        const res = await axios.get<Post[]>("http://localhost:5000/api/post");
+        const res = await axios.get<Post[]>(`${config.api}/api/post`);
         setPosts(res.data);
       } catch (err) {
         console.error("Failed to fetch posts", err);
@@ -89,7 +90,7 @@ export default function App() {
               >
                 <div className="relative w-full aspect-square overflow-hidden group">
                   <img
-                    src={post.coverImageUrl ? `http://localhost:5000${post.coverImageUrl}` : "https://via.placeholder.com/400"}
+                    src={post.coverImageUrl ? `${config.api}${post.coverImageUrl}` : "https://via.placeholder.com/400"}
                     alt={post.title}
                     className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 group-hover:scale-110"
                   />

@@ -26,7 +26,7 @@ export default function BlogPost() {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/post/${slug}`);
+        const res = await axios.get(`${config.api}/api/post/${slug}`);
         setPost(res.data);
       } catch (err: any) {
         setError("Failed to fetch post");
@@ -41,7 +41,7 @@ export default function BlogPost() {
     if (!slug) return; 
     const postView = async () => {
       try {
-        await axios.patch(`http://localhost:5000/api/post/${slug}/view`);
+        await axios.patch(`${config.api}/api/post/${slug}/view`);
       } catch (error) {
         console.error(error);
       }
@@ -60,7 +60,7 @@ export default function BlogPost() {
     h5: ({node, ...props}: any) => <h5 className="text-lg font-medium mt-1 mb-1 text-white" {...props} />,
     h6: ({node, ...props}: any) => <h6 className="text-md font-medium mt-1 mb-1 text-white" {...props} />,
     p: ({node, ...props}: any) => <p className="text-gray-300 my-2" {...props} />,
-    code: ({ node, inline, className, children }: any) => {
+    code: ({ inline, className, children }: any) => {
         const match = /language-(\w+)/.exec(className || '');
         if (inline) {
           return (
@@ -145,20 +145,25 @@ export default function BlogPost() {
     <>
       <Helmet>
       <title>{post ? post.title : "Blog Post"} | {config.name}</title>
+      <meta name="author" content="Toprak | ToprakBlogs" />
+      <meta property="article:published_time" content={post.createdAt} />
+      <meta property="article:modified_time" content={post.updatedAt || post.createdAt} />
+      <meta name="twitter:creator" content="@ToprakBlogs" />
+      
       <meta name="description" content={post ? post.content.slice(0, 150) : "Blog post content"} />
       <meta name="keywords" content={post?.category || "blog, tech"} />
       <link rel="canonical" href={`${config.api}/blog/${post?.slug}`} />
 
       <meta property="og:title" content={post?.title} />
       <meta property="og:description" content={post?.content.slice(0,150)} />
-      {post?.coverImageUrl && <meta property="og:image" content={`http://localhost:5000${post.coverImageUrl}`} />}
+      {post?.coverImageUrl && <meta property="og:image" content={`${config.api}${post.coverImageUrl}`} />}
       <meta property="og:url" content={`${config.api}/blog/${post?.slug}`} />
       <meta property="og:type" content="article" />
 
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={post?.title} />
       <meta name="twitter:description" content={post?.content.slice(0,150)} />
-      {post?.coverImageUrl && <meta name="twitter:image" content={`http://localhost:5000${post.coverImageUrl}`} />}
+      {post?.coverImageUrl && <meta name="twitter:image" content={`${config.api}${post.coverImageUrl}`} />}
     </Helmet>
 
       <Header />
@@ -168,7 +173,7 @@ export default function BlogPost() {
           <article className="bg-gray-800 shadow-lg rounded-2xl overflow-hidden">
             {post.coverImageUrl && (
               <img
-                src={`http://localhost:5000${post.coverImageUrl}`}
+                src={`${config.api}${post.coverImageUrl}`}
                 alt={post.title}
                 className="w-full h-64 object-cover"
               />

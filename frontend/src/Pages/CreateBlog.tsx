@@ -91,7 +91,7 @@ const CreateBlog = () => {
     if (!username || !password) return setError("Fill all fields");
   
     try {
-      const res = await axios.post(`${config.api}`, { username, password });
+      const res = await axios.post(`${config.api}/api/login`, { username, password });
   
       if (res.data.success) {
         setIsLoggedIn(true);

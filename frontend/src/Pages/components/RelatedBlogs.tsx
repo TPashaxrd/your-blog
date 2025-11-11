@@ -40,7 +40,7 @@ export default function RelatedPosts({ category, currentId }: RelatedPostsProps)
         >
           {r.coverImageUrl && (
             <img
-              src={`http://localhost:5000${r.coverImageUrl}`}
+              src={`${config.api}${r.coverImageUrl}`}
               alt={r.title}
               className="w-full h-40 object-cover"
             />
