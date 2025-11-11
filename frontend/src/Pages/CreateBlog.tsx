@@ -189,7 +189,7 @@ const CreateBlog = () => {
                   <input title="File" type="file" onChange={handleCoverChange} className="mb-2 text-gray-200" />
                   {preview && (
                     <div className="border border-gray-700 rounded-lg overflow-hidden shadow-lg max-h-64">
-                      <img src={preview} alt="preview" className="object-cover w-full h-full" />
+                      <img src={preview} alt="preview" crossOrigin="anonymous" className="object-cover w-full h-full" />
                     </div>
                   )}
                 </div>

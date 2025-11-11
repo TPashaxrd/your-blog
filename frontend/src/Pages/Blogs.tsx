@@ -193,6 +193,7 @@ export default function BlogPost() {
                 src={`${config.api}${post.coverImageUrl}`}
                 alt={post.title}
                 className="w-full h-64 object-cover"
+                crossOrigin="anonymous"
               />
             )}
 

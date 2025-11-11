@@ -8,14 +8,17 @@ const SecureRoutes = require("./routes/admin")
 const SubsRoutes = require("./routes/subs")
 const { applySecurityMiddlewares, applyLoggingMiddleware, setupRequestLogger } = require("./middlewares/SecurityChain")
 const checkVPN = require("./middlewares/checkVPN")
+const { CheckUserAgent } = require("./middlewares/userAgent")
 const app = express()
 
 db()
 
-app.use(cors({
-    origin: ["https://toprak.xyz", "https://api.toprak.xyz"],
-    methods: ["GET","POST","PUT","DELETE","PATCH","OPTIONS"]
-}))
+const corsOptions = {
+  origin: ["https://toprak.xyz", "https://api.toprak.xyz"],
+  methods: ["GET","POST","PUT","DELETE","PATCH","OPTIONS"],
+  credentials: true
+};
+app.use(cors(corsOptions));
 
 app.use(express.json())
 app.set("trust proxy", 1)
@@ -23,9 +26,16 @@ app.set("trust proxy", 1)
 applySecurityMiddlewares(app)
 applyLoggingMiddleware(app)
 app.use(checkVPN)
+app.use(CheckUserAgent)
+// Seucre
 
 app.use('/api/post', PostRoutes)
 app.use('/api/contact', ContactRoutes)
+// app.use('/uploads', (req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', 'https://toprak.xyz');
+//   res.header('Access-Control-Allow-Credentials', 'true');
+//   next();
+// }, express.static(path.join(__dirname, 'uploads')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api', SecureRoutes)
 app.use('/api/subs', SubsRoutes)

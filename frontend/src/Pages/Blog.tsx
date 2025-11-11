@@ -74,7 +74,8 @@ export default function App() {
             }}
           ></div>
         ))}
-      </div>        <div className="px-6 py-12 max-w-7xl mx-auto">
+      </div>
+        <div className="px-6 py-12 max-w-7xl mx-auto">
           <div className="mb-8">
             <span className="text-white font-bold text-5xl text-start">
               #{selectedCategory.toLowerCase()}
@@ -117,6 +118,7 @@ export default function App() {
                     src={post.coverImageUrl ? `${config.api}${post.coverImageUrl}` : "https://via.placeholder.com/400"}
                     alt={post.title}
                     className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 group-hover:scale-110"
+                    crossOrigin="anonymous"
                   />
                 </div>
                 <div className="p-5 flex flex-col gap-3">
