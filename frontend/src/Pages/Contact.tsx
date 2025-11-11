@@ -105,7 +105,7 @@ function Contact() {
     
             {error && (
               <p className="p-3 mb-4 bg-red-900/50 text-red-300 rounded-lg border border-red-700">
-                ⚠️ Hata: {error}
+                ⚠️ Error: {error}
               </p>
             )}
             {successfully && (

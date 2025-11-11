@@ -90,7 +90,7 @@ export default function BlogPost() {
             <SyntaxHighlighter
               style={oneDark}
               language={match ? match[1] : 'text'}
-              PreTag="div"
+              PreTag="pre"
               customStyle={{
                 borderRadius: '0.5rem',
                 padding: '1rem',

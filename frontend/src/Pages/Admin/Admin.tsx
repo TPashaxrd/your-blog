@@ -2,19 +2,13 @@ import React, { useState, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { FaBold, FaItalic, FaCode, FaLink, FaImage } from "react-icons/fa";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 import axios from "axios";
 import Posts from "./components/Posts";
-import { config } from "../components/config";
-
-// const generateSlug = (title: string) => {
-//   return title
-//     .toLowerCase()
-//     .trim()
-//     .replace(/[^\w\s-]/g, "")
-//     .replace(/\s+/g, "-");
-// };
+import { config } from "../../components/config";
+import ContactsList from "./components/ContactList";
+import SubscribersList from "./components/SubscribersList";
 
 const CreateBlog = () => {
   const [title, setTitle] = useState("");
@@ -27,6 +21,8 @@ const CreateBlog = () => {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [subs, setSubs] = useState<any[]>([])
+  const [contacts, setContacts] = useState<any[]>([])
 
   const insertAtCursor = (text: string) => {
     const textarea = textareaRef.current;
@@ -86,16 +82,49 @@ const CreateBlog = () => {
     }
   };
 
+  async function deleteSubs(id: string) {
+    try {
+      const res = await axios.delete(`${config.api}/api/admin/delete-subs`, {
+        data: { id: id, username: username, password: password }
+      });
+
+      if (res.status === 200 || res.status === 201) {
+        alert("Successfully deleted!");
+        window.location.reload()
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function deleteContact(id: string) {
+    try {
+      const res = await axios.delete(`${config.api}/api/admin/delete-contact`, {
+        data: { contactId: id, username: username, password: password}
+      })
+      if(res.status === 201) {
+        alert("Successfully has been deleted!")
+        setTimeout(() => window.location.reload(), 2000)
+      }
+    } catch (error: any) {
+      console.log(error)
+    }
+  }
+
   const checkPassw = async () => {
     setError("");
     if (!username || !password) return setError("Fill all fields");
   
     try {
       const res = await axios.post(`${config.api}/api/login`, { username, password });
+      const res2 = await axios.post(`${config.api}/api/admin/all-subs`, { username, password });
+      const res3 = await axios.post(`${config.api}/api/admin/all-contacts`, { username, password })
   
-      if (res.data.success) {
+      if (res.data.success || res2.data.success || res3.data.success) {
         setIsLoggedIn(true);
         setError("");
+        setSubs(res2.data)
+        setContacts(res3.data)
       } else {
         setError(res.data.message || "Invalid username or password");
       }
@@ -239,6 +268,16 @@ const CreateBlog = () => {
       )}
 
       {isLoggedIn && <Posts />}
+
+      {isLoggedIn && contacts.length > 0 && (
+        <ContactsList contacts={contacts} onDelete={deleteContact} />
+      )}
+
+
+      {isLoggedIn && subs.length > 0 && (
+        <SubscribersList subscribers={subs} onDelete={deleteSubs} />
+      )}
+
 
       {!isLoggedIn && (
         <div className="flex justify-center items-center min-h-screen bg-gray-900">

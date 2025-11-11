@@ -30,4 +30,20 @@ const showSubs = async(req, res) => {
     }
 }
 
-module.exports = { beSubs, showSubs }
+const deleteSubs = async(req, res) => {
+    try {
+        const { id } = req.body;
+        if(!id) {
+            return res.status(400).json({ message: "ID is required."})
+        }
+        const deleteSubscribe = await Subscribe.findByIdAndDelete(id)
+        if(!deleteSubscribe) {
+            return res.status(400).json({ message: "Subscribe not found."})
+        }
+        res.status(201).json({ message: "Successfully has been deleted.", deleteSubscribe})
+    } catch (error) {
+        
+    }
+}
+
+module.exports = { beSubs, showSubs, deleteSubs }

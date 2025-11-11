@@ -6,7 +6,7 @@ import NoPage from './Pages/NoPage.tsx'
 import Blog from './Pages/Blog.tsx'
 import Contact from './Pages/Contact.tsx'
 import Blogs from './Pages/Blogs.tsx'
-import CreateBlog from './Pages/CreateBlog.tsx'
+import CreateBlog from './Pages/Admin/Admin.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>

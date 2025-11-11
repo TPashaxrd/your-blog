@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { config } from "../../components/config";
+import { config } from "../../../components/config";
 import { FaTrash } from "react-icons/fa";
 
 export default function Posts() {
@@ -40,11 +40,11 @@ export default function Posts() {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-br from-purple-200 via-pink-100 to-yellow-100 animate-gradient-x">
-        <div className="p-8 bg-white rounded-3xl shadow-2xl text-center animate-pulse">
-          <h2 className="text-2xl font-bold text-purple-600 mb-3">Loading...</h2>
-          <p className="text-gray-600 text-sm">
-            Lütfen biraz bekle, içerikler hazırlanıyor.
+      <div className="flex flex-col items-center justify-center h-screen bg-gray-900">
+        <div className="p-8 bg-gray-800 rounded-3xl shadow-2xl text-center animate-pulse">
+          <h2 className="text-2xl font-bold text-purple-400 mb-3">Loading...</h2>
+          <p className="text-gray-300 text-sm">
+            Please wait....
           </p>
         </div>
       </div>
@@ -53,11 +53,11 @@ export default function Posts() {
 
   if (posts.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen bg-gray-50">
-        <div className="p-8 bg-white rounded-3xl shadow-lg text-center">
-          <h2 className="text-2xl font-bold text-purple-600 mb-3">Have no post yet!</h2>
-          <p className="text-gray-600 text-sm">
-            Have no post yet, You should create an post!
+      <div className="flex flex-col items-center justify-center h-screen bg-gray-900">
+        <div className="p-8 bg-gray-800 rounded-3xl shadow-lg text-center">
+          <h2 className="text-2xl font-bold text-purple-400 mb-3">Have no post yet!</h2>
+          <p className="text-gray-300 text-sm">
+            Have no post yet, You should create a post!
           </p>
         </div>
       </div>
@@ -65,23 +65,23 @@ export default function Posts() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-10 px-6 sm:px-10">
-      <h1 className="text-3xl sm:text-4xl font-extrabold text-center text-purple-700 mb-10">
-        Post Managament
+    <div className="bg-gray-900 py-10 px-6 sm:px-10">
+      <h1 className="text-3xl sm:text-4xl font-extrabold text-center text-purple-400 mb-10">
+        Post Management
       </h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {posts.map((post) => (
           <div
             key={post._id}
-            className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-200 hover:border-purple-500 transform hover:scale-[1.03]"
+            className="bg-gray-800 rounded-2xl shadow-lg hover:shadow-purple-500/40 transition-all duration-300 overflow-hidden border border-gray-700 hover:border-purple-500 transform hover:scale-[1.03] relative"
           >
             <div className="relative group">
               <img
                 src={
                   post.coverImageUrl
                     ? `${config.api}${post.coverImageUrl}`
-                    : "https://via.placeholder.com/400x250"
+                    : "https://via.placeholder.com/400x250/1a1a1a/ffffff"
                 }
                 alt={post.title}
                 className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
@@ -92,8 +92,8 @@ export default function Posts() {
                   disabled={deleting === post._id}
                   className={`p-2 rounded-full shadow-lg text-white transition-colors duration-300 ${
                     deleting === post._id
-                      ? "bg-gray-400 cursor-not-allowed"
-                      : "bg-red-500 hover:bg-red-600"
+                      ? "bg-gray-600 cursor-not-allowed"
+                      : "bg-red-600 hover:bg-red-700"
                   }`}
                   title="Delete Post"
                 >
@@ -103,15 +103,15 @@ export default function Posts() {
             </div>
 
             <div className="p-5 flex flex-col gap-3">
-              <h2 className="text-lg font-bold text-gray-800 truncate">{post.title}</h2>
-              <p className="text-sm text-gray-500">{new Date(post.createdAt).toLocaleDateString()}</p>
-              <span className="inline-block px-3 py-1 text-xs font-medium bg-purple-100 text-purple-700 rounded-full w-fit">
+              <h2 className="text-lg font-bold text-white truncate">{post.title}</h2>
+              <p className="text-gray-400 text-sm">{new Date(post.createdAt).toLocaleDateString()}</p>
+              <span className="inline-block px-3 py-1 text-xs font-medium bg-purple-700/20 text-purple-300 rounded-full w-fit">
                 {post.category || "Web Development"}
               </span>
             </div>
 
             {deleting === post._id && (
-              <div className="absolute inset-0 bg-white/70 flex items-center justify-center text-red-600 font-bold text-lg">
+              <div className="absolute inset-0 bg-gray-900/80 flex items-center justify-center text-red-500 font-bold text-lg">
                 Siliniyor...
               </div>
             )}

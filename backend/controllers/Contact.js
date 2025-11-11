@@ -38,4 +38,23 @@ const showAllContacts = async(req, res) => {
     }
 }
 
-module.exports = { createContact, showAllContacts }
+const deleteContactById = async(req, res) => {
+    try {
+        const { contactId } = req.body;
+        if(!contactId) {
+            return res.status(400).json({ message: "All fields are required."})
+        }
+
+        const contact = await Contact.findByIdAndDelete(contactId)
+
+        if(!contact) {
+            return res.status(400).json({ message: "Contact not found."})
+        }
+
+        res.status(201).json({ message: "Successfully deleted.", contact})
+    } catch (error) {
+        res.status(500).json({ message: "Server error", error})
+    }
+}
+
+module.exports = { createContact, showAllContacts, deleteContactById }
