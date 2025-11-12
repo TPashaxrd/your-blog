@@ -12,6 +12,8 @@ import Stats from './Pages/Stats/Stats.tsx'
 import Time from './Pages/Time.tsx'
 import Repaste from './Pages/Repaste/Repaste.tsx'
 import ReadNote from './Pages/Repaste/ReadNote.tsx'
+import Play from './Pages/Game/Play.tsx'
+import Start from './Pages/Game/Start.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
@@ -30,6 +32,10 @@ createRoot(document.getElementById('root')!).render(
     {/* RePaste */}
     <Route path='/repaste' element={<Repaste/>}/>
     <Route path='/note/:id' element={<ReadNote/>}/>
+
+    {/* GAME */}
+    <Route path='/play' element={<Play/>}/>
+    <Route path='/start' element={<Start/>}/>
 
     <Route path='/toprak' element={<Toprak/>}/>
     <Route path='/about' element={<Toprak/>}/>

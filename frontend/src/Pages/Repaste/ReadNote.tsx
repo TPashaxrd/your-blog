@@ -92,6 +92,12 @@ export default function ReadNote() {
               )}
             </div>
           )}
+        <button
+        onClick={() => window.location.href = "/repaste"}
+        className="mx-auto mt-4 px-6 py-1 rounded-xl bg-red-600 text-white font-bold text-lg shadow-lg hover:shadow-red-500/50 transition-transform transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
+        >
+        Wanna create PRIVATE Note?
+        </button>
         </div>
       </div>
       <Footer />

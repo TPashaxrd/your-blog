@@ -22,6 +22,17 @@ const contactLimiter = rateLimiter({
     }
 })
 
+const noteLimiter = rateLimiter({
+    windowMs: 15 * 60 * 1000,
+    max: 10,
+    standartHeaders: true,
+    legacyHeaders: false,
+    message: {
+        success: false,
+        message: "Too many attempts. Please try again later."
+    }
+})
+
 const subscribeLimiter = rateLimiter({
     windowMs: 15 * 60 * 1000,
     max: 3,
@@ -36,5 +47,6 @@ const subscribeLimiter = rateLimiter({
 module.exports = {
     authLimiter,
     contactLimiter,
-    subscribeLimiter
+    subscribeLimiter,
+    noteLimiter
 }

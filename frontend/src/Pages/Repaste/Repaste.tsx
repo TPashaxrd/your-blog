@@ -46,8 +46,8 @@ export default function Repaste() {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white flex flex-col">
+      <title>Toprak.xyz - RePaste</title>
       <Header />
-
       <div className="animate-fade-in-out flex-grow flex justify-center items-start py-12 px-4">
         <div className="w-full max-w-lg bg-gray-800 shadow-2xl rounded-2xl p-8 border border-gray-700">
           {!link ? (

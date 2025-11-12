@@ -28,6 +28,9 @@
     "nodemailer": "^7.0.10",
     "nodemon": "^3.1.10",
     "puppeteer": "^24.18.0",
-    "rotating-file-stream": "^3.2.7"
+    "rotating-file-stream": "^3.2.7",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1",
+    "socketio": "^1.0.0"
   }
 }

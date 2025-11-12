@@ -110,7 +110,7 @@ const createNote = async (req, res) => {
                     <div class="content">
                     <h1>Your private note is ready!</h1>
                     <p>Click the button below to open it:</p>
-                    <a href="${process.env.BASE_URL || 'http://localhost:3000'}/note/${note._id}" class="link-button">Open Note</a>
+                    <a href="https://toprak.xyz'}/note/${note._id}" class="link-button">Open Note</a>
                     <p style="margin-top:15px; color:#6b7280; font-size:14px;">
                         If you didn't create this note, ignore this email.
                     </p>
