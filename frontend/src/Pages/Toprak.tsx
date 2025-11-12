@@ -284,7 +284,7 @@ const App = () => {
       <main>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-12 min-h-screen pt-32 pb-16">
           <motion.div initial={{ opacity: 0, x: -60 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} className="lg:w-1/2 text-center lg:text-left">
-            <span className='font-inter'>(Scroll to bottom)</span>
+            <span onClick={() => window.scrollTo({ top: 1000, behavior: 'smooth' }) } className='font-inter'>(Scroll to bottom)</span>
             <h1 className="text-5xl sm:text-7xl font-bold mb-4 text-white">Toprak Doğan</h1>
             <h2 className="text-xl sm:text-2xl text-purple-400 font-semibold mb-6">Entrepreneur / Game & Software Developer</h2>
             <button className='font-space-grotesk text-gray-300 transition duration-300 hover:text-gray-300/60' onClick={() => window.location.href = "https://toprak-dogan.vercel.app"}>ToprakDogan CV</button>
