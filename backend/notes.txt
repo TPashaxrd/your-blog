@@ -1,0 +1,3 @@
+MAP (Notora projesinden)
+GAME (https://github.com/TPashaxrd/gave-answer-first/blob/main/backend/models/Match.js)
+SCARE https://github.com/TPashaxrd/jump-scare/blob/main/src/App.js

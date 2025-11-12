@@ -11,6 +11,7 @@ const checkVPN = require("./middlewares/checkVPN")
 const { CheckUserAgent } = require("./middlewares/userAgent")
 const logVisit = require("./middlewares/logVisit")
 const StatRoutes = require("./routes/stats")
+const NoteRoutes = require("./routes/notes")
 const app = express()
 
 db()
@@ -28,9 +29,11 @@ app.set("trust proxy", 1)
 applySecurityMiddlewares(app)
 applyLoggingMiddleware(app)
 // app.use(checkVPN)
-app.use(CheckUserAgent)
+// app.use(CheckUserAgent)
 app.use(logVisit)
 // Seucre
+
+app.use("/api/note", NoteRoutes)
 
 app.use('/api/post', PostRoutes)
 app.use('/api/contact', ContactRoutes)

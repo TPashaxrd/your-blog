@@ -1,12 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const statsController = require("../controllers/statsController");
+const authMiddleware = require("../middlewares/Auth");
 
-router.get("/total", statsController.getTotalVisits);
-router.get("/unique", statsController.getUniqueVisitors);
-router.get("/by-ip", statsController.getVisitsByIP);
-router.get("/daily", statsController.getDailyVisits);
-router.get("/monthly", statsController.getMonthlyVisits);
-router.get("/all", statsController.getAllStats)
+router.post("/total", authMiddleware, statsController.getTotalVisits);
+router.post("/unique", authMiddleware, statsController.getUniqueVisitors);
+router.post("/by-ip", authMiddleware, statsController.getVisitsByIP);
+router.post("/daily", authMiddleware, statsController.getDailyVisits);
+router.post("/monthly", authMiddleware, statsController.getMonthlyVisits);
+router.post("/all", authMiddleware, statsController.getAllStats)
 
 module.exports = router;
