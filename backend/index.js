@@ -12,12 +12,14 @@ const { CheckUserAgent } = require("./middlewares/userAgent")
 const logVisit = require("./middlewares/logVisit")
 const StatRoutes = require("./routes/stats")
 const NoteRoutes = require("./routes/notes")
+require("dotenv").config()
+const axios = require("axios")
 const http = require("http");
 const { Server } = require("socket.io");
+const MarketRoutes = require("./routes/market")
 const app = express()
 
 db()
-
 
 const corsOptions = {
   origin: ["https://toprak.xyz", "https://api.toprak.xyz", "http://localhost:5173"],
@@ -34,8 +36,8 @@ const io = new Server(server, { cors: { origin: "*" } });
 
 applySecurityMiddlewares(app)
 applyLoggingMiddleware(app)
-// app.use(checkVPN)
-// app.use(CheckUserAgent)
+app.use(checkVPN)
+app.use(CheckUserAgent)
 app.use(logVisit)
 // Seucre
 
@@ -70,10 +72,12 @@ let rooms = {};
 io.on("connection", (socket) => {
   console.log("New connection:", socket.id);
 
-  socket.on("joinQueue", () => {
-    console.log(`${socket.id} joined the queue`);
-    queue.push(socket);
+  socket.on("setUsername", ({ username }) => {
+    socket.username = username || "Player";
+  });
 
+  socket.on("joinQueue", () => {
+    queue.push(socket);
     if (queue.length >= 2) {
       const player1 = queue.shift();
       const player2 = queue.shift();
@@ -83,13 +87,20 @@ io.on("connection", (socket) => {
       rooms[roomId] = {
         players: [player1.id, player2.id],
         question,
-        winner: null
+        winner: null,
       };
 
       player1.join(roomId);
       player2.join(roomId);
 
-      io.to(roomId).emit("matchStart", { roomId, question });
+      io.to(roomId).emit("matchStart", {
+        roomId,
+        question,
+        players: [
+          { id: player1.id, username: player1.username },
+          { id: player2.id, username: player2.username },
+        ],
+      });
     } else {
       socket.emit("waiting", { message: "Waiting for second player..." });
     }
@@ -100,7 +111,7 @@ io.on("connection", (socket) => {
     if (!room || room.winner) return;
 
     const correct = room.question.answer === answer;
-    room.winner = correct ? socket.id : room.players.find(p => p !== socket.id);
+    room.winner = correct ? socket.id : room.players.find((p) => p !== socket.id);
 
     io.to(roomId).emit("roundEnd", { winner: room.winner, correct });
 
@@ -109,18 +120,30 @@ io.on("connection", (socket) => {
       const newQuestion = questions[Math.floor(Math.random() * questions.length)];
       rooms[roomId].question = newQuestion;
       rooms[roomId].winner = null;
-      io.to(roomId).emit("matchStart", { roomId, question: newQuestion });
+
+      const [p1, p2] = room.players.map((id) => {
+        const s = io.sockets.sockets.get(id);
+        return { id: s.id, username: s.username };
+      });
+
+      io.to(roomId).emit("matchStart", {
+        roomId,
+        question: newQuestion,
+        players: [p1, p2],
+      });
     }, 5000);
   });
 
   socket.on("disconnect", () => {
     console.log("Disconnected:", socket.id);
-    queue = queue.filter(s => s.id !== socket.id);
+    queue = queue.filter((s) => s.id !== socket.id);
 
     for (const r in rooms) {
       if (rooms[r].players.includes(socket.id)) {
-        const otherPlayer = rooms[r].players.find(p => p !== socket.id);
-        if (otherPlayer) io.to(otherPlayer).emit("matchCancelled", { message: "Other player disconnected!" });
+        const otherPlayerId = rooms[r].players.find((p) => p !== socket.id);
+        if (otherPlayerId) {
+          io.to(otherPlayerId).emit("opponentLeft", { message: "Opponent disconnected!" });
+        }
         delete rooms[r];
       }
     }
@@ -129,7 +152,8 @@ io.on("connection", (socket) => {
 
 
 app.use("/api/note", NoteRoutes)
-
+require("./routes/market")(io)
+// app.use("/api/market", MarketRoutes)
 app.use('/api/post', PostRoutes)
 app.use('/api/contact', ContactRoutes)
 app.use("/api/stats", StatRoutes)
@@ -146,7 +170,6 @@ app.use('/api/subs', SubsRoutes)
 app.get('/', (req, res) => {
   res.send('API Is working!!');
 });
-
 
 const PORT = 5000;
 

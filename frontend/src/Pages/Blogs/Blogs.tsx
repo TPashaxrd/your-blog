@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 import { FaShareAlt } from "react-icons/fa";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -11,10 +11,10 @@ import { MdDateRange, MdDone } from "react-icons/md";
 import { GoReport } from "react-icons/go";
 import { Helmet } from "react-helmet";
 import toast, { Toaster } from "react-hot-toast";
-import RelatedPosts from "./components/RelatedBlogs";
+import RelatedPosts from "../components/RelatedBlogs";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { config } from "../components/config";
+import { config } from "../../components/config";
 
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();

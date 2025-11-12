@@ -1,5 +1,7 @@
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
+import { BiSun } from "react-icons/bi";
+import { FaSkull } from "react-icons/fa";
 
 export default function Play() {
   const handlePlay = () => {
@@ -18,7 +20,7 @@ export default function Play() {
         </h1>
         
         <p className="text-gray-400 text-lg mb-10 font-light">
-          <span className="text-gray-300 font-medium">Fast Think</span>, And be toxic! - madeByToprak
+          <span className="text-gray-300 font-medium">Fast Think</span>, And do not be toxic! - Toprak
         </p>
 
         <button
@@ -32,8 +34,8 @@ export default function Play() {
         </button>
 
         <div className="mt-8 text-gray-500 text-sm">
-          <span className="block">⚡ IRL Questions</span>
-          <span className="block">🎯 Gave first Answer, Take the point!</span>
+          <span className="block flex gap-1 text-center items-center justify-center"><BiSun /> IRL Questions</span>
+          <span className="block flex gap-1 text-center items-center justiy-center"><FaSkull /> Gave first Answer, Take the point!</span>
         </div>
       </div>
     </div>

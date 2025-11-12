@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import socket from "./socket";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import { GiAxeSword } from "react-icons/gi";
 
 interface Question {
   id: string;
@@ -10,6 +13,7 @@ interface Question {
 
 interface MatchData {
   roomId: string;
+  players?:{ id: string; username: string;}[]
   question: Question;
 }
 
@@ -21,6 +25,7 @@ const Start: React.FC = () => {
   const [waiting, setWaiting] = useState<string | null>(null);
   const [countdown, setCountdown] = useState<number>(0);
   const [opponentLeft, setOpponentLeft] = useState<string | null>(null);
+  const [opponent, setOpponent] = useState<string | null>(null);
 
   const handleLogin = () => {
     if (!username.trim()) return;
@@ -41,32 +46,39 @@ const Start: React.FC = () => {
   useEffect(() => {
     socket.on("waiting", (data: { message: string }) => setWaiting(data.message));
     socket.on("matchStart", (data: MatchData) => {
-      setMatch(data);
-      setRoundResult(null);
-      setWaiting(null);
-      setCountdown(0);
-      setOpponentLeft(null);
-    });
-    socket.on("roundEnd", (data: { winner: string; correct: boolean }) => {
-      setRoundResult(data.winner === socket.id ? "🎉 You won!" : "💀 You lost!");
-      setMatch(null);
-      setCountdown(5);
+    setMatch(data);
+    setRoundResult(null);
+    setWaiting(null);
+    setCountdown(0);
+    setOpponentLeft(null);
 
-      const interval = setInterval(() => {
+    if (data.players) {
+        const opp = data.players.find(p => p.id !== socket.id);
+        setOpponent(opp ? opp.username : null);
+    }
+    });
+
+    socket.on("roundEnd", (data: { winner: string; correct: boolean }) => {
+    setRoundResult(data.winner === socket.id ? "🎉 You won!" : "💀 You lost!");
+    setCountdown(5);
+
+    const interval = setInterval(() => {
         setCountdown((prev) => {
-          if (prev <= 1) {
+        if (prev <= 1) {
             clearInterval(interval);
             return 0;
-          }
-          return prev - 1;
+        }
+        return prev - 1;
         });
-      }, 1000);
+    }, 1000);
     });
+
     socket.on("opponentLeft", (data: { message: string }) => {
-      setMatch(null);
-      setRoundResult(null);
-      setWaiting(null);
-      setOpponentLeft(data.message);
+        setMatch(null);
+        setRoundResult(null);
+        setWaiting(null);
+        setOpponentLeft(data.message);
+        setOpponent(null);
     });
 
     return () => {
@@ -103,6 +115,8 @@ const Start: React.FC = () => {
   }
 
   return (
+    <>
+    <Header />
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-black via-gray-900 to-gray-950 p-6">
       {!match && !roundResult && !waiting && !opponentLeft && (
         <button
@@ -112,6 +126,13 @@ const Start: React.FC = () => {
           Join Match 🚀
         </button>
       )}
+
+        {opponent && (
+        <div className="flex gap-1 items-center justify-center flex text-gray-400 text-xl mb-4">
+            <GiAxeSword fontSize={25} /> Opponent: <span className="text-white font-bold">{opponent}</span>
+        </div>
+        )}
+
 
       {waiting && (
         <div className="text-white text-3xl font-semibold animate-pulse mt-6">
@@ -163,6 +184,8 @@ const Start: React.FC = () => {
         </div>
       )}
     </div>
+    <Footer />
+    </>
   );
 };
 

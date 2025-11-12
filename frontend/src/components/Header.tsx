@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BiMoon, BiWorld, BiMenu, BiX } from "react-icons/bi";
+import { BiWorld, BiMenu, BiX } from "react-icons/bi";
 import { BsTwitter } from "react-icons/bs";
 import { DiGithubBadge } from "react-icons/di";
 import { config } from "./config";
@@ -41,12 +41,8 @@ export default function Header() {
         <button onClick={() => window.location.href = "/blog" } className={`${isOpen && 'text-xl font-bold border-b border-black inline-block'}`}>Blogs</button>
         <button onClick={() => window.location.href = "/contact" } className={`${isOpen && 'text-xl font-bold border-b border-black inline-block'}`}>Contact</button>
         <button onClick={() => window.location.href = "/toprak" } className={`${isOpen && 'text-xl font-bold border-b border-black inline-block'}`}>Toprak</button>
-        <button title="Thema">
-          <BiMoon
-            className="bg-black rounded-full text-white p-1"
-            size={23}
-          />
-        </button>
+        <button onClick={() => window.location.href = "/repaste"} className={`${isOpen && 'text-xl font-bold border-b border-black inline-block'}`}>PrivNotes</button>
+        <button onClick={() => window.location.href = "/game/play"} className={`${isOpen && 'text-xl font-bold border-b border-black inline-block'}`}>Game</button>
       </div>
 
       <div className="gap-3 flex">

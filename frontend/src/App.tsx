@@ -115,8 +115,7 @@ const App: React.FC = () => {
             </a>
             <h1 className="font-bold text-white text-2xl sm:text-3xl md:text-5xl max-w-4xl">
               <a className="bg-gradient-to-r from-purple-500 to-purple-500 bg-[length:0px_6px] hover:bg-[length:100%_6px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500">
-                Building Progressive Web Apps: Bridging the Gap Between Web and
-                Mobile
+                Student as Fullstack web dev.
               </a>
             </h1>
             <p className="text-white/80 text-sm md:text-lg max-w-3xl hidden sm:block">
@@ -192,7 +191,7 @@ const App: React.FC = () => {
               <span className="absolute -bottom-2 left-0 w-2/3 h-1 bg-purple-600"></span>
             </h2>
             <a
-              href="/blogs"
+              href="/blog"
               className="text-purple-400 hover:text-purple-300 font-semibold group transition-colors"
             >
               View all
