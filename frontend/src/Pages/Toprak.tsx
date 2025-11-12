@@ -7,11 +7,8 @@ const PROFILE_PIC_URL = "https://toprak-dogan.vercel.app/toprak.jpg";
 
 const GALLERY_IMAGES = [
     "https://toprak-dogan.vercel.app/toprak.jpg",
-    "https://toprak-dogan.vercel.app/toprak.jpg",
-    "https://toprak-dogan.vercel.app/toprak.jpg",
-    "https://toprak-dogan.vercel.app/toprak.jpg",
-    "https://toprak-dogan.vercel.app/toprak.jpg",
-    "https://toprak-dogan.vercel.app/toprak.jpg",
+    "https://raw.githubusercontent.com/TPashaxrd/your-blog/refs/heads/main/toprak-picture.jpg",
+    "https://raw.githubusercontent.com/TPashaxrd/your-blog/refs/heads/main/toprak-banner-2.jpg"
 ];
 
 const ABOUT_ME_CONTENT = "I’m a passionate and self-driven student focused on software, game development, and entrepreneurship. I enjoy building creative and functional solutions through technology, especially in game engines and full-stack development. I’m also interested in finance, history, and 3D design. My goal is to create innovative tools that impact real people.";
@@ -34,7 +31,7 @@ const EXPERIENCE = [
     {
         role: "Game Developer & Software Creator",
         company: "Independent Projects",
-        period: "2025 – Present",
+        period: "2024 – Present",
         description: "Developed several games and web platforms using Unreal Engine, Unity, and full-stack web technologies. Projects include simulation games, company websites, and creative tools for users.",
     },
 ];
@@ -228,7 +225,7 @@ const GalleryModal: React.FC<{ isOpen: boolean; onClose: () => void; }> = ({ isO
         {isOpen && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/90 z-50 flex flex-col items-center justify-center overflow-auto p-6 backdrop-blur-sm">
                 <button onClick={onClose} className="absolute top-6 right-6 text-white text-4xl font-bold hover:text-purple-500 transition-colors">&times;</button>
-                <motion.h2 initial={{ y: -50, opacity: 0 }} animate={{ y: 0, opacity: 1, transition: { delay: 0.2 } }} className="text-4xl text-white mb-8">My Gallery</motion.h2>
+                <motion.h2 initial={{ y: -50, opacity: 0 }} animate={{ y: 0, opacity: 1, transition: { delay: 0.2 } }} className="text-4xl text-white mb-8">Myself</motion.h2>
                 <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.1 } } }}>
                     {GALLERY_IMAGES.map((img, i) => (
                         <motion.div key={i} variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} whileHover={{ scale: 1.05, rotate: 1, boxShadow: "0 0 20px #a78bfa" }} className="overflow-hidden rounded-xl shadow-lg cursor-pointer">
