@@ -1,5 +1,6 @@
 export const config = {
-    api: "https://api.toprak.xyz",
+    // api: "https://api.toprak.xyz",
+    api: "http://localhost:5000",
     name: "ToprakBlogs",
 
     info: "Toprak X.",

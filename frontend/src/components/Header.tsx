@@ -40,6 +40,7 @@ export default function Header() {
         <button onClick={() => window.location.href = "/" } className={`${isOpen && 'text-xl font-bold border-b border-black inline-block'}`}>Home</button>
         <button onClick={() => window.location.href = "/blog" } className={`${isOpen && 'text-xl font-bold border-b border-black inline-block'}`}>Blogs</button>
         <button onClick={() => window.location.href = "/contact" } className={`${isOpen && 'text-xl font-bold border-b border-black inline-block'}`}>Contact</button>
+        <button onClick={() => window.location.href = "/toprak" } className={`${isOpen && 'text-xl font-bold border-b border-black inline-block'}`}>Toprak</button>
         <button title="Thema">
           <BiMoon
             className="bg-black rounded-full text-white p-1"

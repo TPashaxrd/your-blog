@@ -16,7 +16,7 @@ const app = express()
 db()
 
 const corsOptions = {
-  origin: ["https://toprak.xyz", "https://api.toprak.xyz"],
+  origin: ["https://toprak.xyz", "https://api.toprak.xyz", "http://localhost:5173"],
   methods: ["GET","POST","PUT","DELETE","PATCH","OPTIONS"],
   credentials: true
 };

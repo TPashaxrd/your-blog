@@ -7,6 +7,7 @@ import Blog from './Pages/Blog.tsx'
 import Contact from './Pages/Contact.tsx'
 import Blogs from './Pages/Blogs.tsx'
 import CreateBlog from './Pages/Admin/Admin.tsx'
+import Toprak from './Pages/Toprak.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
@@ -16,6 +17,8 @@ createRoot(document.getElementById('root')!).render(
     <Route path="/contact" element={<Contact/>}/>
     <Route path="/blog/:slug" element={<Blogs/>}/>
     <Route path="/admin" element={<CreateBlog/>}/>
+
+    <Route path='/toprak' element={<Toprak/>}/>
     <Route path="*" element={<NoPage/>}/>
    </Routes>
   </BrowserRouter>
