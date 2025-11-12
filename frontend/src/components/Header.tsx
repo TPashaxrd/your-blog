@@ -15,6 +15,7 @@ export default function Header() {
           <img
             src={`${config.api}/uploads/blog-profile.jpg`}
             alt="Profile"
+            crossOrigin="anonymous"
             className="w-16 h-16 rounded-full object-cover border-2 border-black"
           />
           <h1 onClick={() => window.location.href = "/" } className="text-2xl cursor-pointer font-bold font-montserrat">{config.name || "Toprak Blog"}</h1>

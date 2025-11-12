@@ -100,6 +100,7 @@ const App: React.FC = () => {
             className="w-full h-[50vh] object-cover brightness-50"
             src="https://raw.githubusercontent.com/TPashaxrd/your-blog/refs/heads/main/toprak-banner.png"
             alt="Hero"
+            crossOrigin="anonymous"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
           <div className="absolute bottom-8 left-8 flex flex-col items-start gap-4 px-2">
@@ -138,6 +139,7 @@ const App: React.FC = () => {
                 <img
                   src={getImageUrl(posts[0], 800, 420)}
                   alt={posts[0].title}
+                  crossOrigin="anonymous"
                   className="w-full w-max-xl  object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col justify-end p-6">
@@ -163,6 +165,7 @@ const App: React.FC = () => {
                   <img
                     src={getImageUrl(post, 150, 150)}
                     alt={post.title}
+                    crossOrigin="anonymous"
                     className="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-lg flex-shrink-0"
                     />
                   <div className="flex-1 flex flex-col justify-center gap-1">
@@ -210,6 +213,7 @@ const App: React.FC = () => {
                   <img
                     src={getImageUrl(post)}
                     alt={post.title}
+                    crossOrigin="anonymous"
                     className="w-full h-full object-cover rounded-lg transition-transform duration-500 group-hover:scale-105"
                     />
                 </div>

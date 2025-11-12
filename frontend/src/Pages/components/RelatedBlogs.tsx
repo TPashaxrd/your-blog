@@ -42,6 +42,7 @@ export default function RelatedPosts({ category, currentId }: RelatedPostsProps)
             <img
               src={`${config.api}${r.coverImageUrl}`}
               alt={r.title}
+              crossOrigin="anonymous"
               className="w-full h-40 object-cover"
             />
           )}

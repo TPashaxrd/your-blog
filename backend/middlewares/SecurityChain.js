@@ -6,10 +6,12 @@ const path = require("path")
 const rfs = require("rotating-file-stream")
 
 const applySecurityMiddlewares = (app) => {
-    app.use(helmet({
-        contentSecurityPolicy: false,
-        crossOriginEmbedderPolicy: false
-    }))
+app.use(helmet({
+    contentSecurityPolicy: false,
+    crossOriginEmbedderPolicy: false,
+    crossOriginResourcePolicy: { policy: "cross-origin" }
+}));
+
     app.use(hpp())
     app.disable("x-powered-by")
     app.use(helmet.referrerPolicy({ policy: "no-referrer" }))
