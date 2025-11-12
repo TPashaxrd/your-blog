@@ -139,7 +139,6 @@ const App: React.FC = () => {
                   src={getImageUrl(posts[0], 800, 420)}
                   alt={posts[0].title}
                   className="w-full w-max-xl  object-cover transition-transform duration-700 group-hover:scale-105"
-                  crossOrigin="anonymous"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col justify-end p-6">
                   <h3 className="font-bold text-white text-2xl md:text-4xl">
@@ -165,8 +164,7 @@ const App: React.FC = () => {
                     src={getImageUrl(post, 150, 150)}
                     alt={post.title}
                     className="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-lg flex-shrink-0"
-                    crossOrigin="anonymous"
-                  />
+                    />
                   <div className="flex-1 flex flex-col justify-center gap-1">
                     <span className="text-purple-400 font-semibold text-xs sm:text-sm uppercase tracking-wider">
                       {post.category}
@@ -213,8 +211,7 @@ const App: React.FC = () => {
                     src={getImageUrl(post)}
                     alt={post.title}
                     className="w-full h-full object-cover rounded-lg transition-transform duration-500 group-hover:scale-105"
-                    crossOrigin="anonymous"
-                  />
+                    />
                 </div>
                 <div className="flex flex-col gap-1">
                   <span className="text-purple-400 font-semibold text-sm uppercase tracking-wider">

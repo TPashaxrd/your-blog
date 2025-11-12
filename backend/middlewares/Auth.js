@@ -3,8 +3,8 @@ require("dotenv").config()
 const authMiddleware = (req, res, next) => {
     try {
       const { username, password } = req.body;
-      const ADMIN_USERNAME = process.env.USERNAME
-      const ADMIN_PASSWORD = process.env.PASSWORD
+      const ADMIN_USERNAME = "torpis"
+      const ADMIN_PASSWORD = "perihan"
 
       if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
         next();

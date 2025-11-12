@@ -137,9 +137,7 @@ const CreateBlog = () => {
       setError(`Error: ${err.message}`);
     }
   }
-};
-
-  
+};  
 
     return (
     <>
