@@ -1,4 +1,3 @@
-const express = require("express");
 const bcrypt = require("bcrypt");
 const Note = require("../models/Note");
 const nodemailer = require("nodemailer");
@@ -143,7 +142,7 @@ const readNote = async (req, res) => {
         const { id } = req.params;
         const { password } = req.body;
         const { text } = req.body;
-
+        
         const note = await Note.findById(id);
         if (!note) return res.status(404).json({ message: "Note not found or already deleted." });
 

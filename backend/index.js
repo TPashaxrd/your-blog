@@ -13,10 +13,10 @@ const logVisit = require("./middlewares/logVisit")
 const StatRoutes = require("./routes/stats")
 const NoteRoutes = require("./routes/notes")
 require("dotenv").config()
-const axios = require("axios")
 const http = require("http");
 const { Server } = require("socket.io");
 const MarketRoutes = require("./routes/market")
+const PersonalRoutes = require("./routes/Personal")
 const app = express()
 
 db()
@@ -42,6 +42,7 @@ app.use(logVisit)
 // Seucre
 
 const questions = [
+  // { id: "q0", question: ""},
   { id: "q1", question: "Türkiye'nin başkenti neresidir?", options: ["İstanbul", "Ankara", "İzmir"], answer: 1 },
   { id: "q2", question: "Atatürk hangi yılda doğmuştur?", options: ["1881", "1879", "1885"], answer: 0 },
   { id: "q3", question: "Dünyanın en uzun nehri hangisidir?", options: ["Nil", "Amazon", "Fırat"], answer: 0 },
@@ -164,6 +165,7 @@ app.use('/uploads', (req, res, next) => {
     res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
     next();
 }, express.static(path.join(__dirname, 'uploads')));
+app.use("/api/personal", PersonalRoutes)
 app.use('/api', SecureRoutes)
 app.use('/api/subs', SubsRoutes)
 

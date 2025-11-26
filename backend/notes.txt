@@ -1,3 +1,2 @@
 //QR Code Creator
-//ONLINE TRADING WATCHER
 //Çizim App

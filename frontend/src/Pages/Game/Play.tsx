@@ -5,7 +5,7 @@ import { FaSkull } from "react-icons/fa";
 
 export default function Play() {
   const handlePlay = () => {
-    window.location.href = "/start";
+    window.location.href = "/game/start";
   };
 
   return (

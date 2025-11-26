@@ -28,6 +28,7 @@ export default function BlogPost() {
       try {
         const res = await axios.get(`${config.api}/api/post/${slug}`);
         setPost(res.data);
+        console.log(res.data)
       } catch (err: any) {
         setError("Failed to fetch post");
       } finally {
@@ -165,8 +166,8 @@ export default function BlogPost() {
       <meta name="author" content="Toprak | ToprakBlogs" />
       <meta property="article:published_time" content={post.createdAt} />
       <meta property="article:modified_time" content={post.updatedAt || post.createdAt} />
+      <meta property="og:image" content={`${post?.coverImageUrl}`} />
       <meta name="twitter:creator" content="@ToprakBlogs" />
-      
       <meta name="description" content={post ? post.content.slice(0, 150) : "Blog post content"} />
       <meta name="keywords" content={post?.category || "blog, tech"} />
       <link rel="canonical" href={`${config.api}/blog/${post?.slug}`} />

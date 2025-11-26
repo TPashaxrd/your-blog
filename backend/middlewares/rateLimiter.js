@@ -1,4 +1,7 @@
 const rateLimiter = require("express-rate-limit")
+require("dotenv").config()
+
+const allowedIPs = [process.env.IP]
 
 const authLimiter = rateLimiter({
    windowMs: 15 * 60 * 1000,
@@ -8,7 +11,8 @@ const authLimiter = rateLimiter({
    message: {
     success: false,
     message: "Too many login attempts. Please try again later."
-  }
+  },
+  skip: (req, res) => allowedIPs.includes(req.ip)
 })
 
 const contactLimiter = rateLimiter({
@@ -19,7 +23,8 @@ const contactLimiter = rateLimiter({
     message: {
         success: false,
         message: "Too many contact attempts. Please try again later."
-    }
+    },
+    skip: (req, res) => allowedIPs.includes(req.ip)
 })
 
 const noteLimiter = rateLimiter({
@@ -30,7 +35,8 @@ const noteLimiter = rateLimiter({
     message: {
         success: false,
         message: "Too many attempts. Please try again later."
-    }
+    },
+      skip: (req, res) => allowedIPs.includes(req.ip)
 })
 
 const subscribeLimiter = rateLimiter({
@@ -41,7 +47,8 @@ const subscribeLimiter = rateLimiter({
     message: {
         success: false,
         message: "Too many subscribe attempts. Please try again later."
-    }
+    },
+      skip: (req, res) => allowedIPs.includes(req.ip)
 })
 
 module.exports = {

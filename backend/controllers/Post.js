@@ -13,7 +13,6 @@ const createPost = async(req, res) => {
             coverImageUrl = `/uploads/${req.file.filename}`;
         }
         
-
         const post = new Post({
             title,
             slug,
