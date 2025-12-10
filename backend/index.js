@@ -16,7 +16,7 @@ require("dotenv").config()
 const http = require("http");
 const { Server } = require("socket.io");
 const MarketRoutes = require("./routes/market")
-const PersonalRoutes = require("./routes/Personal")
+// const PersonalRoutes = require("./routes/Personal")
 const app = express()
 
 db()
@@ -165,7 +165,7 @@ app.use('/uploads', (req, res, next) => {
     res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
     next();
 }, express.static(path.join(__dirname, 'uploads')));
-app.use("/api/personal", PersonalRoutes)
+// app.use("/api/personal", PersonalRoutes)
 app.use('/api', SecureRoutes)
 app.use('/api/subs', SubsRoutes)
 

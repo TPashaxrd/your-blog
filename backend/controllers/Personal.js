@@ -50,20 +50,22 @@ const deletePersonalById = async(req, res) => {
     try {
         const { personalId } = req.body;
         if(!personalId) {
-            return res.status(400).json({ message: "All fields are required."})
+            return res.status(400).json({ message: "Personal ID is required."})
         }
+
         const personal = await Personal.findById(personalId)
-        if(!personalId) {
-            return res.status(400).json({ message: "Personal ID is valid."})
+        if(!personal) {
+            return res.status(404).json({ message: "Personal not found."})
         }
+ 
+        const deletedPersonal = await Personal.findByIdAndDelete(personalId)
 
-        const deletePersonal = await Personal.findByIdAndDelete(personal)
-
-        res.status(201).message({ message: "Successfully personal deleted.", deletePersonal})
+        res.status(200).json({ message: "Successfully deleted personal.", deletedPersonal })
     } catch (error) {
         res.status(500).json({ message: error.message })
     }
 }
+
 
 const getPersonalById = async(req, res) => {
     try {
