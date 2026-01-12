@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { BiWorld, BiMenu, BiX } from "react-icons/bi";
-import { BsTwitter } from "react-icons/bs";
+import { BsInstagram, BsTwitter } from "react-icons/bs";
 import { DiGithubBadge } from "react-icons/di";
 import { config } from "./config";
+import { ImInstagram } from "react-icons/im";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,7 +14,7 @@ export default function Header() {
       <div className="flex items-center gap-4 w-full md:w-auto justify-between">
         <div className="flex items-center gap-4">
           <img
-            src={`${config.api}/uploads/blog-profile.jpg`}
+            src={`${config.api}/uploads/ToprakButGlassesIsAI.png`}
             alt="Profile"
             crossOrigin="anonymous"
             className="w-16 h-16 rounded-full object-cover border-2 border-black"
@@ -46,6 +47,7 @@ export default function Header() {
       </div>
 
       <div className="gap-3 flex">
+        <button onClick={() => window.location.href = "https://instagram.com/toprak.altins"} className={`${isOpen && 'hidden'}`} title="Instagram"><BsInstagram size={25} /></button>
         <button onClick={() => window.location.href = "https://github.com/TPashaxrd"} className={`${isOpen && 'hidden'}`} title="Github"><DiGithubBadge size={35} /></button>
         <button onClick={() => window.location.href = "https://x.com/toprakcordision"} className={`${isOpen && 'hidden'}`} title="Twitter"><BsTwitter size={30} /></button>
         <button onClick={() => window.location.href = "https://toprak.xyz"} className={`${isOpen && 'hidden'}`} title="Internet"><BiWorld size={30} /></button>

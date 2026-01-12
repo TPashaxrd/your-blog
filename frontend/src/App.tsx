@@ -3,6 +3,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import axios from "axios";
 import { config } from "./components/config";
+import { Helmet } from "react-helmet-async"
 
 interface Post {
   _id: string;
@@ -77,6 +78,24 @@ const App: React.FC = () => {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#050505] text-gray-100">
+      <Helmet>
+        <title>Toprak Blogs - Toprak Doğan</title>
+        <meta name="description" content="Toprak Doğan'ın kişisel blogu. Teknoloji, yazılım ve dijital dünyaya dair en yeni yazılar." />
+        <link rel="canonical" href="https://toprak.xyz" />
+        
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://toprak.xyz" />
+        <meta property="og:title" content="Toprak Blogs - Toprak Doğan" />
+        <meta property="og:description" content="En güncel teknoloji ve yazılım içerikleri burada." />
+        <meta property="og:image" content="https://raw.githubusercontent.com/TPashaxrd/your-blog/refs/heads/main/toprak-banner.png" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://toprak.xyz" />
+        <meta name="twitter:title" content="Toprak Blogs" />
+        <meta name="twitter:description" content="Toprak Doğan'ın kişisel blogu." />
+        <meta name="twitter:image" content="https://raw.githubusercontent.com/TPashaxrd/your-blog/refs/heads/main/toprak-banner.png" />
+      </Helmet>
+
       <div className="absolute inset-0 pointer-events-none">
         {Array.from({ length: 25 }).map((_, i) => (
           <div
@@ -108,18 +127,18 @@ const App: React.FC = () => {
               href="/blogs"
               className="group hover:scale-105 font-medium bg-white/10 backdrop-blur-md text-white px-5 py-2 rounded-full border border-white/20 hover:bg-white/20 transition-all duration-300 text-sm sm:text-base shadow-md"
             >
-              My Blogs (as Student)
+              My Blogs
               <span className="ml-2 inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
                 →
               </span>
             </a>
             <h1 className="font-bold text-white text-2xl sm:text-3xl md:text-5xl max-w-4xl">
               <a className="bg-gradient-to-r from-purple-500 to-purple-500 bg-[length:0px_6px] hover:bg-[length:100%_6px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500">
-                Student as Fullstack web dev.
+                Toprak Dogan
               </a>
             </h1>
             <p className="text-white/80 text-sm md:text-lg max-w-3xl hidden sm:block">
-              {posts[0]?.excerpt || "Integrating mindfulness practices helps developers cultivate focus and balance."}
+              {posts[0]?.excerpt || "Toprak in everytime business, Its my ideas don't touch it.."}
             </p>
           </div>
         </div>
