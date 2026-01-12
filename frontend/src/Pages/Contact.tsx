@@ -75,6 +75,7 @@ function Contact() {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#050505] text-gray-100 font-sans">
+      <title>Contact | Toprak.xyz</title>
       <div className="absolute inset-0 pointer-events-none">
         {Array.from({ length: 20 }).map((_, i) => (
           <div

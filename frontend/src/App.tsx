@@ -87,13 +87,13 @@ const App: React.FC = () => {
         <meta property="og:url" content="https://toprak.xyz" />
         <meta property="og:title" content="Toprak Blogs - Toprak Doğan" />
         <meta property="og:description" content="En güncel teknoloji ve yazılım içerikleri burada." />
-        <meta property="og:image" content="https://raw.githubusercontent.com/TPashaxrd/your-blog/refs/heads/main/toprak-banner.png" />
+        <meta property="og:image" content="https://github.com/TPashaxrd/your-blog/blob/main/ToprakButGlassesIsAI.png?raw=true" />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://toprak.xyz" />
         <meta name="twitter:title" content="Toprak Blogs" />
         <meta name="twitter:description" content="Toprak Doğan'ın kişisel blogu." />
-        <meta name="twitter:image" content="https://raw.githubusercontent.com/TPashaxrd/your-blog/refs/heads/main/toprak-banner.png" />
+        <meta name="twitter:image" content="https://github.com/TPashaxrd/your-blog/blob/main/ToprakButGlassesIsAI.png?raw=true" />
       </Helmet>
 
       <div className="absolute inset-0 pointer-events-none">

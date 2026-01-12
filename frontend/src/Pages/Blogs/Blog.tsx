@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { config } from "../../components/config";
+import { motion, AnimatePresence } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 
 interface Post {
   _id: string;
@@ -17,6 +20,7 @@ export default function App() {
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchPosts() {
@@ -36,19 +40,11 @@ export default function App() {
 
   if (loading) {
     return (
-      <div className="min-h-screen items-center justify-center flex flex-col">
+      <div className="min-h-screen items-center justify-center flex flex-col bg-[#050505]">
         <div className="loader">
-        <div className="text"><span>Loading</span></div>
-        <div className="text"><span>Loading</span></div>
-        <div className="text"><span>Loading</span></div>
-        <div className="text"><span>Loading</span></div>
-        <div className="text"><span>Loading</span></div>
-        <div className="text"><span>Loading</span></div>
-        <div className="text"><span>Loading</span></div>
-        <div className="text"><span>Loading</span></div>
-        <div className="text"><span>Loading</span></div>
-        <div className="line"></div>
-      </div>
+           {[...Array(9)].map((_, i) => <div key={i} className="text"><span>Loading</span></div>)}
+           <div className="line"></div>
+        </div>
       </div>
     );
   }
@@ -59,81 +55,124 @@ export default function App() {
 
   return (
     <>
+      <Helmet>
+        <title>ToprakBlogs | Explore the Future</title>
+        <meta name="description" content="Technology, coding and more insights from Toprak." />
+      </Helmet>
+
       <Header />
-    <div className="relative min-h-screen overflow-hidden bg-[#050505] text-gray-100">
-      <div className="absolute inset-0 pointer-events-none">
-        {Array.from({ length: 25 }).map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-white/20 rounded-full animate-float"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 10}s`,
-              animationDuration: `${10 + Math.random() * 10}s`,
-            }}
-          ></div>
-        ))}
-      </div>
-        <div className="px-6 py-12 max-w-7xl mx-auto">
-          <div className="mb-8">
-            <span className="text-white font-bold text-5xl text-start">
-              #{selectedCategory.toLowerCase()}
-            </span>
-            <h1 className="mt-2 text-sm font-bold text-gray-300">
-              Discover & Explore Topics That Excite You
-            </h1>
-            <p className="mt-2 text-gray-400 sm:text-lg">
-              Filter posts by category and find content that sparks your curiosity.
-            </p>
+      
+      <div className="relative min-h-screen bg-[#050505] text-gray-100 selection:bg-purple-500/30">
+        
+        <div className="absolute inset-0 pointer-events-none">
+          {Array.from({ length: 30 }).map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-purple-500/20 rounded-full"
+              initial={{ opacity: 0.2 }}
+              animate={{ opacity: [0.2, 0.8, 0.2], y: [0, -20, 0] }}
+              transition={{ duration: 5 + Math.random() * 5, repeat: Infinity }}
+              style={{
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+              }}
+            />
+          ))}
+        </div>
+
+        <main className="relative z-10 px-6 py-20 max-w-7xl mx-auto">
+          
+          <div className="mb-16 text-center sm:text-left">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-purple-500 font-mono text-sm tracking-widest uppercase mb-2">
+                #{selectedCategory.toLowerCase()}
+              </h2>
+              <h1 className="text-5xl md:text-7xl font-black text-white leading-tight tracking-tighter">
+                Discover & Explore <br />
+                <span className="bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
+                  Topics That Excite
+                </span>
+              </h1>
+            </motion.div>
           </div>
 
-          <div className="border border-gray-700 mb-3"></div>
-          <div className="flex flex-wrap justify-center gap-4 mb-4">
-            {categories.map(category => (
+          <div className="flex flex-wrap items-center gap-3 mb-12 py-4 border-y border-white/5">
+            {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-5 py-2 rounded-full font-semibold text-sm sm:text-base transition-all duration-300 ${
+                className={`px-6 py-2.5 rounded-2xl text-sm font-bold transition-all duration-300 transform active:scale-95 ${
                   selectedCategory === category
-                    ? "bg-purple-600 text-white font-inter shadow-lg scale-105"
-                    : "bg-gray-800 text-gray-200 hover:bg-purple-700 hover:text-white"
+                    ? "bg-purple-600 text-white shadow-[0_0_20px_rgba(147,51,234,0.3)] scale-105"
+                    : "bg-white/5 text-gray-400 hover:bg-white/10 border border-white/5"
                 }`}
               >
-                #{category.toLowerCase()}
+                {category === "All" ? "Everything" : `#${category.toLowerCase()}`}
               </button>
             ))}
           </div>
-          <div className="border border-gray-700 mb-9"></div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredPosts.map(post => (
-              <div
-                key={post._id}
-                className="rounded-2xl overflow-hidden cursor-pointer bg-gray-800 hover:bg-gray-700 transition-colors duration-300"
-                onClick={() => window.location.href = `/blog/${post.slug}`}
-              >
-                <div className="relative w-full aspect-square overflow-hidden group">
-                  <img
-                    src={post.coverImageUrl ? `${config.api}${post.coverImageUrl}` : "https://via.placeholder.com/400"}
-                    alt={post.title}
-                    className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 group-hover:scale-110"
-                    crossOrigin="anonymous"
-                  />
-                </div>
-                <div className="p-5 flex flex-col gap-3">
-                  <span className="text-sm font-inter text-purple-400 font-medium uppercase">{post.category || "Uncategorized"}</span>
-                  <h1 className='font-bold text-white capitalize text-xl font-inter'>
-                    <span className='bg-gradient-to-r from-purple-500 to-purple-500 bg-[length:0px_6px] hover:bg-[length:100%_6px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500'>
+          <motion.div 
+            layout
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            <AnimatePresence mode="popLayout">
+              {filteredPosts.map((post) => (
+                <motion.div
+                  key={post._id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.3 }}
+                  onClick={() => navigate(`/blog/${post.slug}`)}
+                  className="group cursor-pointer bg-white/[0.02] border border-white/5 rounded-[2rem] overflow-hidden hover:border-purple-500/40 hover:bg-white/[0.04] transition-all duration-500"
+                >
+                  <div className="relative aspect-[16/10] overflow-hidden">
+                    <img
+                      src={post.coverImageUrl ? `${config.api}${post.coverImageUrl}` : "https://via.placeholder.com/800"}
+                      alt={post.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      crossOrigin="anonymous"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-60" />
+                    
+                    <div className="absolute top-4 left-4">
+                      <span className="bg-black/50 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1 rounded-full border border-white/10 uppercase tracking-tighter">
+                        {post.category || "General"}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-white mb-4 leading-snug group-hover:text-purple-400 transition-colors">
                       {post.title}
-                    </span>
-                  </h1>
-                  <p className="text-gray-400 text-sm">{new Date(post.createdAt).toLocaleDateString()}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+                    </h3>
+                    
+                    <div className="flex items-center justify-between mt-auto">
+                      <span className="text-xs text-gray-500 font-medium">
+                        {new Date(post.createdAt).toLocaleDateString('tr-TR', { day: '2-digit', month: 'short', year: 'numeric' })}
+                      </span>
+                      <div className="w-8 h-8 rounded-full bg-purple-600/10 flex items-center justify-center group-hover:bg-purple-600 transition-all">
+                        <span className="text-purple-500 group-hover:text-white text-lg">→</span>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
+
+          {filteredPosts.length === 0 && (
+            <div className="text-center py-20">
+              <p className="text-gray-500 italic">Bu kategoride henüz bir yazı yok...</p>
+            </div>
+          )}
+        </main>
       </div>
 
       <Footer />

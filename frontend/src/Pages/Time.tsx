@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { Helmet } from "react-helmet-async";
 
 function formatTime(ms: number) {
   const totalHundredths = Math.floor(ms / 10);
@@ -11,192 +12,269 @@ function formatTime(ms: number) {
   const minutes = totalMinutes % 60;
   const hours = Math.floor(totalMinutes / 60);
 
-  return `${String(hours).padStart(2,"0")}:${String(minutes).padStart(2,"0")}:${String(seconds).padStart(2,"0")}.${String(hundredths).padStart(2,"0")}`;
+  return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}.${String(hundredths).padStart(2, "0")}`;
+}
+
+interface Todo {
+  id: number;
+  text: string;
+  completed: boolean;
 }
 
 export default function Timer() {
   const [running, setRunning] = useState(false);
   const [elapsed, setElapsed] = useState(0);
   const [laps, setLaps] = useState<number[]>([]);
-  const [history, setHistory] = useState<number[]>([]);
   const [timerMode, setTimerMode] = useState(false);
   const [timerDuration, setTimerDuration] = useState(60000);
   const [timerRemaining, setTimerRemaining] = useState(60000);
   const [startAt, setStartAt] = useState<number | null>(null);
+  
+  const [todos, setTodos] = useState<Todo[]>([]);
+  const [inputValue, setInputValue] = useState("");
+
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    const saved = localStorage.getItem("merycron-state");
-    if(saved){
-      try{
-        const p = JSON.parse(saved);
-        setElapsed(p.elapsed||0);
-        setLaps(Array.isArray(p.laps)?p.laps:[]);
-        setHistory(Array.isArray(p.history)?p.history:[]);
-        setTimerDuration(p.timerDuration||60000);
-        setTimerRemaining(p.timerRemaining || p.timerDuration || 60000);
-      }catch{}
+    const savedTimer = localStorage.getItem("toprak-timer-state");
+    const savedTodos = localStorage.getItem("toprak-todos");
+    if (savedTimer) {
+      const p = JSON.parse(savedTimer);
+      setElapsed(p.elapsed || 0);
+      setLaps(p.laps || []);
+      setTimerDuration(p.timerDuration || 60000);
+      setTimerRemaining(p.timerRemaining || 60000);
     }
+    if (savedTodos) setTodos(JSON.parse(savedTodos));
   }, []);
 
-  useEffect(()=>{
-    localStorage.setItem("merycron-state", JSON.stringify({elapsed,laps,history,timerDuration,timerRemaining}));
-  }, [elapsed,laps,history,timerDuration,timerRemaining]);
+  useEffect(() => {
+    localStorage.setItem("toprak-timer-state", JSON.stringify({ elapsed, laps, timerDuration, timerRemaining }));
+  }, [elapsed, laps, timerDuration, timerRemaining]);
 
-  useEffect(()=>{
-    if(!running) return;
-    const id = setInterval(()=>{
+  useEffect(() => {
+    localStorage.setItem("toprak-todos", JSON.stringify(todos));
+  }, [todos]);
+
+  useEffect(() => {
+    if (!running) return;
+    const id = setInterval(() => {
       const now = performance.now();
-      if(startAt==null) return;
+      if (startAt == null) return;
 
-      if(timerMode){
-        const remaining = Math.max(0, timerRemaining - (now-startAt));
+      if (timerMode) {
+        const remaining = Math.max(0, timerRemaining - (now - startAt));
         setTimerRemaining(remaining);
-        if(remaining===0){
+        if (remaining === 0) {
           setRunning(false);
           setStartAt(null);
-          if(audioRef.current) audioRef.current.play().catch(()=>{});
+          if (audioRef.current) audioRef.current.play().catch(() => {});
+          alert("Süre Doldu!");
         }
       } else {
         const delta = now - startAt;
-        setElapsed(prev=>prev+delta);
+        setElapsed(prev => prev + delta);
         setStartAt(now);
       }
-    },50);
-    return ()=>clearInterval(id);
+    }, 50);
+    return () => clearInterval(id);
   }, [running, startAt, timerMode, timerRemaining]);
 
   const displayed = timerMode ? timerRemaining : elapsed;
 
   const handleStartStop = () => {
-    if(running){
-      if(!timerMode){
-        const delta = performance.now() - (startAt||0);
-        const total = elapsed + delta;
-        setElapsed(total);
-        setHistory(prev => [total,...prev].slice(0,30));
-      } else {
-        setTimerRemaining(prev => Math.max(0, prev - (performance.now()-(startAt||0))));
-      }
+    if (running) {
       setRunning(false);
       setStartAt(null);
     } else {
       setStartAt(performance.now());
       setRunning(true);
     }
-  }
+  };
 
   const handleReset = () => {
     setRunning(false);
     setStartAt(null);
-    if(timerMode){
-      setTimerRemaining(timerDuration);
-    } else {
-      setElapsed(0);
-      setLaps([]);
-      setHistory([]);
-    }
-  }
+    if (timerMode) setTimerRemaining(timerDuration);
+    else { setElapsed(0); setLaps([]); }
+  };
 
-  const handleLap = () => {
-    if(!timerMode){
-      setLaps(prev=>[displayed,...prev].slice(0,50));
-    }
-  }
+  const addTodo = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!inputValue.trim()) return;
+    setTodos([{ id: Date.now(), text: inputValue, completed: false }, ...todos]);
+    setInputValue("");
+  };
 
-  const handleTimerChange = (e: React.ChangeEvent<HTMLInputElement>)=>{
-    const val = Number(e.target.value)*1000;
-    setTimerDuration(val);
-    setTimerRemaining(val);
-    setTimerMode(true);
-  }
+  const toggleTodo = (id: number) => {
+    setTodos(todos.map(t => t.id === id ? { ...t, completed: !t.completed } : t));
+  };
+
+  const deleteTodo = (id: number) => {
+    setTodos(todos.filter(t => t.id !== id));
+  };
 
   return (
-    <>
-    <Header/>
-    <div className="min-h-screen flex items-center font-space-grotesk justify-center bg-gradient-to-b from-[#06060a] via-[#0b0b12] to-[#05050a] text-gray-100 p-6">
-      <title>Toprak - Cronometre</title>
-      <div className="w-full max-w-3xl">
-        <header className="mb-8 text-center">
-          <h1 className="text-3xl sm:text-4xl font-bold text-white">MeryCronometre</h1>
-          <p className="mt-2 text-sm text-gray-400">Space=Start/Stop L=Lap R=Reset</p>
-          <div className="mt-2">
-            <label className="text-gray-400 mr-2">Timer (s):</label>
-            <input 
-              type="number" title="Number"
-              className="text-black px-2 rounded focus:ring-2 focus:ring-purple-600" 
-              value={Math.round(timerDuration/1000)} 
-              onChange={handleTimerChange}
-            />
-          </div>
-        </header>
+    <div className="relative min-h-screen bg-[#050505] text-gray-100 overflow-hidden font-sans">
+      <Helmet>
+        <title>Focus Mode | Toprak Blogs</title>
+        <meta name="description" content="Zamanlayıcı ve yapılacaklar listesi ile odağını artır." />
+      </Helmet>
 
-        <main className="bg-gray-800/40 border border-purple-800/30 rounded-2xl shadow-2xl p-6">
-          <div className="text-center mb-6">
-            <div className="inline-flex items-baseline space-x-4">
-              <span className="text-6xl sm:text-7xl font-mono">{formatTime(displayed).split(".")[0]}</span>
-              <span className="text-2xl sm:text-3xl text-gray-400 font-mono">.{formatTime(displayed).split(".")[1]}</span>
+      <div className="absolute inset-0 pointer-events-none">
+        {Array.from({ length: 20 }).map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-purple-500/30 rounded-full animate-pulse"
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 5}s`,
+            }}
+          ></div>
+        ))}
+      </div>
+
+      <Header />
+
+      <main className="container mx-auto px-4 py-12 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          
+          <div className="bg-gray-900/40 backdrop-blur-xl border border-white/10 p-8 rounded-3xl shadow-2xl">
+            <div className="flex justify-between items-center mb-8">
+              <h2 className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
+                {timerMode ? "Timer" : "Stopwatch"}
+              </h2>
+              <button 
+                onClick={() => { setTimerMode(!timerMode); handleReset(); }}
+                className="text-xs uppercase tracking-widest bg-white/5 hover:bg-white/10 px-4 py-2 rounded-full border border-white/10 transition-all"
+              >
+                Switch to {timerMode ? "Stopwatch" : "Timer"}
+              </button>
+            </div>
+
+            <div className="text-center mb-10">
+              <div className="text-6xl sm:text-8xl font-mono font-black tracking-tighter text-white">
+                {formatTime(displayed).split(".")[0]}
+                <span className="text-2xl text-purple-500">.{formatTime(displayed).split(".")[1]}</span>
+              </div>
+            </div>
+
+            {timerMode && (
+               <div className="mb-8">
+                  <p className="text-gray-500 text-xs uppercase mb-2 text-center">Set Duration (Seconds)</p>
+                  <input 
+                    type="range" min="10" max="3600" step="10"
+                    value={timerDuration/1000}
+                    onChange={(e) => {
+                        const val = Number(e.target.value) * 1000;
+                        setTimerDuration(val);
+                        setTimerRemaining(val);
+                    }}
+                    className="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-purple-600"
+                  />
+                  <p className="text-center mt-2 text-purple-400 font-bold">{timerDuration/1000}s</p>
+               </div>
+            )}
+
+            <div className="flex gap-4">
+              <button 
+                onClick={handleStartStop}
+                className={`flex-1 py-4 rounded-2xl font-bold transition-all transform active:scale-95 shadow-lg ${
+                  running ? "bg-rose-500/20 text-rose-500 border border-rose-500/50 hover:bg-rose-500/30" : "bg-emerald-500/20 text-emerald-500 border border-emerald-500/50 hover:bg-emerald-500/30"
+                }`}
+              >
+                {running ? "PAUSE" : "START"}
+              </button>
+              <button 
+                onClick={handleReset}
+                className="px-8 py-4 bg-gray-800 hover:bg-gray-700 rounded-2xl border border-white/5 transition-all"
+              >
+                RESET
+              </button>
+            </div>
+
+            {!timerMode && laps.length > 0 && (
+              <div className="mt-8 max-h-48 overflow-y-auto pr-2 custom-scrollbar">
+                {laps.map((l, i) => (
+                  <div key={i} className="flex justify-between py-3 border-b border-white/5 text-sm">
+                    <span className="text-gray-500">Lap {laps.length - i}</span>
+                    <span className="font-mono text-purple-400">{formatTime(l)}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <div className="bg-gray-900/40 backdrop-blur-xl border border-white/10 p-8 rounded-3xl shadow-2xl h-full">
+            <h2 className="text-2xl font-bold mb-6 text-white flex items-center gap-3">
+              Daily Quests 
+              <span className="text-xs bg-purple-600 px-2 py-1 rounded-md">{todos.length}</span>
+            </h2>
+
+            <form onSubmit={addTodo} className="relative mb-8">
+              <input 
+                type="text"
+                placeholder="What needs to be done?"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                className="w-full bg-black/50 border border-white/10 rounded-2xl py-4 px-6 focus:outline-none focus:border-purple-500 transition-all placeholder:text-gray-600"
+              />
+              <button type="submit" className="absolute right-3 top-2 bottom-2 px-4 bg-purple-600 hover:bg-purple-500 rounded-xl text-sm font-bold transition-all">
+                ADD
+              </button>
+            </form>
+
+            <div className="space-y-3 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
+              {todos.length === 0 ? (
+                <div className="text-center py-12 text-gray-600 italic">
+                  No tasks for today. Take a rest!
+                </div>
+              ) : (
+                todos.map(todo => (
+                  <div 
+                    key={todo.id}
+                    className={`group flex items-center justify-between p-4 rounded-2xl transition-all border ${
+                      todo.completed ? "bg-emerald-500/5 border-emerald-500/20" : "bg-white/5 border-white/5 hover:border-purple-500/40"
+                    }`}
+                  >
+                    <div className="flex items-center gap-4">
+                      <button 
+                        onClick={() => toggleTodo(todo.id)}
+                        className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${
+                          todo.completed ? "bg-emerald-500 border-emerald-500" : "border-gray-600"
+                        }`}
+                      >
+                        {todo.completed && <span className="text-black text-xs">✓</span>}
+                      </button>
+                      <span className={`text-sm font-medium transition-all ${todo.completed ? "line-through text-gray-600" : "text-gray-200"}`}>
+                        {todo.text}
+                      </span>
+                    </div>
+                    <button 
+                      onClick={() => deleteTodo(todo.id)}
+                      className="opacity-0 group-hover:opacity-100 p-2 hover:bg-rose-500/20 rounded-lg text-rose-500 transition-all"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                ))
+              )}
             </div>
           </div>
 
-          <div className="flex gap-3 justify-center mb-6">
-            <button 
-              onClick={handleStartStop} 
-              className={`px-4 py-2 rounded-md font-medium ${running?"bg-rose-600 hover:bg-rose-500":"bg-emerald-600 hover:bg-emerald-500"}`}>
-              {running?"Stop":"Start"}
-            </button>
-            <button 
-              onClick={handleLap} 
-              disabled={!running || timerMode} 
-              className="px-3 py-2 rounded-md bg-gray-700 hover:bg-gray-600 border border-gray-600 text-sm disabled:opacity-40">
-              Lap
-            </button>
-            <button 
-              onClick={handleReset} 
-              className="px-3 py-2 rounded-md bg-gray-700 hover:bg-gray-600 border border-gray-600 text-sm">
-              Reset
-            </button>
-          </div>
+        </div>
+      </main>
 
-          <audio ref={audioRef} src="./alarm.mp3"/>
+      <audio ref={audioRef} src="/alarm.mp3" />
+      <Footer />
 
-          {!timerMode && (
-            <>
-              <section className="mb-6">
-                <h2 className="text-sm font-semibold text-gray-300 mb-2">Laps</h2>
-                <div className="max-h-40 overflow-auto space-y-1">
-                  {laps.length===0 ? 
-                    <p className="text-gray-500 text-sm">No laps yet.</p> :
-                    laps.map((l,i) => (
-                      <div key={i} className="flex justify-between p-2 bg-gray-900/30 rounded-md text-sm font-mono">
-                        <span>Lap {laps.length-i}</span>
-                        <span>{formatTime(l)}</span>
-                      </div>
-                    ))
-                  }
-                </div>
-              </section>
-
-              <section>
-                <h2 className="text-sm font-semibold text-gray-300 mb-2">History</h2>
-                <div className="max-h-40 overflow-auto space-y-1">
-                  {history.length===0 ? 
-                    <p className="text-gray-500 text-sm">No history yet.</p> :
-                    history.map((h,i)=>(
-                      <div key={i} className="flex justify-between p-2 bg-gray-900/30 rounded-md text-sm font-mono">
-                        <span>#{history.length-i}</span>
-                        <span>{formatTime(h)}</span>
-                      </div>
-                    ))
-                  }
-                </div>
-              </section>
-            </>
-          )}
-        </main>
-      </div>
+      <style>{`
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #4b21a3; }
+      `}</style>
     </div>
-    <Footer />
-    </>
   );
 }

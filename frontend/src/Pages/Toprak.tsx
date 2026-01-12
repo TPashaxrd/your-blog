@@ -7,6 +7,7 @@ const PROFILE_PIC_URL = "https://toprak-dogan.vercel.app/toprak.jpg";
 
 const GALLERY_IMAGES = [
     "https://toprak-dogan.vercel.app/toprak.jpg",
+    "https://github.com/TPashaxrd/your-blog/blob/main/ToprakButGlassesIsAI.png?raw=true",
     "https://raw.githubusercontent.com/TPashaxrd/your-blog/refs/heads/main/toprak-picture.jpg",
     "https://raw.githubusercontent.com/TPashaxrd/your-blog/refs/heads/main/toprak-banner-2.jpg"
 ];
