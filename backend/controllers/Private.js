@@ -21,7 +21,7 @@ const CreatePrivate = async (req, res) => {
 
 const getAllPrivates = async (req, res) => {
     try {
-        const allPrivates = await Private.find()
+        const allPrivates = await Private.find().sort({ _id: -1 });
         res.status(201).json(allPrivates)
     } catch (error) {
         res.status(500).json({ message: `Server ${error}`})
