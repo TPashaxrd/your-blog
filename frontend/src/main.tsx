@@ -17,6 +17,7 @@ import ReadNote from './Pages/Repaste/ReadNote.tsx'
 import Play from './Pages/Game/Play.tsx'
 import Start from './Pages/Game/Start.tsx'
 import WallStreet from './Pages/Backgrounds/WallStreet/App.tsx'
+import Privates from './Pages/Privates/Privates.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <HelmetProvider>
@@ -32,7 +33,8 @@ createRoot(document.getElementById('root')!).render(
         {/* ADMIN */}
         <Route path="/admin" element={<CreateBlog/>}/>
         <Route path='/admin/stats' element={<Stats/>}/>
-
+        <Route path="/admin/private" element={<Privates/>}/>
+        
         {/* RePaste */}
         <Route path='/repaste' element={<Repaste/>}/>
         <Route path='/note/:id' element={<ReadNote/>}/>
