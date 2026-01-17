@@ -4,7 +4,7 @@ const authMiddleware = (req, res, next) => {
     try {
       const { username, password } = req.body;
       const ADMIN_USERNAME = "torpis"
-      const ADMIN_PASSWORD = "perihan"
+      const ADMIN_PASSWORD = "topus"
 
       if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
         next();

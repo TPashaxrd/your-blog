@@ -65,7 +65,7 @@ const EDUCATION = [
 
 const CONTACT_INFO = {
     location: "Istanbul, Türkiye",
-    email: "altintoprak@gmail.com",
+    email: "altintoprak06@gmail.com",
     phone: "+90 501 12* ** **",
     github: "https://github.com/TPashaxrd",
     linkedin: "https://linkedin.com/in/",

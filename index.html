@@ -1,0 +1,3224 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <title>ForHost - Profesyonel Hosting ve Sunucu Çözümleri</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="icon" href="assets/img/favicon.png" type="image/png" sizes="16x16">
+    <meta name="description" content="ForHost ile profesyonel hosting ve sunucu çözümleri. VDS, dedicated sunucu, web hosting, Minecraft sunucu ve daha fazlası için güvenilir hosting hizmetleri." />
+    <meta name="keywords" content="hosting, web hosting, vds, sanal sunucu, dedicated sunucu, minecraft sunucu, sunucu kiralama, hosting firması, cpanel hosting, plesk hosting" />
+    <meta name="author" content="ForHost" />
+    
+    <meta property="og:title" content="ForHost - Profesyonel Hosting ve Sunucu Çözümleri" />
+    <meta property="og:description" content="ForHost ile profesyonel hosting ve sunucu çözümleri. VDS, dedicated sunucu, web hosting, Minecraft sunucu ve daha fazlası için güvenilir hosting hizmetleri." />
+    <meta property="og:image" content="https://forhost.com.tr/assets/img/logo-sm.png" />
+    <meta property="og:url" content="https://forhost.com.tr" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ForHost - Profesyonel Hosting ve Sunucu Çözümleri" />
+    <meta name="twitter:description" content="ForHost ile profesyonel hosting ve sunucu çözümleri. VDS, dedicated sunucu, web hosting, Minecraft sunucu ve daha fazlası için güvenilir hosting hizmetleri." />
+    <meta name="twitter:image" content="https://forhost.com.tr/assets/img/logo-sm.png" />
+    
+    <link rel="canonical" href="https://forhost.com.tr" />
+    
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="revisit-after" content="7 days" />
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="style.css">
+<style>@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap");
+
+:root {
+  --background: #000;
+  --font-color1: #f5f5f5;
+  --font-color2: #e0e0e0;
+  --navbar-logo: #0a0a0a;
+  --primary: #0066FF;
+  --primary-dark: #0052cc;
+  --primary-light: #4d94ff;
+  --secondary: #004db3;
+  --border: #222222;
+  --card-bg: #0a0a0a;
+  --card-border: #222222;
+}
+
+html, body {
+  font-family: "Lexend", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+  background-color: var(--background) !important;
+}
+
+* {
+  box-sizing: border-box;
+}
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 300px;
+  height: 100%;
+  background-color: var(--navbar-logo);
+  z-index: 1000;
+  transition: left 0.3s ease;
+  overflow-y: auto;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  z-index: 999;
+  display: none;
+  transition: all 0.3s ease;
+}
+
+.sidebar-overlay.active {
+  display: block;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.sidebar-logo {
+  width: 150px;
+}
+
+.btn-close-sidebar {
+  background: transparent;
+  border: none;
+  color: var(--font-color1);
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.sidebar-menu {
+  padding: 20px;
+}
+.sidebar-item {
+  display: block;
+  padding: 12px 15px;
+  color: var(--font-color1);
+  text-decoration: none;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+}
+
+.sidebar-item:hover {
+  background-color: rgba(0, 102, 255, 0.1);
+  color: var(--primary);
+}
+.sidebar-dropdown {
+  margin-bottom: 10px;
+}
+.sidebar-dropdown-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 12px 15px;
+  color: var(--font-color1);
+  background-color: transparent;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sidebar-dropdown-btn i {
+  float: right;
+  margin-top: 5px;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-dropdown-btn.active i {
+  transform: rotate(180deg);
+}
+
+.sidebar-dropdown-btn:hover {
+  background-color: rgba(0, 102, 255, 0.1);
+  color: var(--primary);
+}
+
+.sidebar-dropdown-content {
+  display: none;
+  padding: 10px 15px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  margin-top: 5px;
+}
+
+.sidebar-dropdown-content.active {
+  display: block;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  color: var(--font-color2);
+  text-decoration: none;
+  border-radius: 8px;
+  margin-bottom: 5px;
+  transition: all 0.3s ease;
+}
+
+.dropdown-item img {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+}
+
+.dropdown-item:hover {
+  background-color: rgba(0, 102, 255, 0.1);
+  color: var(--primary);
+}
+
+.sidebar-bottom {
+  padding: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  margin-top: 20px;
+}
+
+.btn-login {
+  display: block;
+  width: 100%;
+  padding: 12px 20px;
+  background-color: var(--primary);
+  color: var(--font-color1);
+  text-align: center;
+  text-decoration: none;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+  background-color: var(--primary-dark);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 102, 255, 0.3);
+}
+
+.btn-login i {
+  margin-left: 5px;
+  transition: transform 0.3s ease;
+}
+
+.btn-login:hover i {
+  transform: translateX(5px);
+}
+
+.hamburger-icon {
+  width: 30px;
+  height: 20px;
+  position: relative;
+  margin: 0 auto;
+  transform: rotate(0deg);
+  transition: .3s ease-in-out;
+  cursor: pointer;
+}
+
+.hamburger-icon span {
+  display: block;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background: var(--font-color1);
+  border-radius: 9px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: .25s ease-in-out;
+}
+
+.hamburger-icon span:nth-child(1) {
+  top: 0px;
+}
+
+.hamburger-icon span:nth-child(2) {
+  top: 8px;
+}
+
+.hamburger-icon span:nth-child(3) {
+  top: 16px;
+}
+
+.hamburger-icon.open span:nth-child(1) {
+  top: 8px;
+  transform: rotate(135deg);
+  transition: transform 0.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.hamburger-icon.open span:nth-child(2) {
+  opacity: 0;
+  left: -60px;
+  transition: all 0.2s ease-in-out;
+}
+
+.hamburger-icon.open span:nth-child(3) {
+  top: 8px;
+  transform: rotate(-135deg);
+  transition: transform 0.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.forhostNavbar-main {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 50;
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main {
+  display: flex;
+  align-items: center;
+  background-color: var(--navbar-logo);
+  backdrop-filter: blur(10px);
+  border-radius: 40px;
+  margin-top: 20px;
+  height: 80px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main:hover {
+  box-shadow: 0 15px 40px rgba(0, 102, 255, 0.2);
+  transform: translateY(-5px);
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-logo-main {
+  width: 20%;
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-logo-main .logo-main-img {
+  width: 200px;
+  display: block;
+  padding: 10px;
+  transition: transform 0.3s ease;
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-logo-main:hover .logo-main-img {
+  transform: scale(1.05);
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-menu {
+  position: relative;
+  width: 60%;
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-menu ul {
+  list-style-type: none !important;
+  padding: 0px !important;
+  margin-bottom: 0px !important;
+  text-align: center;
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-menu ul .nav-link {
+  position: relative;
+  display: inline-block;
+  padding: 0px 10px;
+  color: var(--font-color1);
+  font-weight: 500;
+  font-size: 16px;
+  transition: all cubic-bezier(0.39, 0.575, 0.565, 1) 0.2375s;
+  cursor: pointer;
+  text-align: left !important;
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-menu ul .nav-link .menu-arrow {
+  color: var(--font-color1);
+  position: relative;
+  top: 4px;
+  transition: all cubic-bezier(0.39, 0.575, 0.565, 1) 0.2375s;
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-menu ul .nav-link:hover,
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-menu ul .nav-link.hover-active {
+  color: var(--primary);
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-menu ul .nav-link:hover .menu-arrow,
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-menu ul .nav-link.hover-active .menu-arrow {
+  transform: rotate(90deg) !important;
+  color: var(--primary);
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-menu ul .nav-link:hover .forhost-menu,
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-menu ul .nav-link.hover-active .forhost-menu {
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0.1s;
+  transform: translateY(0);
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-menu .other-menu {
+  width: 50% !important;
+  left: 90% !important;
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-menu .other-menu .forhost-item .f-item-name {
+  font-size: 16px !important;
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-menu .other-menu .forhost-item .item-img {
+  width: 25px !important;
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-menu .forhost-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  width: 165%;
+  padding: 0px 30px 0px 0px !important;
+  background-color: var(--navbar-logo);
+  box-shadow: 0 0px 100px 10px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  border-radius: 20px !important;
+  z-index: 50;
+  border-top: 5px solid var(--background);
+  border-bottom: 5px solid var(--background);
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-menu .forhost-menu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-menu .forhost-menu ul li {
+  margin-bottom: 8px;
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-menu .forhost-menu ul li a {
+  text-decoration: none;
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-menu .forhost-menu ul li a:hover {
+  color: var(--primary);
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-menu .forhost-menu .forhost-banner {
+  border-radius: 20px 0px 0px 20px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-menu .forhost-menu:hover .forhost-banner {
+  transform: scale(1.05);
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-menu .forhost-menu .forhost-item {
+  display: block;
+  margin-top: 10px;
+  background-color: rgba(15, 15, 15, 0.5);
+  border-radius: 20px;
+  padding: 15px 20px;
+  text-decoration: none;
+  transition: all cubic-bezier(0.39, 0.575, 0.565, 1) 0.2375s;
+  border: 1px solid transparent;
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-menu .forhost-menu .forhost-item .item-img {
+  width: 100%;
+  transition: transform 0.3s ease;
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-menu .forhost-menu .forhost-item:hover .item-img {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-menu .forhost-menu .forhost-item .f-item-name {
+  font-size: 20px;
+  color: var(--font-color1);
+  margin-bottom: 3px !important;
+  transition: all cubic-bezier(0.39, 0.575, 0.565, 1) 0.2375s;
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-menu .forhost-menu .forhost-item .f-item-description {
+  margin-bottom: 0px !important;
+  font-size: 14px;
+  letter-spacing: -0.005rem;
+  color: rgba(255, 255, 255, 0.7);
+  opacity: 1;
+  transition: all cubic-bezier(0.39, 0.575, 0.565, 1) 0.2375s;
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-menu .forhost-menu .forhost-item .f-item-description span {
+  font-weight: 400;
+  color: var(--font-color1);
+  font-size: 14px;
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-menu .forhost-menu .forhost-item:hover {
+  background-color: rgba(0, 102, 255, 0.1);
+  border-color: rgba(0, 102, 255, 0.3);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-menu .forhost-menu .forhost-item:hover .f-item-name {
+  color: #fff;
+  text-shadow: 0px 0px 30px rgba(255, 255, 255, 0.5);
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-menu .forhost-menu h6 {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-menu .nav-link:hover + .forhost-menu,
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-menu .forhost-menu:hover {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-menu .nav-link {
+  display: inline-block;
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-button {
+  text-align: center;
+  width: 20%;
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-button .btn-forhost-login {
+  background-color: var(--primary) !important;
+  color: #fff;
+  border-radius: 20px;
+  padding: 10px 25px;
+  transition: all cubic-bezier(0.39, 0.575, 0.565, 1) 0.2375s;
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 500;
+  box-shadow: 0 5px 15px rgba(0, 102, 255, 0.3);
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-button .btn-forhost-login i {
+  font-size: 18px;
+  position: relative;
+  top: 2px;
+  transition: all cubic-bezier(0.39, 0.575, 0.565, 1) 0.2375s;
+  margin-left: 5px;
+}
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background-color: var(--primary-dark);
+}
+::-webkit-scrollbar-thumb {
+    background-color: #fff;
+    border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #ddd;
+}
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-button .btn-forhost-login:hover {
+  background-color: var(--primary-dark) !important;
+  color: #ffffff;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 102, 255, 0.4);
+}
+
+.forhostNavbar-main .forhostNavbar-desktop-main .forhostNavbar-button .btn-forhost-login:hover i {
+  transform: translateX(5px);
+}
+.forhostNavbar-mobile {
+  background-color: var(--navbar-logo);
+  border-radius: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.forhostNavbar-mobile .mobile-logo {
+  width: 150px;
+  transition: transform 0.3s ease;
+}
+
+.forhostNavbar-mobile .mobile-logo:hover {
+  transform: scale(1.05);
+}
+
+.forhostNavbar-mobile .btn-menu {
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background-color: rgba(0, 102, 255, 0.1);
+  transition: all cubic-bezier(0.39, 0.575, 0.565, 1) 0.2375s;
+  font-size: 20px;
+  border: none;
+}
+
+.forhostNavbar-mobile .btn-menu:hover, .forhostNavbar-mobile .btn-menu:focus {
+  box-shadow: 0px 0px 0px 0px #fff !important;
+  background-color: rgba(0, 102, 255, 0.2);
+  transform: scale(1.05);
+}
+.forhostBody-slider-main {
+  margin-top: 150px;
+}
+
+.forhostBody-slider-main .carousel .carousel-indicators {
+  margin-bottom: -3rem;
+}
+
+.forhostBody-slider-main .carousel .carousel-indicators .active {
+  background-color: var(--primary);
+  opacity: 0.75;
+}
+
+.forhostBody-slider-main .carousel .carousel-inner {
+  height: 400px;
+}
+
+.forhostBody-slider-main .carousel .carousel-inner .carousel-item .forhost-main-text {
+  position: relative;
+  font-weight: 500;
+  font-size: 65px;
+  background: -webkit-linear-gradient(0deg, var(--primary-light) 0%, var(--primary) 51%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.1rem;
+  line-height: 65px;
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s forwards;
+}
+
+.forhostBody-slider-main .carousel .carousel-inner .carousel-item .forhost-main-text span {
+  font-weight: 500;
+  font-size: 72px;
+  letter-spacing: -0.1rem;
+  line-height: 70px;
+  background: -webkit-linear-gradient(#ffffff, #cccccc);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.forhostBody-slider-main .carousel .carousel-inner .carousel-item .forhost-main-description {
+  position: relative;
+  z-index: 1;
+  font-weight: 350;
+  color: #e0e0f5;
+  letter-spacing: -0.02rem;
+  opacity: 0;
+  font-size: 25px;
+  margin-top: 15px;
+  margin-bottom: 0px;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s 0.2s forwards;
+}
+
+.forhostBody-slider-main .carousel .carousel-inner .carousel-item .forhost-main-cpu-logo {
+  position: relative;
+  z-index: 1;
+  width: 70%;
+  display: block;
+  margin-left: auto;
+  border-radius: 50px;
+  opacity: 0;
+  transform: translateX(20px);
+  animation: fadeInRight 0.8s 0.4s forwards;
+}
+
+.forhostBody-slider-main .carousel .carousel-inner .carousel-item .forhost-main-get-information-btn {
+  position: relative;
+  z-index: 1;
+  margin-top: 20px;
+  background-color: var(--primary) !important;
+  border-radius: 20px;
+  color: var(--font-color1);
+  padding: 10px 30px;
+  font-size: 18px;
+  box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.3);
+  transition: all cubic-bezier(0.39, 0.575, 0.565, 1) 0.2375s;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s 0.6s forwards;
+}
+
+.forhostBody-slider-main .carousel .carousel-inner .carousel-item .forhost-main-get-information-btn:hover {
+  background-color: var(--primary-dark);
+  color: #fff;
+  padding: 10px 35px;
+  transform: translateY(-5px);
+  box-shadow: 0px 10px 30px 5px rgba(0, 102, 255, 0.3);
+}
+
+.forhostBody-slider-main .carousel .carousel-inner .carousel-item .forhost-main-get-information-btn i {
+  transition: transform 0.3s ease;
+}
+
+.forhostBody-slider-main .carousel .carousel-inner .carousel-item .forhost-main-get-information-btn:hover i {
+  transform: translateX(5px);
+}
+
+.forhostBody-slider-main .carousel .carousel-inner .carousel-item .forhost-main-get-package-btn {
+  margin-top: 20px;
+  background-color: var(--font-color1);
+  border-radius: 20px;
+  color: var(--primary) !important;
+  padding: 10px 30px;
+  font-size: 18px;
+  box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.3);
+  transition: all cubic-bezier(0.39, 0.575, 0.565, 1) 0.2375s;
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s 0.8s forwards;
+}
+
+.forhostBody-slider-main .carousel .carousel-inner .carousel-item .forhost-main-get-package-btn:hover {
+  background-color: #f0f0f0;
+  color: var(--primary-dark);
+  padding: 10px 35px;
+  transform: translateY(-5px);
+  box-shadow: 0px 10px 30px 5px rgba(0, 102, 255, 0.2);
+}
+
+.forhostBody-slider-main .carousel .carousel-inner .carousel-item .forhost-main-get-package-btn i {
+  transition: transform 0.3s ease;
+}
+
+.forhostBody-slider-main .carousel .carousel-inner .carousel-item .forhost-main-get-package-btn:hover i {
+  transform: translateX(5px);
+}
+
+.forhostBody-slider-main .carousel .carousel-control-prev {
+  left: -20%;
+}
+
+.forhostBody-slider-main .carousel .carousel-control-next {
+  right: -20%;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.forhostBody-why-forhost {
+  margin-top: 100px;
+}
+
+.forhostBody-why-forhost .f-why-forhost-text {
+  color: var(--font-color1);
+  font-weight: 600;
+  font-size: 35px;
+  margin-bottom: 20px;
+}
+
+.forhostBody-why-forhost .card {
+  border: 0px !important;
+  background-color: transparent;
+  margin-bottom: 20px;
+  position: relative;
+  transition: all cubic-bezier(0.39, 0.575, 0.565, 1) 0.2375s;
+}
+
+.forhostBody-why-forhost .card .card-body {
+  padding: 30px 40px;
+  border-radius: 20px;
+  background-color: var(--card-bg);
+  transition: all cubic-bezier(0.39, 0.575, 0.565, 1) 0.2375s;
+}
+
+.forhostBody-why-forhost .card .card-body .card-title {
+  font-size: 22px;
+  color: var(--font-color1);
+  letter-spacing: -0.05rem;
+  font-weight: 600;
+}
+
+.forhostBody-why-forhost .card .card-body .card-text {
+  font-size: 15px;
+  color: #fff;
+  opacity: 0.45;
+  line-height: 22px;
+}
+
+.forhostBody-why-forhost .card .card-body .btn-forhost-checkout {
+  background-color: var(--primary) !important;
+  color: var(--font-color1);
+  border-radius: 20px;
+  padding: 10px 10px;
+  transition: all cubic-bezier(0.39, 0.575, 0.565, 1) 0.2375s;
+  font-size: 16px;
+  display: block;
+  margin-bottom: 0px;
+}
+
+.forhostBody-why-forhost .card:hover {
+  cursor: pointer;
+  transform: translateY(-5px);
+}
+
+.forhostBody-why-forhost .card:hover .card-body {
+  background-color: rgba(0, 102, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 102, 255, 0.2);
+}
+
+.forhostBody-why-forhost .card:hover .card-body .card-title {
+  color: #d7dbeb;
+}
+
+.forhostBody-why-forhost .card:hover .card-body .card-text {
+  color: #d7dbeb;
+  opacity: 0.8;
+}
+.statistics-section {
+  padding: 100px 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+  margin: 80px 0;
+}
+
+.statistics-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(0, 102, 255, 0.05), transparent);
+  z-index: 0;
+}
+
+.statistics-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.statistics-item {
+  text-align: center;
+  padding: 30px;
+  border-radius: 20px;
+  background-color: rgba(10, 10, 10, 0.7);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  width: 300px;
+  margin: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.statistics-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-light), var(--primary));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease;
+}
+
+.statistics-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 102, 255, 0.2);
+}
+
+.statistics-item:hover::after {
+  transform: scaleX(1);
+}
+
+.icon-container {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-light), var(--primary));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 20px rgba(0, 102, 255, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.statistics-item:hover .icon-container {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.icon-container i {
+  font-size: 36px;
+  color: white;
+}
+
+.counter-wrapper {
+  text-align: center;
+}
+
+.counter-container {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+
+.counter {
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--font-color1);
+  margin-right: 5px;
+  background: linear-gradient(to right, var(--primary-light), var(--primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.plus {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.statistics-item h3 {
+  font-size: 22px;
+  color: var(--font-color1);
+  font-weight: 500;
+  margin-top: 10px;
+}
+.popular-packages-section {
+  padding: 100px 0;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.popular-packages-section .section-title {
+  color: var(--font-color1);
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.popular-packages-section .section-description {
+  color: var(--font-color2);
+  font-size: 18px;
+  margin-bottom: 50px;
+  text-align: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.popular-package-card {
+  background-color: rgba(10, 10, 10, 0.8);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  height: 100%;
+  position: relative;
+  margin-bottom: 30px;
+  border: 1px solid rgba(0, 102, 255, 0.1);
+}
+
+.popular-package-card:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 20px 50px rgba(0, 102, 255, 0.2);
+  border-color: rgba(0, 102, 255, 0.3);
+}
+
+.popular-package-header {
+  padding: 30px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.popular-package-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0, 102, 255, 0.1), transparent);
+  z-index: 0;
+}
+
+.popular-package-logo {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+.popular-package-card:hover .popular-package-logo {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.popular-package-logo img {
+  width: 100%;
+  height: auto;
+}
+
+.popular-package-header h3 {
+  color: var(--font-color1);
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.popular-package-header p {
+  color: var(--font-color2);
+  font-size: 16px;
+  opacity: 0.8;
+  position: relative;
+  z-index: 1;
+}
+
+.popular-package-price {
+  padding: 20px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.popular-package-price::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+}
+
+.popular-package-price .price {
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--primary);
+  position: relative;
+  display: inline-block;
+}
+
+.popular-package-price .period {
+  font-size: 18px;
+  color: var(--font-color2);
+  opacity: 0.7;
+  margin-left: 5px;
+}
+
+.popular-package-features {
+  padding: 30px;
+}
+
+.popular-package-features ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.popular-package-features ul li {
+  color: var(--font-color2);
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+}
+
+.popular-package-features ul li:last-child {
+  border-bottom: none;
+}
+
+.popular-package-features ul li i {
+  color: var(--primary);
+  margin-right: 15px;
+  font-size: 18px;
+}
+
+.popular-package-footer {
+  padding: 30px;
+  text-align: center;
+}
+
+.btn-popular-package {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  padding: 15px 40px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  width: 100%;
+}
+
+.btn-popular-package::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+  transition: all 0.4s ease;
+  z-index: -1;
+}
+
+.btn-popular-package:hover {
+  color: white;
+  box-shadow: 0 10px 20px rgba(0, 102, 255, 0.3);
+  transform: translateY(-5px);
+}
+
+.btn-popular-package:hover::before {
+  left: 0;
+}
+
+.popular-badge {
+  position: absolute;
+  top: 20px;
+  right: -30px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  padding: 8px 30px;
+  font-size: 14px;
+  font-weight: 600;
+  transform: rotate(45deg);
+  z-index: 2;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.coming-soon-badge {
+  position: absolute;
+  top: 20px;
+  right: -30px;
+  background: linear-gradient(135deg, #555, #333);
+  color: white;
+  padding: 8px 30px;
+  font-size: 14px;
+  font-weight: 600;
+  transform: rotate(45deg);
+  z-index: 2;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+body {
+  font-size: 14px;
+}
+
+h1, .h1 {
+  font-size: 2.5rem;
+}
+
+h2, .h2 {
+  font-size: 2rem;
+}
+
+h3, .h3 {
+  font-size: 1.5rem;
+}
+
+h4, .h4 {
+  font-size: 1.25rem;
+}
+
+h5, .h5 {
+  font-size: 1rem;
+}
+
+p {
+  font-size: 0.9rem;
+}
+
+.section-title {
+  font-size: 2rem;
+}
+
+.section-description {
+  font-size: 1rem;
+}
+.packages-slider-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 20px 0;
+}
+
+.packages-slider {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  gap: 20px;
+  padding: 10px 5px 30px 5px;
+}
+.packages-slider::-webkit-scrollbar {
+  display: none;
+}
+.packages-slider .package-card,
+.packages-slider .popular-package-card {
+  flex: 0 0 auto;
+  width: 280px;
+  margin-bottom: 0;
+  height: auto;
+}
+
+.slider-controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+.slider-prev,
+.slider-next {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 102, 255, 0.3);
+}
+
+.slider-prev:hover,
+.slider-next:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 102, 255, 0.4);
+}
+
+.slider-prev:active,
+.slider-next:active {
+  transform: translateY(-1px);
+}
+.package-card,
+.popular-package-card {
+  background-color: var(--card-bg);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border: 1px solid transparent;
+}
+
+.package-card:hover,
+.popular-package-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(0, 102, 255, 0.2);
+  box-shadow: 0 15px 30px rgba(0, 102, 255, 0.2);
+}
+
+.package-header,
+.popular-package-header {
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.package-icon,
+.popular-package-logo {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.package-card:hover .package-icon,
+.popular-package-card:hover .popular-package-logo {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.package-header h3,
+.popular-package-header h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: var(--font-color1);
+}
+
+.package-header p,
+.popular-package-header p {
+  font-size: 0.85rem;
+  color: var(--font-color2);
+  opacity: 0.7;
+}
+
+.package-price,
+.popular-package-price {
+  padding: 15px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.package-price .price,
+.popular-package-price .price {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.package-price .period,
+.popular-package-price .period {
+  font-size: 0.9rem;
+  color: var(--font-color2);
+  opacity: 0.7;
+}
+
+.package-features,
+.popular-package-features {
+  padding: 15px;
+  flex-grow: 1;
+}
+
+.package-features ul,
+.popular-package-features ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.package-features ul li,
+.popular-package-features ul li {
+  color: var(--font-color2);
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+.package-features ul li:last-child,
+.popular-package-features ul li:last-child {
+  border-bottom: none;
+}
+
+.package-features ul li i,
+.popular-package-features ul li i {
+  color: var(--primary);
+  margin-right: 10px;
+  font-size: 0.9rem;
+}
+
+.package-footer,
+.popular-package-footer {
+  padding: 15px;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.btn-package,
+.btn-popular-package {
+  display: inline-block;
+  background-color: var(--primary);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+.btn-package:hover,
+.btn-popular-package:hover {
+  background-color: var(--primary-dark);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0, 102, 255, 0.3);
+}
+
+.popular-badge {
+  position: absolute;
+  top: 15px;
+  right: -25px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  padding: 5px 25px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transform: rotate(45deg);
+  z-index: 2;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+.hosting-packages-section {
+  padding: 100px 0;
+}
+
+.hosting-packages-section .section-title {
+  color: var(--font-color1);
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.hosting-packages-section .section-description {
+  color: var(--font-color2);
+  font-size: 18px;
+  margin-bottom: 50px;
+  text-align: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.vds-packages-section {
+  padding: 100px 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.vds-packages-section .section-title {
+  color: var(--font-color1);
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.vds-packages-section .section-description {
+  color: var(--font-color2);
+  font-size: 18px;
+  margin-bottom: 50px;
+  text-align: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.control-panels-section {
+  padding: 100px 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.panel-card {
+  display: flex;
+  background-color: var(--card-bg);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  margin-bottom: 30px;
+  position: relative;
+  border: 1px solid transparent;
+}
+
+.panel-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--primary-light), var(--primary));
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.5s ease;
+}
+
+.panel-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(0, 102, 255, 0.2);
+  box-shadow: 0 15px 40px rgba(0, 102, 255, 0.2);
+}
+
+.panel-card:hover::before {
+  transform: scaleY(1);
+}
+
+.panel-logo {
+  width: 30%;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.panel-card:hover .panel-logo {
+  background-color: rgba(0, 102, 255, 0.05);
+}
+
+.panel-logo img {
+  max-width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.panel-card:hover .panel-logo img {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.panel-content {
+  width: 70%;
+  padding: 30px;
+}
+
+.panel-content h3 {
+  color: var(--font-color1);
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.panel-content p {
+  color: var(--font-color2);
+  font-size: 16px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.panel-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.panel-content ul li {
+  color: var(--font-color2);
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
+}
+
+.panel-content ul li i {
+  color: var(--primary);
+  margin-right: 10px;
+}
+
+.btn-panel {
+  display: inline-block;
+  background-color: var(--primary);
+  color: white;
+  padding: 10px 25px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-panel:hover {
+  background-color: var(--primary-dark);
+  color: white;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 102, 255, 0.3);
+}
+.forhostBody-faq {
+  margin-top: 150px;
+  margin-bottom: 150px;
+  position: relative;
+  z-index: 1;
+}
+
+.forhostBody-faq .f-faq-text {
+  color: var(--font-color1);
+  font-size: 50px;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: -0.1rem;
+  margin-bottom: 20px;
+}
+
+.forhostBody-faq .f-faq-description {
+  font-size: 20px;
+  color: #fff;
+  opacity: 0.45;
+  text-align: center;
+  margin-bottom: 50px !important;
+}
+
+.forhostBody-faq .accordion .accordion-item {
+  border: 0px !important;
+  margin-bottom: 20px;
+  background-color: var(--card-bg);
+  border-radius: 20px !important;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.forhostBody-faq .accordion .accordion-item:hover {
+  border-color: rgba(0, 102, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 102, 255, 0.2);
+  transform: translateY(-5px);
+}
+
+.forhostBody-faq .accordion .accordion-item .accordion-button {
+  padding: 25px 40px;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--font-color1);
+  background-color: transparent;
+  box-shadow: 0px 0px 0px transparent !important;
+  transition: all 0.3s ease;
+}
+
+.forhostBody-faq .accordion .accordion-item .accordion-button i {
+  margin-right: 15px;
+  color: var(--primary);
+  font-size: 20px;
+}
+
+.forhostBody-faq .accordion .accordion-item .accordion-button:hover, 
+.forhostBody-faq .accordion .accordion-item .accordion-button:focus {
+  box-shadow: 0px 0px 0px transparent !important;
+  color: var(--primary);
+}
+
+.forhostBody-faq .accordion .accordion-item .accordion-button::after {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7500%) hue-rotate(136deg) brightness(112%) contrast(111%);
+  transition: all 0.3s ease;
+}
+
+.forhostBody-faq .accordion .accordion-item .accordion-button:not(.collapsed)::after {
+  filter: brightness(0) saturate(100%) invert(40%) sepia(50%) saturate(3000%) hue-rotate(200deg) brightness(100%) contrast(100%);
+}
+
+.forhostBody-faq .accordion .accordion-item:first-of-type .accordion-button {
+  border-top-left-radius: 20px !important;
+  border-top-right-radius: 20px !important;
+  border-bottom-left-radius: 20px !important;
+  border-bottom-right-radius: 20px !important;
+}
+
+.forhostBody-faq .accordion .accordion-item .accordion-collapse .accordion-body {
+  padding: 0px 40px 25px 40px;
+  background-color: transparent;
+  border-radius: 0px 0px 20px 20px !important;
+  color: #fff;
+  opacity: 0.55;
+}
+
+.forhostBody-footer {
+  border-top: 2px solid rgba(255, 255, 255, 0.05);
+  padding: 100px 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.forhostBody-footer .f-logo-footer {
+  width: 75%;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.forhostBody-footer .f-logo-footer:hover {
+  transform: scale(1.05);
+}
+
+.forhostBody-footer .logo-footer-description {
+  color: #fff;
+  opacity: 0.55;
+  margin-bottom: 0px;
+  font-size: 16px;
+  letter-spacing: -0.01rem;
+}
+
+.forhostBody-footer .f-other-links-title {
+  margin-top: 10px;
+  font-size: 24px;
+  color: var(--primary);
+  font-weight: 500;
+  letter-spacing: -0.05rem;
+}
+
+.forhostBody-footer ul {
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+.forhostBody-footer ul li a {
+  text-decoration: none;
+  color: #fff;
+  opacity: 0.55;
+  margin-bottom: 0px;
+  font-size: 16px;
+  letter-spacing: -0.01rem;
+  transition: all cubic-bezier(0.39, 0.575, 0.565, 1) 0.2375s;
+  display: inline-block;
+  padding: 5px 0;
+}
+
+.forhostBody-footer ul li a:hover {
+  opacity: 1;
+  transform: translateX(5px);
+  color: var(--primary-light);
+}
+
+.forhostBody-footer ul li a:hover::before {
+  width: 12px;
+  background-color: var(--primary);
+}
+
+.forhostBody-footer ul li a::before {
+  transition: all cubic-bezier(0.39, 0.575, 0.565, 1) 0.2375s;
+  content: " ";
+  width: 7px;
+  height: 3px;
+  background-color: #fff;
+  opacity: 0.75;
+  display: inline-block;
+  border-radius: 20px;
+  position: relative;
+  top: -5px;
+  margin-right: 5px;
+}
+
+.forhostBody-footer .forhost-footer-other {
+  margin-top: 20px;
+}
+
+.forhostBody-footer .forhost-footer-other .forhost-name-servers {
+  background-color: rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 30px;
+  margin-left: auto;
+  color: #ffffffce;
+  text-align: center;
+  padding: 10px 30px;
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  transition: all 0.3s ease;
+}
+
+.forhostBody-footer .forhost-footer-other .forhost-name-servers:hover {
+  background-color: rgba(0, 102, 255, 0.05);
+  border-color: rgba(0, 102, 255, 0.2);
+  transform: translateY(-5px);
+}
+
+.forhostBody-footer .forhost-footer-other .forhost-name-servers .name-server-text {
+  display: contents;
+  margin-bottom: 0px;
+}
+
+.forhostBody-footer .forhost-footer-other .forhost-name-servers .name-server-text:first-child::after {
+  content: "|";
+  width: auto;
+  height: auto;
+  margin-left: 7.5px;
+  margin-right: 3px;
+}
+
+.forhostBody-footer .forhost-footer-alt {
+  margin-top: -20px;
+  background-color: var(--primary);
+  border-radius: 20px;
+  padding: 20px 30px;
+  box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.forhostBody-footer .forhost-footer-alt:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 102, 255, 0.4);
+}
+
+.forhostBody-footer .forhost-footer-alt .forhost-get-contact a {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  opacity: 0.75;
+  text-decoration: none;
+  transition: all cubic-bezier(0.39, 0.575, 0.565, 1) 0.2375s;
+}
+
+.forhostBody-footer .forhost-footer-alt .forhost-get-contact a i {
+  transition: all cubic-bezier(0.39, 0.575, 0.565, 1) 0.2375s;
+  margin-right: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.forhostBody-footer .forhost-footer-alt .forhost-get-contact a:hover {
+  opacity: 1;
+}
+
+.forhostBody-footer .forhost-footer-alt .forhost-get-contact a:hover i {
+  background-color: rgba(0, 0, 0, 0.3);
+  transform: scale(1.1);
+}
+
+.forhostBody-footer .forhost-footer-alt .forhost-social {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.forhostBody-footer .forhost-footer-alt .forhost-social a {
+  color: #fff;
+  opacity: 0.75;
+  text-decoration: none;
+  transition: all cubic-bezier(0.39, 0.575, 0.565, 1) 0.2375s;
+}
+
+.forhostBody-footer .forhost-footer-alt .forhost-social a i {
+  transition: all cubic-bezier(0.39, 0.575, 0.565, 1) 0.2375s;
+  margin-left: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.forhostBody-footer .forhost-footer-alt .forhost-social a:hover {
+  opacity: 1;
+}
+
+.forhostBody-footer .forhost-footer-alt .forhost-social a:hover i {
+  background-color: rgba(0, 0, 0, 0.3);
+  transform: scale(1.1);
+}
+
+.forhostBody-footer .payment-methods {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.forhostBody-footer .payment-methods img {
+  height: 30px;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.forhostBody-footer .payment-methods img:hover {
+  opacity: 1;
+  transform: translateY(-3px);
+}
+
+.forhostBody-footer .tax-notice {
+  color: var(--font-color2);
+  font-size: 14px;
+  margin-top: 10px;
+}
+@media (max-width: 992px) {
+  .forhostBody-slider-main {
+    margin-top: 100px;
+  }
+
+  .forhostBody-slider-main .carousel .carousel-inner .carousel-item .forhost-main-text {
+    font-size: 40px;
+    line-height: 40px;
+  }
+
+  .forhostBody-slider-main .carousel .carousel-inner .carousel-item .forhost-main-text span {
+    font-size: 45px;
+    line-height: 45px;
+  }
+
+  .forhostBody-slider-main .carousel .carousel-inner .carousel-item .forhost-main-description {
+    font-size: 18px;
+  }
+
+  .forhostBody-footer .forhost-footer-other .forhost-name-servers {
+    width: 80%;
+  }
+
+  .panel-card {
+    flex-direction: column;
+  }
+
+  .panel-logo {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .panel-content {
+    width: 100%;
+  }
+
+  .statistics-item {
+    width: 100%;
+    margin: 15px 0;
+  }
+
+  .popular-package-card {
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .forhostBody-slider-main .carousel .carousel-inner {
+    height: auto;
+  }
+
+  .forhostBody-slider-main .carousel .carousel-inner .carousel-item .forhost-main-cpu-logo {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  .hosting-packages-section,
+  .vds-packages-section,
+  .popular-packages-section {
+    padding: 50px 0;
+  }
+
+  .package-card.featured {
+    transform: scale(1);
+  }
+
+  .package-card.featured:hover {
+    transform: translateY(-15px);
+  }
+
+  .statistics-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .section-title {
+    font-size: 32px;
+  }
+
+  .section-description {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 576px) {
+  .section-title {
+    font-size: 1.4rem;
+  }
+  
+  .section-description {
+    font-size: 0.8rem;
+  }
+  
+  .packages-slider .package-card,
+  .packages-slider .popular-package-card {
+    width: 220px;
+  }
+  
+  .package-header h3,
+  .popular-package-header h3 {
+    font-size: 1.1rem;
+  }
+  
+  .package-price .price,
+  .popular-package-price .price {
+    font-size: 1.6rem;
+  }
+  
+  .btn-package,
+  .btn-popular-package {
+    padding: 8px 15px;
+    font-size: 0.8rem;
+  }
+}</style>
+</head>
+
+<body>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html">
+                <img src="https://cdn.forhost.com.tr/photo/logo.png" alt="ForHost Logo" class="sidebar-logo">
+            </a>
+            <button class="btn-close-sidebar" id="closeSidebar">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="sidebar-menu">
+            <a href="index.html" class="sidebar-item">Ana Sayfa</a>
+            
+            <div class="sidebar-dropdown">
+                <button class="sidebar-dropdown-btn">
+                    Hosting <i class="fa-solid fa-angle-down"></i>
+                </button>
+                <div class="sidebar-dropdown-content">
+                    <a href="#" class="dropdown-item">
+                        <img src="assets/img/icons/cpanel.png" alt="Web Hosting"> Web Hosting
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <img src="assets/img/icons/plesk.png" alt="Reseller Hosting"> Reseller Hosting
+                    </a>
+                </div>
+            </div>
+            
+            <div class="sidebar-dropdown">
+                <button class="sidebar-dropdown-btn">
+                    Sunucular <i class="fa-solid fa-angle-down"></i>
+                </button>
+                <div class="sidebar-dropdown-content">
+                    <a href="#" class="dropdown-item">
+                        <img src="assets/img/icons/vds.png" alt="VDS"> VDS
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <img src="assets/img/icons/server.png" alt="Dedicated Sunucu"> Dedicated Sunucu
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <img src="assets/img/icons/minecraft.png" alt="Minecraft Sunucu"> Minecraft Sunucu
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <img src="assets/img/icons/game.png" alt="Oyun Sunucuları"> Oyun Sunucuları
+                    </a>
+                </div>
+            </div>
+            
+            <div class="sidebar-dropdown">
+                <button class="sidebar-dropdown-btn">
+                    Domain <i class="fa-solid fa-angle-down"></i>
+                </button>
+                <div class="sidebar-dropdown-content">
+                    <a href="#" class="dropdown-item">
+                        <img src="assets/img/icons/domain-register.png" alt="Domain Kayıt"> Domain Kayıt
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <img src="assets/img/icons/domain-transfer.png" alt="Domain Transfer"> Domain Transfer
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <img src="assets/img/icons/whois.png" alt="WHOIS Sorgulama"> WHOIS Sorgulama
+                    </a>
+                </div>
+            </div>
+            
+            <div class="sidebar-dropdown">
+                <button class="sidebar-dropdown-btn">
+                    Kurumsal <i class="fa-solid fa-angle-down"></i>
+                </button>
+                <div class="sidebar-dropdown-content">
+                    <a href="hakkimizda.html" class="dropdown-item">
+                        <img src="assets/img/icons/about.png" alt="Hakkımızda"> Hakkımızda
+                    </a>
+                    <a href="iletisim.html" class="dropdown-item">
+                        <img src="assets/img/icons/contact.png" alt="İletişim"> İletişim
+                    </a>
+                    <a href="kvkk.html" class="dropdown-item">
+                        <img src="assets/img/icons/privacy.png" alt="KVKK"> KVKK
+                    </a>
+                    <a href="gizlilik-politikasi.html" class="dropdown-item">
+                        <img src="assets/img/icons/privacy.png" alt="Gizlilik Politikası"> Gizlilik Politikası
+                    </a>
+                    <a href="hizmet-sartlari.html" class="dropdown-item">
+                        <img src="assets/img/icons/terms.png" alt="Hizmet Şartları"> Hizmet Şartları
+                    </a>
+                </div>
+            </div>
+            
+            <div class="sidebar-bottom">
+                <a href="#" class="btn-login">Müşteri Girişi <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container forhostNavbar-main d-none d-lg-block">
+        <div class="forhostNavbar-desktop-main">
+            <div class="forhostNavbar-logo-main">
+                <a href="index.html">
+                    <img src="assets/img/logo.png" alt="ForHost Logo" class="logo-main-img">
+                </a>
+            </div>
+            <div class="forhostNavbar-menu">
+                <ul>
+                    <li class="nav-link">
+                        Hosting <i class="fa-solid fa-angle-right menu-arrow"></i>
+                        <div class="forhost-menu">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <img src="assets/img/banners/hosting-banner.jpg" alt="Hosting Banner" class="forhost-banner">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <a href="#" class="forhost-item">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <img src="assets/img/icons/cpanel.png" alt="Web Hosting" class="item-img">
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <h5 class="f-item-name">Web Hosting</h5>
+                                                            <p class="f-item-description">Kullanımı kolay <span>web hosting</span> çözümleri.</p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <a href="#" class="forhost-item">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <img src="assets/img/icons/plesk.png" alt="Reseller Hosting" class="item-img">
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <h5 class="f-item-name">Reseller Hosting</h5>
+                                                            <p class="f-item-description">Kendi <span>hosting paketlerinizi</span> satın.</p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-link">
+                        Sunucular <i class="fa-solid fa-angle-right menu-arrow"></i>
+                        <div class="forhost-menu">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <img src="assets/img/banners/server-banner.jpg" alt="Sunucu Banner" class="forhost-banner">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <a href="#" class="forhost-item">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <img src="assets/img/icons/vds.png" alt="VDS" class="item-img">
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <h5 class="f-item-name">VDS</h5>
+                                                            <p class="f-item-description">Uygun fiyatlı <span>sanal sunucu</span> çözümleri.</p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <a href="#" class="forhost-item">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <img src="assets/img/icons/server.png" alt="Dedicated Sunucu" class="item-img">
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <h5 class="f-item-name">Dedicated Sunucu</h5>
+                                                            <p class="f-item-description">Güçlü <span>fiziksel sunucu</span> çözümleri.</p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <a href="#" class="forhost-item">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <img src="assets/img/icons/minecraft.png" alt="Minecraft Sunucu" class="item-img">
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <h5 class="f-item-name">Minecraft Sunucu</h5>
+                                                            <p class="f-item-description">Özel <span>Minecraft sunucu</span> çözümleri.</p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <a href="#" class="forhost-item">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <img src="assets/img/icons/game.png" alt="Oyun Sunucuları" class="item-img">
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <h5 class="f-item-name">Oyun Sunucuları</h5>
+                                                            <p class="f-item-description">Profesyonel <span>oyun sunucusu</span> çözümleri.</p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-link">
+                        Domain <i class="fa-solid fa-angle-right menu-arrow"></i>
+                        <div class="forhost-menu">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <img src="assets/img/banners/domain-banner.jpg" alt="Domain Banner" class="forhost-banner">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <a href="#" class="forhost-item">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <img src="assets/img/icons/domain-register.png" alt="Domain Kayıt" class="item-img">
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <h5 class="f-item-name">Domain Kayıt</h5>
+                                                            <p class="f-item-description">Yeni domain <span>kaydedin</span>.</p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <a href="#" class="forhost-item">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <img src="assets/img/icons/domain-transfer.png" alt="Domain Transfer" class="item-img">
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <h5 class="f-item-name">Domain Transfer</h5>
+                                                            <p class="f-item-description">Domaininizi ForHost'a <span>transfer edin</span>.</p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <a href="#" class="forhost-item">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <img src="assets/img/icons/whois.png" alt="WHOIS Sorgulama" class="item-img">
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <h5 class="f-item-name">WHOIS Sorgulama</h5>
+                                                            <p class="f-item-description">Domain <span>bilgilerini</span> sorgulayın.</p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-link">
+                        Kurumsal <i class="fa-solid fa-angle-right menu-arrow"></i>
+                        <div class="forhost-menu other-menu">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a href="hakkimizda.html" class="forhost-item">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <img src="assets/img/icons/about.png" alt="Hakkımızda" class="item-img">
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <h5 class="f-item-name">Hakkımızda</h5>
+                                                    <p class="f-item-description">Bizi daha yakından <span>tanıyın</span>.</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a href="iletisim.html" class="forhost-item">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <img src="assets/img/icons/contact.png" alt="İletişim" class="item-img">
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <h5 class="f-item-name">İletişim</h5>
+                                                    <p class="f-item-description">Bizimle <span>iletişime geçin</span>.</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a href="kvkk.html" class="forhost-item">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <img src="assets/img/icons/privacy.png" alt="KVKK" class="item-img">
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <h5 class="f-item-name">KVKK</h5>
+                                                    <p class="f-item-description">Kişisel verilerin <span>korunması</span>.</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a href="gizlilik-politikasi.html" class="forhost-item">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <img src="assets/img/icons/privacy.png" alt="Gizlilik Politikası" class="item-img">
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <h5 class="f-item-name">Gizlilik Politikası</h5>
+                                                    <p class="f-item-description">Gizlilik <span>politikamız</span>.</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a href="hizmet-sartlari.html" class="forhost-item">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <img src="assets/img/icons/terms.png" alt="Hizmet Şartları" class="item-img">
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <h5 class="f-item-name">Hizmet Şartları</h5>
+                                                    <p class="f-item-description">Hizmet <span>şartlarımız</span>.</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="forhostNavbar-button">
+                <a href="#" class="btn-forhost-login">Müşteri Paneli <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="container forhostNavbar-mobile d-block d-lg-none mt-3">
+        <div class="d-flex justify-content-between align-items-center p-3">
+            <a href="index.html">
+                <img src="assets/img/logo.png" alt="ForHost Logo" class="mobile-logo">
+            </a>
+            <button class="btn-menu" type="button" id="openSidebar">
+                <div class="hamburger-icon" id="hamburgerIcon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+        </div>
+    </div>
+    <div class="container forhostBody-slider-main">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col-md-6 d-flex align-items-center">
+                            <div>
+                                <h1 class="forhost-main-text">Yüksek Performanslı <span>Web Hosting</span></h1>
+                                <p class="forhost-main-description">SSD diskler ve optimize edilmiş sunucular ile web siteniz her zaman hızlı!</p>
+                                <a href="#" class="btn forhost-main-get-information-btn">Detaylı Bilgi <i class="fa-solid fa-arrow-right"></i></a>
+                                <a href="paketler.html" class="btn forhost-main-get-package-btn ms-2">Paketleri İncele <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 d-flex align-items-center justify-content-center">
+                            <img src="assets/img/slider/web-hosting.png" alt="Web Hosting" class="forhost-main-cpu-logo">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col-md-6 d-flex align-items-center">
+                            <div>
+                                <h1 class="forhost-main-text">Güçlü ve Güvenilir <span>VDS Sunucular</span></h1>
+                                <p class="forhost-main-description">Yüksek performanslı sanal sunucular ile projelerinizi hayata geçirin!</p>
+                                <a href="#" class="btn forhost-main-get-information-btn">Detaylı Bilgi <i class="fa-solid fa-arrow-right"></i></a>
+                                <a href="paketler.html" class="btn forhost-main-get-package-btn ms-2">Paketleri İncele <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 d-flex align-items-center justify-content-center">
+                            <img src="assets/img/slider/vds-server.png" alt="VDS Sunucular" class="forhost-main-cpu-logo">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col-md-6 d-flex align-items-center">
+                            <div>
+                                <h1 class="forhost-main-text">Uygun Fiyatlı <span>Domain Kayıt</span></h1>
+                                <p class="forhost-main-description">Yüzlerce uzantı seçeneği ile domain kayıt hizmetleri!</p>
+                                <a href="#" class="btn forhost-main-get-information-btn">Detaylı Bilgi <i class="fa-solid fa-arrow-right"></i></a>
+                                <a href="paketler.html" class="btn forhost-main-get-package-btn ms-2">Fiyatları İncele <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 d-flex align-items-center justify-content-center">
+                            <img src="assets/img/slider/domain.png" alt="Domain Kayıt" class="forhost-main-cpu-logo">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Önceki</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Sonraki</span>
+            </button>
+        </div>
+    </div>
+    <div class="container forhostBody-why-forhost">
+        <h2 class="f-why-forhost-text text-center">Neden ForHost?</h2>
+        <div class="row mt-5">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fa-solid fa-server me-2"></i> Yüksek Performans</h5>
+                        <p class="card-text">En son teknoloji sunucular ve SSD diskler ile web siteniz her zaman hızlı ve kesintisiz çalışır.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fa-solid fa-shield-halved me-2"></i> %99.9 Uptime</h5>
+                        <p class="card-text">Yedekli altyapımız sayesinde %99.9 uptime garantisi ile hizmetlerimizi sunuyoruz.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fa-solid fa-headset me-2"></i> 7/24 Destek</h5>
+                        <p class="card-text">Uzman teknik destek ekibimiz 7/24 yanınızda. Tüm sorularınıza hızlı çözümler sunuyoruz.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fa-solid fa-lock me-2"></i> Güvenlik</h5>
+                        <p class="card-text">Gelişmiş güvenlik önlemleri ile verileriniz her zaman güvende. DDoS koruması standart olarak sunulur.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="500">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fa-solid fa-money-bill-wave me-2"></i> Uygun Fiyatlar</h5>
+                        <p class="card-text">Rekabetçi fiyatlarımız ile kaliteli hosting hizmetlerini uygun fiyatlarla sunuyoruz.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fa-solid fa-gauge-high me-2"></i> Kolay Kullanım</h5>
+                        <p class="card-text">Kullanıcı dostu kontrol panelleri ile hosting yönetimi hiç bu kadar kolay olmamıştı.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="statistics-section">
+        <div class="container">
+            <div class="statistics-container">
+                <div class="statistics-item" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="icon-container">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <div class="counter-wrapper">
+                        <div class="counter-container">
+                            <span class="counter" data-target="50000">0</span>
+                            <span class="plus">+</span>
+                        </div>
+                        <h3>Mutlu Müşteri</h3>
+                    </div>
+                </div>
+                
+                <div class="statistics-item" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="icon-container">
+                        <i class="fa-solid fa-server"></i>
+                    </div>
+                    <div class="counter-wrapper">
+                        <div class="counter-container">
+                            <span class="counter" data-target="10000">0</span>
+                            <span class="plus">+</span>
+                        </div>
+                        <h3>Aktif Hosting</h3>
+                    </div>
+                </div>
+                
+                <div class="statistics-item" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="icon-container">
+                        <i class="fa-solid fa-globe"></i>
+                    </div>
+                    <div class="counter-wrapper">
+                        <div class="counter-container">
+                            <span class="counter" data-target="25000">0</span>
+                            <span class="plus">+</span>
+                        </div>
+                        <h3>Kayıtlı Domain</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="popular-packages-section">
+        <div class="container">
+            <h2 class="section-title">En Çok Tercih Edilen Paketlerimiz</h2>
+            <p class="section-description">Müşterilerimizin en çok tercih ettiği hizmetlerimize göz atın</p>
+            
+            <div class="packages-slider-container">
+                <div class="packages-slider">
+                    <div class="popular-package-card">
+                        <div class="popular-badge">En Çok Satan</div>
+                        <div class="popular-package-header">
+                            <div class="popular-package-logo">
+                                <img src="assets/img/icons/cpanel.png" alt="cPanel Hosting">
+                            </div>
+                            <h3>cPanel Hosting</h3>
+                            <p>Kişisel ve kurumsal web siteleri için ideal</p>
+                        </div>
+                        <div class="popular-package-price">
+                            <span class="price">20</span>
+                            <span class="period">₺/ay</span>
+                        </div>
+                        <div class="popular-package-features">
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> 5 GB SSD Disk</li>
+                                <li><i class="fa-solid fa-check"></i> 10 GB Trafik</li>
+                                <li><i class="fa-solid fa-check"></i> 5 E-posta Hesabı</li>
+                                <li><i class="fa-solid fa-check"></i> cPanel Kontrol Paneli</li>
+                                <li><i class="fa-solid fa-check"></i> 1 Veritabanı</li>
+                                <li><i class="fa-solid fa-check"></i> Ücretsiz SSL</li>
+                            </ul>
+                        </div>
+                        <div class="popular-package-footer">
+                            <a href="#" class="btn-popular-package">Satın Al</a>
+                        </div>
+                    </div>
+                    
+                    <div class="popular-package-card">
+                        <div class="popular-package-header">
+                            <div class="popular-package-logo">
+                                <img src="assets/img/icons/plesk.png" alt="Plesk Hosting">
+                            </div>
+                            <h3>Plesk Hosting</h3>
+                            <p>Profesyonel web projeleri için ideal</p>
+                        </div>
+                        <div class="popular-package-price">
+                            <span class="price">40</span>
+                            <span class="period">₺/ay</span>
+                        </div>
+                        <div class="popular-package-features">
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> 10 GB SSD Disk</li>
+                                <li><i class="fa-solid fa-check"></i> 20 GB Trafik</li>
+                                <li><i class="fa-solid fa-check"></i> 10 E-posta Hesabı</li>
+                                <li><i class="fa-solid fa-check"></i> Plesk Kontrol Paneli</li>
+                                <li><i class="fa-solid fa-check"></i> 3 Veritabanı</li>
+                                <li><i class="fa-solid fa-check"></i> Ücretsiz SSL</li>
+                            </ul>
+                        </div>
+                        <div class="popular-package-footer">
+                            <a href="#" class="btn-popular-package">Satın Al</a>
+                        </div>
+                    </div>
+                    
+                    <div class="popular-package-card">
+                        <div class="popular-package-header">
+                            <div class="popular-package-logo">
+                                <img src="assets/img/icons/domain-register.png" alt=".com.tr Domain">
+                            </div>
+                            <h3>Almanya Sunucu</h3>
+                            <p>Ryzen 9 9950x kalitesiyle</p>
+                        </div>
+                        <div class="popular-package-price">
+                            <span class="price">249</span>
+                            <span class="period">₺/ay</span>
+                        </div>
+                        <div class="popular-package-features">
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> Ryzen 9 9950x İşlemci</li>
+                                <li><i class="fa-solid fa-check"></i> 32 GB RAM</li>
+                                <li><i class="fa-solid fa-check"></i> 500 GB NVMe SSD</li>
+                                <li><i class="fa-solid fa-check"></i> Sınırsız Trafik</li>
+                                <li><i class="fa-solid fa-check"></i> DDoS Koruması</li>
+                                <li><i class="fa-solid fa-check"></i> 7/24 Teknik Destek</li>
+                            </ul>
+                        </div>
+                        <div class="popular-package-footer">
+                            <a href="#" class="btn-popular-package">Satın Al</a>
+                        </div>
+                    </div>
+                    
+                    <div class="popular-package-card">
+                        <div class="popular-package-header">
+                            <div class="popular-package-logo">
+                                <img src="assets/img/icons/vds.png" alt="VDS Sunucu">
+                            </div>
+                            <h3>Fiziksel Sunucu</h3>
+                            <p>Ryzen 9 5950X ile yüksek performans</p>
+                        </div>
+                        <div class="popular-package-price">
+                            <span class="price">4999</span>
+                            <span class="period">₺/ay</span>
+                        </div>
+                        <div class="popular-package-features">
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> Ryzen 9 5950X İşlemci</li>
+                                <li><i class="fa-solid fa-check"></i> 64 GB RAM</li>
+                                <li><i class="fa-solid fa-check"></i> 1 TB NVMe SSD</li>
+                                <li><i class="fa-solid fa-check"></i> Sınırsız Trafik</li>
+                                <li><i class="fa-solid fa-check"></i> DDoS Koruması</li>
+                                <li><i class="fa-solid fa-check"></i> 7/24 Teknik Destek</li>
+                            </ul>
+                        </div>
+                        <div class="popular-package-footer">
+                            <a href="#" class="btn-popular-package">Satın Al</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-controls">
+                    <button class="slider-prev"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="slider-next"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="hosting-packages" class="hosting-packages-section">
+        <div class="container">
+            <h2 class="section-title">Hosting Paketleri</h2>
+            <p class="section-description">İhtiyacınıza uygun hosting paketini seçin, hemen online olun!</p>
+            
+            <div class="packages-slider-container">
+                <div class="packages-slider">
+                    <div class="package-card">
+                        <div class="package-header">
+                            <div class="package-icon">
+                                <img src="assets/img/icons/cpanel.png" alt="cPanel Hosting">
+                            </div>
+                            <h3>Başlangıç Plan</h3>
+                            <p>Kişisel web siteleri için ideal</p>
+                        </div>
+                        <div class="package-price">
+                            <span class="price">49.90₺</span>
+                            <span class="period">/ay</span>
+                        </div>
+                        <div class="package-features">
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> 3 GB NVMe SSD</li>
+                                <li><i class="fa-solid fa-check"></i> 1 Alan Adı</li>
+                                <li><i class="fa-solid fa-check"></i> 1 CPU</li>
+                                <li><i class="fa-solid fa-check"></i> 1 GB RAM</li>
+                                <li><i class="fa-solid fa-check"></i> 1 Adet E-posta</li>
+                            </ul>
+                        </div>
+                        <div class="package-footer">
+                            <a href="#" class="btn-package">Satın Al</a>
+                        </div>
+                    </div>
+                    
+                    <div class="package-card featured">
+                        <div class="package-header">
+                            <div class="package-icon">
+                                <img src="assets/img/icons/cpanel.png" alt="cPanel Hosting">
+                            </div>
+                            <h3>Normal Plan</h3>
+                            <p>Kurumsal web siteleri için ideal</p>
+                        </div>
+                        <div class="package-price">
+                            <span class="price">79.90₺</span>
+                            <span class="period">/ay</span>
+                        </div>
+                        <div class="package-features">
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> 5 GB NVMe SSD</li>
+                                <li><i class="fa-solid fa-check"></i> 3 Alan Adı</li>
+                                <li><i class="fa-solid fa-check"></i> 1 CPU</li>
+                                <li><i class="fa-solid fa-check"></i> 2 GB RAM</li>
+                                <li><i class="fa-solid fa-check"></i> 3 Adet E-posta</li>
+                            </ul>
+                        </div>
+                        <div class="package-footer">
+                            <a href="#" class="btn-package">Satın Al</a>
+                        </div>
+                    </div>
+                    
+                    <div class="package-card">
+                        <div class="package-header">
+                            <div class="package-icon">
+                                <img src="assets/img/icons/plesk.png" alt="Plesk Hosting">
+                            </div>
+                            <h3>Premium Plan</h3>
+                            <p>Yüksek trafik için ideal</p>
+                        </div>
+                        <div class="package-price">
+                            <span class="price">159.90₺</span>
+                            <span class="period">/ay</span>
+                        </div>
+                        <div class="package-features">
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> 10 GB NVMe SSD</li>
+                                <li><i class="fa-solid fa-check"></i> 5 Alan Adı</li>
+                                <li><i class="fa-solid fa-check"></i> 2 CPU</li>
+                                <li><i class="fa-solid fa-check"></i> 3 GB RAM</li>
+                                <li><i class="fa-solid fa-check"></i> 5 Adet E-posta</li>
+                            </ul>
+                        </div>
+                        <div class="package-footer">
+                            <a href="#" class="btn-package">Satın Al</a>
+                        </div>
+                    </div>
+                    
+                    <div class="package-card">
+                        <div class="package-header">
+                            <div class="package-icon">
+                                <img src="assets/img/icons/plesk.png" alt="Plesk Hosting">
+                            </div>
+                            <h3>Profesyonel Plan</h3>
+                            <p>E-ticaret siteleri için ideal</p>
+                        </div>
+                        <div class="package-price">
+                            <span class="price">229.90₺</span>
+                            <span class="period">/ay</span>
+                        </div>
+                        <div class="package-features">
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> 25 GB NVMe SSD</li>
+                                <li><i class="fa-solid fa-check"></i> 10 Alan Adı</li>
+                                <li><i class="fa-solid fa-check"></i> 2 CPU</li>
+                                <li><i class="fa-solid fa-check"></i> 4 GB RAM</li>
+                                <li><i class="fa-solid fa-check"></i> 10 Adet E-posta</li>
+                            </ul>
+                        </div>
+                        <div class="package-footer">
+                            <a href="#" class="btn-package">Satın Al</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-controls">
+                    <button class="slider-prev"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="slider-next"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="vds-packages" class="vds-packages-section">
+        <div class="container">
+            <h2 class="section-title">Ekonomik VDS Paketleri</h2>
+            <p class="section-description">Yüksek performanslı sanal sunucular ile projelerinizi hayata geçirin!</p>
+            
+            <div class="packages-slider-container">
+                <div class="packages-slider">
+                    <div class="package-card">
+                        <div class="package-header">
+                            <div class="package-icon">
+                                <img src="assets/img/icons/vds.png" alt="VDS Başlangıç">
+                            </div>
+                            <h3>VDS Başlangıç</h3>
+                            <p>Küçük projeler için ideal</p>
+                        </div>
+                        <div class="package-price">
+                            <span class="price">20₺</span>
+                            <span class="period">/ay</span>
+                        </div>
+                        <div class="package-features">
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> 2 vCPU</li>
+                                <li><i class="fa-solid fa-check"></i> 4 GB RAM</li>
+                                <li><i class="fa-solid fa-check"></i> 50 GB SSD Disk</li>
+                                <li><i class="fa-solid fa-check"></i> 1 TB Trafik</li>
+                                <li><i class="fa-solid fa-check"></i> Linux/Windows</li>
+                            </ul>
+                        </div>
+                        <div class="package-footer">
+                            <a href="#" class="btn-package">Satın Al</a>
+                        </div>
+                    </div>
+                    
+                    <div class="package-card featured">
+                        <div class="package-header">
+                            <div class="package-icon">
+                                <img src="assets/img/icons/vds.png" alt="VDS Kurumsal">
+                            </div>
+                            <h3>VDS Kurumsal</h3>
+                            <p>Orta ölçekli projeler için ideal</p>
+                        </div>
+                        <div class="package-price">
+                            <span class="price">40₺</span>
+                            <span class="period">/ay</span>
+                        </div>
+                        <div class="package-features">
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> 4 vCPU</li>
+                                <li><i class="fa-solid fa-check"></i> 8 GB RAM</li>
+                                <li><i class="fa-solid fa-check"></i> 100 GB SSD Disk</li>
+                                <li><i class="fa-solid fa-check"></i> 2 TB Trafik</li>
+                                <li><i class="fa-solid fa-check"></i> Linux/Windows</li>
+                            </ul>
+                        </div>
+                        <div class="package-footer">
+                            <a href="#" class="btn-package">Satın Al</a>
+                        </div>
+                    </div>
+                    
+                    <div class="package-card">
+                        <div class="package-header">
+                            <div class="package-icon">
+                                <img src="assets/img/icons/vds.png" alt="VDS Premium">
+                            </div>
+                            <h3>VDS Premium</h3>
+                            <p>Büyük projeler için ideal</p>
+                        </div>
+                        <div class="package-price">
+                            <span class="price">80₺</span>
+                            <span class="period">/ay</span>
+                        </div>
+                        <div class="package-features">
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> 8 vCPU</li>
+                                <li><i class="fa-solid fa-check"></i> 16 GB RAM</li>
+                                <li><i class="fa-solid fa-check"></i> 200 GB SSD Disk</li>
+                                <li><i class="fa-solid fa-check"></i> 5 TB Trafik</li>
+                                <li><i class="fa-solid fa-check"></i> Linux/Windows</li>
+                            </ul>
+                        </div>
+                        <div class="package-footer">
+                            <a href="#" class="btn-package">Satın Al</a>
+                        </div>
+                    </div>
+                    
+                    <div class="package-card">
+                        <div class="package-header">
+                            <div class="package-icon">
+                                <img src="assets/img/icons/vds.png" alt="VDS Ultimate">
+                            </div>
+                            <h3>VDS Ultimate</h3>
+                            <p>Yüksek performans gerektiren projeler için</p>
+                        </div>
+                        <div class="package-price">
+                            <span class="price">120₺</span>
+                            <span class="period">/ay</span>
+                        </div>
+                        <div class="package-features">
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> 12 vCPU</li>
+                                <li><i class="fa-solid fa-check"></i> 32 GB RAM</li>
+                                <li><i class="fa-solid fa-check"></i> 500 GB SSD Disk</li>
+                                <li><i class="fa-solid fa-check"></i> 10 TB Trafik</li>
+                                <li><i class="fa-solid fa-check"></i> Linux/Windows</li>
+                            </ul>
+                        </div>
+                        <div class="package-footer">
+                            <a href="#" class="btn-package">Satın Al</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-controls">
+                    <button class="slider-prev"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="slider-next"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="control-panels-section">
+        <div class="container">
+            <h2 class="section-title">Kontrol Panelleri</h2>
+            <p class="section-description">Kullanıcı dostu kontrol panelleri ile hosting yönetimi çok kolay</p>
+            
+            <div class="row mt-5">
+                <div class="col-md-6 mb-4" data-aos="fade-right" data-aos-delay="100">
+                    <div class="panel-card">
+                        <div class="panel-logo">
+                            <img src="assets/img/icons/cpanel.png" alt="cPanel">
+                        </div>
+                        <div class="panel-content">
+                            <h3>cPanel</h3>
+                            <p>cPanel, dünyanın en popüler hosting kontrol panelidir. Kullanıcı dostu arayüzü ile web sitenizi kolayca yönetmenizi sağlar.</p>
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> Kolay dosya yönetimi</li>
+                                <li><i class="fa-solid fa-check"></i> E-posta hesapları oluşturma</li>
+                                <li><i class="fa-solid fa-check"></i> Veritabanı yönetimi</li>
+                                <li><i class="fa-solid fa-check"></i> Tek tıkla uygulama kurulumu</li>
+                            </ul>
+                            <a href="#" class="btn-panel">Detaylı Bilgi</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4" data-aos="fade-left" data-aos-delay="200">
+                    <div class="panel-card">
+                        <div class="panel-logo">
+                            <img src="assets/img/icons/plesk.png" alt="Plesk">
+                        </div>
+                        <div class="panel-content">
+                            <h3>Plesk</h3>
+                            <p>Plesk, profesyonel web geliştiricileri için tasarlanmış güçlü bir kontrol panelidir. Gelişmiş özellikleri ile projelerinizi yönetin.</p>
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> Gelişmiş güvenlik özellikleri</li>
+                                <li><i class="fa-solid fa-check"></i> Docker desteği</li>
+                                <li><i class="fa-solid fa-check"></i> Git entegrasyonu</li>
+                                <li><i class="fa-solid fa-check"></i> WordPress Toolkit</li>
+                            </ul>
+                            <a href="#" class="btn-panel">Detaylı Bilgi</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container forhostBody-faq">
+        <h2 class="f-faq-text">Sık Sorulan Sorular</h2>
+        <p class="f-faq-description">Merak ettiğiniz soruların cevaplarını burada bulabilirsiniz.</p>
+        
+        <div class="accordion" id="accordionFAQ">
+            <div class="accordion-item" data-aos="fade-up" data-aos-delay="100">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        <i class="fa-solid fa-circle-question"></i> Hosting nedir?
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                    <div class="accordion-body">
+                        Hosting, web sitesi dosyalarınızın internet üzerinde yayınlanabilmesi için gerekli olan sunucu alanıdır. Web sitenizin 7/24 erişilebilir olması için hosting hizmeti almanız gerekir. Hosting hizmeti, web sitenizin dosyalarını, veritabanlarını ve e-posta hesaplarını barındıran bir sunucu kiralama hizmetidir.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item" data-aos="fade-up" data-aos-delay="200">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <i class="fa-solid fa-circle-question"></i> Domain nedir?
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                    <div class="accordion-body">
+                        Domain (alan adı), web sitenizin internet üzerindeki adresidir. Örneğin, "forhost.com.tr" bir domain adıdır. Kullanıcılar bu adres sayesinde web sitenize erişebilirler.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item" data-aos="fade-up" data-aos-delay="300">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <i class="fa-solid fa-circle-question"></i> VDS nedir?
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                    <div class="accordion-body">
+                        VDS (Virtual Dedicated Server - Sanal Dedicated Sunucu), fiziksel bir sunucunun sanal olarak bölünmesiyle oluşturulan, kendi işletim sistemi ve kaynaklarına sahip sunucu türüdür. Shared hosting'e göre daha fazla performans ve esneklik sunar.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item" data-aos="fade-up" data-aos-delay="400">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        <i class="fa-solid fa-circle-question"></i> cPanel nedir?
+                    </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                    <div class="accordion-body">
+                        cPanel, hosting hesabınızı yönetmenizi sağlayan kullanıcı dostu bir kontrol panelidir. E-posta hesapları oluşturma, veritabanı yönetimi, dosya yönetimi gibi birçok işlemi kolayca yapmanızı sağlar.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item" data-aos="fade-up" data-aos-delay="500">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        <i class="fa-solid fa-circle-question"></i> Teknik destek nasıl alabilirim?
+                    </button>
+                </h2>
+                <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                    <div class="accordion-body">
+                        ForHost olarak 7/24 teknik destek hizmeti sunuyoruz. Müşteri panelinizden destek talebi oluşturabilir, canlı destek hattımızı kullanabilir veya telefon ile bize ulaşabilirsiniz.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="forhostBody-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="assets/img/logo-white.png" alt="ForHost Logo" class="f-logo-footer mb-3">
+                    <p class="logo-footer-description">ForHost, 2010 yılından bu yana kaliteli ve kesintisiz hosting hizmetleri sunmaktadır. Müşteri memnuniyeti odaklı yaklaşımımız ile projelerinizin güvenilir teknoloji partneriyiz.</p>
+                </div>
+                <div class="col-md-2">
+                    <h5 class="f-other-links-title">Hosting</h5>
+                    <ul>
+                        <li><a href="#">Web Hosting</a></li>
+                        <li><a href="#">Reseller Hosting</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h5 class="f-other-links-title">Sunucular</h5>
+                    <ul>
+                        <li><a href="#">VDS</a></li>
+                        <li><a href="#">Dedicated Sunucu</a></li>
+                        <li><a href="#">Minecraft Sunucu</a></li>
+                        <li><a href="#">Oyun Sunucuları</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h5 class="f-other-links-title">Domain</h5>
+                    <ul>
+                        <li><a href="#">Domain Kayıt</a></li>
+                        <li><a href="#">Domain Transfer</a></li>
+                        <li><a href="#">WHOIS Sorgulama</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h5 class="f-other-links-title">Kurumsal</h5>
+                    <ul>
+                        <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                        <li><a href="iletisim.html">İletişim</a></li>
+                        <li><a href="kvkk.html">KVKK</a></li>
+                        <li><a href="gizlilik-politikasi.html">Gizlilik Politikası</a></li>
+                        <li><a href="hizmet-sartlari.html">Hizmet Şartları</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="forhost-footer-other">
+                <div class="forhost-name-servers">
+                    <span class="name-server-text">ns1.forhost.com.tr</span>
+                    <span class="name-server-text">ns2.forhost.com.tr</span>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-md-12">
+                    <div class="forhost-footer-alt">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="forhost-get-contact">
+                                    <a href="tel:+902121234567"><i class="fa-solid fa-phone"></i> +90 212 123 45 67</a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="forhost-social">
+                                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-md-12 text-center">
+                    <p class="logo-footer-description">© 2023 ForHost. Tüm hakları saklıdır.</p>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-md-12 text-center">
+                    <div class="payment-methods">
+                        <img src="assets/img/payment/mastercard.png" alt="Mastercard">
+                        <img src="assets/img/payment/visa.png" alt="Visa">
+                        <img src="assets/img/payment/amex.png" alt="American Express">
+                        <img src="assets/img/payment/troy.png" alt="Troy">
+                        <img src="assets/img/payment/unionpay.png" alt="UnionPay">
+                        <img src="assets/img/payment/go-guvenli-ode.png" alt="GO Güvenli Öde">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-3">
+                <div class="col-md-12 text-center">
+                    <p class="tax-notice">Fiyatlarımıza vergi dahil değildir.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() {
+    AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true
+    });
+    const openSidebarBtn = document.getElementById('openSidebar');
+    const closeSidebarBtn = document.getElementById('closeSidebar');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+    const hamburgerIcon = document.getElementById('hamburgerIcon');
+    const sidebarDropdownBtns = document.querySelectorAll('.sidebar-dropdown-btn');
+    if (openSidebarBtn) {
+        openSidebarBtn.addEventListener('click', function() {
+            sidebar.classList.add('active');
+            sidebarOverlay.classList.add('active');
+            hamburgerIcon.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        });
+    }
+    if (closeSidebarBtn) {
+        closeSidebarBtn.addEventListener('click', closeSidebar);
+    }
+
+    if (sidebarOverlay) {
+        sidebarOverlay.addEventListener('click', closeSidebar);
+    }
+
+    function closeSidebar() {
+        sidebar.classList.remove('active');
+        sidebarOverlay.classList.remove('active');
+        if (hamburgerIcon) {
+            hamburgerIcon.classList.remove('open');
+        }
+        document.body.style.overflow = '';
+    }
+    sidebarDropdownBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const dropdownContent = this.nextElementSibling;
+            document.querySelectorAll('.sidebar-dropdown-content.active').forEach(content => {
+                if (content !== dropdownContent) {
+                    content.classList.remove('active');
+                    content.previousElementSibling.classList.remove('active');
+                }
+            });
+            this.classList.toggle('active');
+            dropdownContent.classList.toggle('active');
+        });
+    });
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('mouseenter', function() {
+            this.classList.add('hover-active');
+        });
+        
+        link.addEventListener('mouseleave', function() {
+            this.classList.remove('hover-active');
+        });
+    });
+    const counters = document.querySelectorAll('.counter');
+    
+    function startCounters() {
+        counters.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-target'));
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            let current = 0;
+            const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                    counter.textContent = Math.ceil(current);
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    counter.textContent = target;
+                }
+            };
+            
+            updateCounter();
+        });
+    }
+    const statistics = document.querySelector('.statistics-section');
+    if (statistics) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    startCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        observer.observe(statistics);
+    }
+    const sliders = document.querySelectorAll('.packages-slider');
+    
+    sliders.forEach(slider => {
+        const container = slider.closest('.packages-slider-container');
+        const prevBtn = container.querySelector('.slider-prev');
+        const nextBtn = container.querySelector('.slider-next');
+        
+        if (prevBtn && nextBtn) {
+            prevBtn.addEventListener('click', () => {
+                slider.scrollBy({ left: -300, behavior: 'smooth' });
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                slider.scrollBy({ left: 300, behavior: 'smooth' });
+            });
+        }
+    });
+    const header = document.querySelector('.forhostNavbar-main');
+    let lastScrollTop = 0;
+    
+    window.addEventListener('scroll', function() {
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (currentScroll > 100) {
+            if (header) {
+                header.style.position = 'fixed';
+                header.style.top = '0';
+                header.style.left = '0';
+                header.style.right = '0';
+                header.style.zIndex = '1000';
+                header.style.padding = '0 15px';
+                header.style.transition = 'all 0.3s ease';
+            }
+        } else {
+            if (header) {
+                header.style.position = 'relative';
+                header.style.padding = '0';
+            }
+        }
+        
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    }, false);
+});</script>
+</body>
+</html>

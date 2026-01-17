@@ -16,6 +16,7 @@ require("dotenv").config()
 const http = require("http");
 const { Server } = require("socket.io");
 const MarketRoutes = require("./routes/market")
+const PrivateRoutes = require("./routes/Private")
 // const PersonalRoutes = require("./routes/Personal")
 const app = express()
 
@@ -37,7 +38,7 @@ const io = new Server(server, { cors: { origin: "*" } });
 applySecurityMiddlewares(app)
 applyLoggingMiddleware(app)
 app.use(checkVPN)
-app.use(CheckUserAgent)
+// app.use(CheckUserAgent)
 app.use(logVisit)
 // Seucre
 
@@ -156,6 +157,7 @@ app.use("/api/note", NoteRoutes)
 require("./routes/market")(io)
 // app.use("/api/market", MarketRoutes)
 app.use('/api/post', PostRoutes)
+app.use("/api/private", PrivateRoutes)
 app.use('/api/contact', ContactRoutes)
 app.use("/api/stats", StatRoutes)
 app.use('/uploads', (req, res, next) => {
@@ -174,6 +176,8 @@ app.get('/', (req, res) => {
 });
 
 const PORT = 5000;
+
+
 
 server.listen(PORT, () => {
   console.log(`Server runnig at: ${PORT}`)
