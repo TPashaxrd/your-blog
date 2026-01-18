@@ -12,6 +12,7 @@ const { CheckUserAgent } = require("./middlewares/userAgent")
 const logVisit = require("./middlewares/logVisit")
 const StatRoutes = require("./routes/stats")
 const NoteRoutes = require("./routes/notes")
+const DailyRouter = require("./routes/daily.js")
 require("dotenv").config()
 const http = require("http");
 const { Server } = require("socket.io");
@@ -37,7 +38,7 @@ const io = new Server(server, { cors: { origin: "*" } });
 
 applySecurityMiddlewares(app)
 applyLoggingMiddleware(app)
-app.use(checkVPN)
+// app.use(checkVPN)
 // app.use(CheckUserAgent)
 app.use(logVisit)
 // Seucre
@@ -160,6 +161,7 @@ app.use('/api/post', PostRoutes)
 app.use("/api/private", PrivateRoutes)
 app.use('/api/contact', ContactRoutes)
 app.use("/api/stats", StatRoutes)
+app.use("/api/daily", DailyRouter)
 app.use('/uploads', (req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
