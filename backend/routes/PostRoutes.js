@@ -21,8 +21,9 @@ if(!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir)
       });
       const upload = multer({ storage });
 
-router.post('/', upload.single("cover"), checkIPMiddleware, createPost)
-router.delete("/", checkIPMiddleware, deletePosts)
+// router.post('/', upload.single("cover"), checkIPMiddleware, createPost)
+router.post('/', upload.single("cover"), createPost)
+router.delete("/", deletePosts)
 router.get("/", showPosts)
 router.get("/related", async (req, res) => {
   const { category, exclude } = req.query;
