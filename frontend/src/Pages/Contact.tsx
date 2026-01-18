@@ -10,7 +10,7 @@ function Contact() {
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
   const [email, setEmail] = useState("");
-  const [IP_Address, setIP_Address] = useState("");
+  const [_, setIP_Address] = useState("");
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
@@ -45,7 +45,7 @@ function Contact() {
         title,
         email,
         message,
-        IP_Address: IP_Address,
+        // IP_Address: IP_Address,
       });
 
       if (res.status === 201 || res.status === 200) {

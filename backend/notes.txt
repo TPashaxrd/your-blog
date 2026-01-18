@@ -1,2 +1,2 @@
 //QR Code Creator
-//Çizim App
+//Drawing App

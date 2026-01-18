@@ -18,6 +18,7 @@ const http = require("http");
 const { Server } = require("socket.io");
 const MarketRoutes = require("./routes/market")
 const PrivateRoutes = require("./routes/Private")
+const VaultRouter = require("./routes/Vault.js")
 // const PersonalRoutes = require("./routes/Personal")
 const app = express()
 
@@ -162,6 +163,7 @@ app.use("/api/private", PrivateRoutes)
 app.use('/api/contact', ContactRoutes)
 app.use("/api/stats", StatRoutes)
 app.use("/api/daily", DailyRouter)
+app.use("/api/vault", VaultRouter)
 app.use('/uploads', (req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
