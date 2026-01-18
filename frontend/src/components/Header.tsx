@@ -15,6 +15,7 @@ export default function Header() {
     { name: "Blogs", path: "/blog" },
     { name: "Contact", path: "/contact" },
     { name: "Toprak", path: "/toprak"},
+    { name: "Personal", path: "/personal"},
     { name: "Time", path: "/time" },
     { name: "PrivNotes", path: "/repaste" },
     { name: "Game", path: "/game/play" },

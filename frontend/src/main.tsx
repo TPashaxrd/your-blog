@@ -2,14 +2,13 @@ import { useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App.tsx';
-import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import axios from 'axios';
 import { config } from './components/config';
 
-// Sayfalar
 import NoPage from './Pages/NoPage/NoPage.tsx';
-import LockedScreen from './Pages/NoPage/LockedScreen.tsx'; // Bunu oluşturduğunu varsayıyorum
+import LockedScreen from './Pages/NoPage/LockedScreen.tsx';
 import Blog from './Pages/Blogs/Blog.tsx';
 import Contact from './Pages/Contact.tsx';
 import Blogs from './Pages/Blogs/Blogs.tsx';
@@ -24,10 +23,12 @@ import Start from './Pages/Game/Start.tsx';
 import WallStreet from './Pages/Backgrounds/WallStreet/App.tsx';
 import Privates from './Pages/Privates/Privates.tsx';
 import Panic from './Pages/Admin/Panic.tsx';
+import Personal from './Pages/Personal/Personal.tsx';
+import AmbientSound from './components/AmbientSound.tsx'
 
 const AppRouter = () => {
   const [isSystemOnline, setIsSystemOnline] = useState<boolean | null>(null);
-  const location = useLocation();
+  // const location = useLocation();
 
   const checkSystemStatus = async () => {
     try {
@@ -63,6 +64,8 @@ const AppRouter = () => {
       <Route path="/blog/:slug" element={<Blogs />} />
       <Route path="/time" element={<Time />} />
 
+      <Route path="/personal" element={<Personal/>}/>
+
       <Route path="/admin" element={<CreateBlog />} />
       <Route path="/admin/stats" element={<Stats />} />
       <Route path="/admin/private" element={<Privates />} />
@@ -88,6 +91,7 @@ createRoot(document.getElementById('root')!).render(
   <HelmetProvider>
     <BrowserRouter>
       <AppRouter />
+      <AmbientSound/>
     </BrowserRouter>
   </HelmetProvider>
 );
