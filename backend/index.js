@@ -12,6 +12,7 @@ const { CheckUserAgent } = require("./middlewares/userAgent")
 const logVisit = require("./middlewares/logVisit")
 const StatRoutes = require("./routes/stats")
 const NoteRoutes = require("./routes/notes")
+const session = require("express-session");
 const DailyRouter = require("./routes/daily.js")
 require("dotenv").config()
 const http = require("http");
@@ -19,6 +20,9 @@ const { Server } = require("socket.io");
 const MarketRoutes = require("./routes/market")
 const PrivateRoutes = require("./routes/Private")
 const VaultRouter = require("./routes/Vault.js")
+const UserRoutes = require("./routes/User.js")
+const MongoStore = require("connect-mongo")
+const CommentRoutes = require("./routes/Comment.js")
 // const PersonalRoutes = require("./routes/Personal")
 const app = express()
 
@@ -32,7 +36,24 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use(express.json())
+const store = MongoStore.create({
+  mongoUrl: process.env.MONGO_URL,
+  collectionName: "sessions"
+});
 app.set("trust proxy", 1)
+
+app.use(session({
+  name: "connect.sid",
+  secret: "test-havali-toprak-what-the-hackkkk-key",
+  resave: false,
+  saveUninitialized: false,
+  store: store,
+  cookie: {
+    httpOnly: true,
+    secure: false,
+    maxAge: 1000 * 60 * 60 * 24 * 7
+  }
+}));
 
 const server = http.createServer(app);
 const io = new Server(server, { cors: { origin: "*" } });
@@ -155,6 +176,7 @@ io.on("connection", (socket) => {
 });
 
 
+app.use("/api/auth", UserRoutes)
 app.use("/api/note", NoteRoutes)
 require("./routes/market")(io)
 // app.use("/api/market", MarketRoutes)
@@ -162,6 +184,7 @@ app.use('/api/post', PostRoutes)
 app.use("/api/private", PrivateRoutes)
 app.use('/api/contact', ContactRoutes)
 app.use("/api/stats", StatRoutes)
+app.use("/api/comment", CommentRoutes)
 app.use("/api/daily", DailyRouter)
 app.use("/api/vault", VaultRouter)
 app.use('/uploads', (req, res, next) => {

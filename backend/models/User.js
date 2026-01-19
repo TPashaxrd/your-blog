@@ -1,8 +1,41 @@
-const { Schema, model } = require("mongoose");
+// {
+//     "user": {
+//         "_id": "696dfda....",
+//         "name": "Toprak",
+//         "country": "TR",
+//         "email": "contact@toprak.xyz",
+//         "userRole": "User",
+//         "__v": 0
+//     }
+// }
 
-const userSchema = new Schema({
-  username: { type: String, required: true, unique: true },
-  score: { type: Number, default: 0 },
-}, { timestamps: true });
+const mongoose = require("mongoose")
 
-module.exports = model("User", userSchema);
+const UsersSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    country: {
+        type: String,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    userRole: {
+        type: String,
+        default: "User"
+    },
+    IP_Address: {
+        type: String,
+        required: true
+    }
+})
+
+module.exports = mongoose.model("Users", UsersSchema)

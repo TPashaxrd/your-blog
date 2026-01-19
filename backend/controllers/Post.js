@@ -122,7 +122,7 @@ const deletePosts = async(req, res) => {
 
 const showPosts = async(req, res) => {
     try {
-        const posts = await Post.find()
+        const posts = await Post.find().sort({ _id: -1 });
         res.status(201).json(posts)
     } catch (error) {
         res.status(500).json({ message: "Error"})

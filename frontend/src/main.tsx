@@ -25,6 +25,8 @@ import Privates from './Pages/Privates/Privates.tsx';
 import Panic from './Pages/Admin/Panic.tsx';
 import Personal from './Pages/Personal/Personal.tsx';
 import AmbientSound from './components/AmbientSound.tsx'
+import Login from './Pages/Auth/Login.tsx';
+import Register from './Pages/Auth/Register.tsx';
 
 const AppRouter = () => {
   const [isSystemOnline, setIsSystemOnline] = useState<boolean | null>(null);
@@ -70,6 +72,10 @@ const AppRouter = () => {
       <Route path="/admin/stats" element={<Stats />} />
       <Route path="/admin/private" element={<Privates />} />
       <Route path="/admin/panic" element={<Panic />} />
+
+      {/* Auth */}
+      <Route path='/login' element={<Login/>}/>
+      <Route path="/register" element={<Register/>}/>
 
       <Route path="/repaste" element={<Repaste />} />
       <Route path="/note/:id" element={<ReadNote />} />
