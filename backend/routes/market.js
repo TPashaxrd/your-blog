@@ -25,7 +25,7 @@ module.exports = (io) => {
           const cryptoPromises = cryptoPairs.map(pair =>
             axios.get(`${FINNHUB_BASE}/crypto/candle`, {
               params: {
-                symbol: `BINANCE:${pair.replace('-', '')}`, // BTC-USD => BTCUSD
+                symbol: `BINANCE:${pair.replace('-', '')}`,
                 resolution: 1,
                 from: Math.floor(Date.now() / 1000) - 60 * 60,
                 to: Math.floor(Date.now() / 1000),
@@ -49,7 +49,7 @@ module.exports = (io) => {
           console.error(err);
           socket.emit('marketError', { error: 'Failed to fetch market data' });
         }
-      }, 5000); // her 5 saniyede bir güncelle
+      }, 5000);
     });
 
     socket.on('disconnect', () => {

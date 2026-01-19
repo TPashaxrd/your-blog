@@ -1,4 +1,5 @@
 const express = require("express");
+const { generalLimiter } = require("../middlewares/rateLimiter");
 const router = express.Router();
 
 const quotes = [
@@ -19,7 +20,7 @@ const tips = [
 
 const random = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
-router.get("/", (req, res) => {
+router.get("/", generalLimiter, (req, res) => {
   res.json({
     quote: random(quotes),
     tip: random(tips),

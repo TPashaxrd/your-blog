@@ -27,6 +27,18 @@ const contactLimiter = rateLimiter({
     skip: (req, res) => allowedIPs.includes(req.ip)
 })
 
+const generalLimiter = rateLimiter({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // 100 requests per 15 minutes
+    standartHeaders: true,
+    legacyHeaders: false,
+    message: {
+        success: false,
+        message: "Too many requests. Please try again later."
+    },
+      skip: (req, res) => allowedIPs.includes(req.ip)
+})
+
 const noteLimiter = rateLimiter({
     windowMs: 15 * 60 * 1000,
     max: 10,
@@ -51,9 +63,36 @@ const subscribeLimiter = rateLimiter({
       skip: (req, res) => allowedIPs.includes(req.ip)
 })
 
+const adminLimiter = rateLimiter({
+    windowMs: 15 * 60 * 1000,
+    max: 100,
+    standartHeaders: true,
+    legacyHeaders: false,
+    message: {
+        success: false,
+        message: "Too many admin requests. Please try again later."
+    },
+      skip: (req, res) => allowedIPs.includes(req.ip)
+})
+
+const commentLimiter = rateLimiter({
+    windowMs: 15 * 60 * 1000,
+    max: 5, // 5 requests per 15 minutes
+    standartHeaders: true,
+    legacyHeaders: false,
+    message: {
+        success: false,
+        message: "Too many comment attempts. Please try again later."
+    },
+      skip: (req, res) => allowedIPs.includes(req.ip)
+})
+
 module.exports = {
     authLimiter,
     contactLimiter,
     subscribeLimiter,
-    noteLimiter
+    noteLimiter,
+    generalLimiter,
+    adminLimiter,
+    commentLimiter
 }

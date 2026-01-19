@@ -1,14 +1,3 @@
-// {
-//     "user": {
-//         "_id": "696dfda....",
-//         "name": "Toprak",
-//         "country": "TR",
-//         "email": "contact@toprak.xyz",
-//         "userRole": "User",
-//         "__v": 0
-//     }
-// }
-
 const mongoose = require("mongoose")
 
 const UsersSchema = new mongoose.Schema({

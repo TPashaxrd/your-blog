@@ -117,7 +117,8 @@ const App: React.FC = () => {
         <div className="relative w-full rounded-2xl overflow-hidden shadow-lg mb-16">
           <img
             className="w-full h-[50vh] object-cover brightness-50"
-            src="https://raw.githubusercontent.com/TPashaxrd/your-blog/refs/heads/main/toprak-banner.png"
+            src="https://i.hizliresim.com/51wnayq.jpg"
+            // https://i.hizliresim.com/51wnayq.jpg
             alt="Hero"
             crossOrigin="anonymous"
           />

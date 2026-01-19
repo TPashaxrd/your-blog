@@ -6,7 +6,6 @@ const checkIPMiddleware = async(req, res, next) => {
     try {
         const response = await axios.get("https://api.ipify.org?format=json")
         const clientIP = response.data.ip
-        console.log("Public IP: ", clientIP)
 
         if(clientIP !== allowedIP) {
             return res.status(403).json({ message: "Access Denied: IP Not Allowed"})

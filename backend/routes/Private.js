@@ -9,6 +9,4 @@ router.post("/get-all", authMiddleware, getAllPrivates)
 router.post("/delete", authMiddleware, deletePrivate)
 router.post("/get-private-by-id", authMiddleware, getPrivateWithId)
 
-// Successfully working
-
 module.exports = router

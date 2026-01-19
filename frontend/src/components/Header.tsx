@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { BiWorld, BiMenu, BiX, BiLogOut, BiChevronDown } from "react-icons/bi";
-import { BsInstagram, BsTwitter } from "react-icons/bs";
+import { BiMenu, BiX, BiLogOut, BiChevronDown } from "react-icons/bi";
+import { BsInstagram } from "react-icons/bs";
 import { DiGithubBadge } from "react-icons/di";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { config } from "./config";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
+import AuthBanner from "./AuthBanner";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -52,6 +53,7 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-[100] px-4 py-6 md:px-10">
+      <AuthBanner user={user} />
       <nav className="max-w-7xl mx-auto flex items-center justify-between bg-[#0A0A0A]/60 backdrop-blur-2xl border border-white/5 rounded-[2rem] px-4 py-2 shadow-2xl relative">
         
         <Link to="/" className="flex items-center gap-3 group pl-2">

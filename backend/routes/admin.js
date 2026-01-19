@@ -1,10 +1,16 @@
 const express = require("express")
 const authMiddleware = require("../middlewares/Auth");
-const { authLimiter } = require("../middlewares/rateLimiter");
+const { authLimiter, generalLimiter, adminLimiter } = require("../middlewares/rateLimiter");
 const { showAllContacts, deleteContactById } = require("../controllers/Contact");
 const { showSubs, deleteSubs } = require("../controllers/Subscribes");
 const System = require("../models/System");
 const User = require("../models/User");
+const Comment = require("../models/Comment");
+const Subscribes = require("../models/Subscribes");
+const Contact = require("../models/Contact");
+const Post = require("../models/Post");
+const Note = require("../models/Note");
+const Visit = require("../models/Visit");
 
 const router = express.Router()
 
@@ -63,17 +69,48 @@ const makeAdminByEmail = async (req, res) => {
   }
 };
 
+router.post("/admin/all-users", authMiddleware, async (req, res) => {
+    try {
+        const allUsers = await User.find()
+        res.status(201).json(allUsers)
+    } catch (error) {
+        res.status(500).json({ message: "Server error" });
+    }
+})
+
+router.get("/statistics", generalLimiter, async (req, res) => {
+    try {
+        const userCount = await User.countDocuments();
+        const contactCount = await Contact.countDocuments();
+        const subsCount = await Subscribes.countDocuments();
+        const postCount = await Post.countDocuments();
+        const noteCount = await Note.countDocuments();
+        const visitCount = await Visit.countDocuments();
+        const commentsCount = await Comment.countDocuments();
+        res.status(201).json({
+            userCount,
+            contactCount,
+            subsCount,
+            postCount,
+            noteCount,
+            visitCount,
+            commentsCount
+        })
+    } catch (error) {
+        res.status(500).json({ message: "Server error" });
+    }
+})
 
 router.post("/login", authLimiter, authMiddleware, (req, res) => {
   res.json({ success: true, message: "Logged in successfully" });
 });
 
-router.post("/admin/all-contacts", authMiddleware, showAllContacts)
-router.post("/admin/all-subs", authMiddleware, showSubs)
-router.delete("/admin/delete-subs", authMiddleware, deleteSubs)
-router.delete("/admin/delete-contact", authMiddleware, deleteContactById)
-router.post("/admin/make-admin", authMiddleware, makeAdminByEmail);
-router.get("/admin/system-status", getSystemStatus);
-router.post("/admin/toggle-system", authMiddleware, toggleSystemMode);
+router.post("/admin/all-contacts", adminLimiter, authMiddleware, showAllContacts)
+router.post("/admin/all-subs", adminLimiter, authMiddleware, showSubs)
+router.delete("/admin/delete-subs", adminLimiter, authMiddleware, deleteSubs)
+router.delete("/admin/delete-contact", adminLimiter, authMiddleware, deleteContactById)
+router.post("/admin/make-admin", adminLimiter, authMiddleware, makeAdminByEmail);
+router.get("/admin/system-status", adminLimiter, getSystemStatus);
+router.post("/admin/toggle-system", adminLimiter, authMiddleware, toggleSystemMode);
 
 module.exports = router
