@@ -29,7 +29,7 @@ const contactLimiter = rateLimiter({
 
 const generalLimiter = rateLimiter({
     windowMs: 15 * 60 * 1000,
-    max: 100, // 100 requests per 15 minutes
+    max: 100,
     standartHeaders: true,
     legacyHeaders: false,
     message: {
@@ -77,7 +77,7 @@ const adminLimiter = rateLimiter({
 
 const commentLimiter = rateLimiter({
     windowMs: 15 * 60 * 1000,
-    max: 5, // 5 requests per 15 minutes
+    max: 5,
     standartHeaders: true,
     legacyHeaders: false,
     message: {

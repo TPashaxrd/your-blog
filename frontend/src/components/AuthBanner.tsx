@@ -50,7 +50,7 @@ export default function AuthBanner({ user }: { user: any }) {
                   Join the Network<span className="text-purple-600">.</span>
                 </h4>
                 <p className="text-gray-400 text-xs leading-relaxed">
-                  Yorum yapmak, içerikleri kaydetmek ve tüm "intel" verilerine erişmek için sisteme dahil ol.
+                  If you log in, you can comment and join us.
                 </p>
               </div>
 

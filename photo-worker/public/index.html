@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Media Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root {
+      --bg: #050505;
+      --card-bg: #0d0d0d;
+      --accent: #7c3aed;
+      --danger: #ef4444;
+      --text: #e5e7eb;
+    }
+
+    * { box-sizing: border-box; transition: all 0.3s ease; }
+    body { 
+      background: var(--bg); 
+      color: var(--text); 
+      font-family: 'Inter', system-ui, -apple-system, sans-serif; 
+      margin: 0;
+      padding: 40px 20px;
+      line-height: 1.5;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    .header-box {
+      background: linear-gradient(to bottom right, #111, #080808);
+      border: 1px solid rgba(255,255,255,0.05);
+      padding: 30px;
+      border-radius: 24px;
+      margin-bottom: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    h1 { margin: 0; font-size: 24px; font-weight: 900; letter-spacing: -1px; text-transform: uppercase; font-italic: italic; }
+    h1 span { color: var(--accent); }
+
+    .auth-row { display: flex; gap: 10px; }
+
+    input[type="password"], input[type="file"] {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 12px 18px;
+      border-radius: 12px;
+      color: #fff;
+      outline: none;
+      flex: 1;
+    }
+
+    input:focus { border-color: var(--accent); background: rgba(124, 58, 237, 0.05); }
+
+    button {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    button:hover { filter: brightness(1.2); transform: translateY(-2px); }
+    button:active { transform: translateY(0); }
+
+    .upload-zone {
+      background: rgba(124, 58, 237, 0.05);
+      border: 2px dashed rgba(124, 58, 237, 0.2);
+      padding: 20px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    h2 { 
+      font-size: 14px; 
+      text-transform: uppercase; 
+      letter-spacing: 2px; 
+      color: #666; 
+      margin-top: 50px;
+      border-left: 3px solid var(--accent);
+      padding-left: 15px;
+    }
+
+    .grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); 
+      gap: 25px; 
+      margin-top: 20px; 
+    }
+
+    .card { 
+      background: var(--card-bg); 
+      border-radius: 20px; 
+      overflow: hidden; 
+      border: 1px solid rgba(255,255,255,0.05);
+      position: relative;
+    }
+
+    .card:hover { border-color: rgba(124, 58, 237, 0.4); shadow: 0 10px 30px rgba(0,0,0,0.5); }
+
+    .media-container { width: 100%; height: 180px; overflow: hidden; background: #000; display: flex; align-items: center; justify-content: center; }
+    img, video { width: 100%; height: 100%; object-cover: cover; }
+
+    .card-info { padding: 15px; }
+    .card-info small { 
+      display: block; 
+      color: #555; 
+      font-size: 10px; 
+      font-family: monospace; 
+      word-break: break-all;
+      margin-bottom: 10px;
+    }
+
+    .del-btn { 
+      background: rgba(239, 68, 68, 0.1); 
+      color: var(--danger); 
+      width: 100%; 
+      justify-content: center;
+      border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+    .del-btn:hover { background: var(--danger); color: #fff; }
+
+    .file-placeholder { font-size: 40px; color: var(--accent); opacity: 0.5; }
+
+    .empty-msg { color: #333; font-style: italic; font-size: 13px; text-align: center; grid-column: 1/-1; padding: 40px; }
+
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header-box">
+    <h1><span>Toprak</span> Media Admin</h1>
+    
+    <div class="auth-row">
+      <input id="pass" type="password" placeholder="System Admin Password" />
+      <button onclick="loadMedia()">
+        <i data-lucide="refresh-cw" size="18"></i> Fetch Data
+      </button>
+    </div>
+
+    <div class="upload-zone">
+      <input type="file" id="file" />
+      <button onclick="uploadMedia()">
+        <i data-lucide="upload-cloud" size="18"></i> Upload
+      </button>
+    </div>
+  </div>
+
+  <h2><i data-lucide="image" style="vertical-align: middle; margin-right: 8px;"></i> Visual Assets</h2>
+  <div class="grid" id="photos"><p class="empty-msg">No visual transmissions.</p></div>
+
+  <h2><i data-lucide="play-circle" style="vertical-align: middle; margin-right: 8px;"></i> Video Streams</h2>
+  <div class="grid" id="videos"><p class="empty-msg">No stream data.</p></div>
+
+  <h2><i data-lucide="file-text" style="vertical-align: middle; margin-right: 8px;"></i> Raw Files</h2>
+  <div class="grid" id="files"><p class="empty-msg">No archives found.</p></div>
+</div>
+
+<script>
+lucide.createIcons();
+
+async function loadMedia() {
+  const pass = document.getElementById("pass").value;
+  if(!pass) return alert("Şifre gir kanka");
+
+  const btn = document.querySelector('button');
+  btn.innerHTML = '<i class="animate-spin">⌛</i> Processing...';
+
+  try {
+    const res = await fetch("/admin/photos", {
+      headers: { "x-admin-password": pass }
+    });
+
+    if (!res.ok) throw new Error("Yetki reddedildi.");
+
+    const data = await res.json();
+    renderGrids(data.photos);
+  } catch (err) {
+    alert(err.message);
+  } finally {
+    btn.innerHTML = '<i data-lucide="refresh-cw"></i> Fetch Data';
+    lucide.createIcons();
+  }
+}
+
+function renderGrids(items) {
+  const grids = {
+    image: document.getElementById("photos"),
+    video: document.getElementById("videos"),
+    other: document.getElementById("files")
+  };
+
+  Object.values(grids).forEach(g => g.innerHTML = "");
+
+  items.forEach(p => {
+    const keyEncoded = encodeURIComponent(p.key);
+    let mediaHtml = "";
+    let target = grids.other;
+
+    if (p.type === "video") {
+      mediaHtml = `<video src="/media/${keyEncoded}" muted onmouseover="this.play()" onmouseout="this.pause()"></video>`;
+      target = grids.video;
+    } else if (p.type === "image") {
+      mediaHtml = `<img src="/media/${keyEncoded}" loading="lazy" />`;
+      target = grids.image;
+    } else {
+      mediaHtml = `<div class="file-placeholder"><i data-lucide="file"></i></div>`;
+      target = grids.other;
+    }
+
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <div class="media-container">${mediaHtml}</div>
+      <div class="card-info">
+        <small>${p.key}</small>
+        <div style="display:flex; gap:5px;">
+           <button class="del-btn" onclick="delMedia('${keyEncoded}')">
+             <i data-lucide="trash-2" size="14"></i> Delete
+           </button>
+           ${p.type !== 'image' && p.type !== 'video' ? `<a href="/media/${keyEncoded}" download style="flex:1"><button style="width:100%; background:#333;"><i data-lucide="download" size="14"></i></button></a>` : ''}
+        </div>
+      </div>
+    `;
+    target.appendChild(card);
+  });
+  
+  lucide.createIcons();
+}
+
+async function uploadMedia() {
+  const pass = document.getElementById("pass").value;
+  const fileInput = document.getElementById("file");
+  const file = fileInput.files[0];
+  if (!file) return alert("Dosya seç kanka");
+
+  const form = new FormData();
+  form.append("file", file);
+
+  try {
+    const res = await fetch("/upload", {
+      method: "POST",
+      headers: { "x-admin-password": pass },
+      body: form
+    });
+
+    if (res.ok) {
+      fileInput.value = "";
+      loadMedia();
+    } else {
+      alert("Yükleme başarısız.");
+    }
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+async function delMedia(encodedKey) {
+  const pass = document.getElementById("pass").value;
+  if (!confirm("Bu veriyi imha etmek istediğine emin misin?")) return;
+
+  const res = await fetch("/admin/photo/" + encodedKey, {
+    method: "DELETE",
+    headers: { "x-admin-password": pass }
+  });
+
+  if (res.ok) loadMedia();
+  else alert("İmha başarısız.");
+}
+</script>
+
+</body>
+</html>

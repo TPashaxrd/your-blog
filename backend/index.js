@@ -23,6 +23,7 @@ const VaultRouter = require("./routes/Vault.js")
 const UserRoutes = require("./routes/User.js")
 const MongoStore = require("connect-mongo")
 const CommentRoutes = require("./routes/Comment.js")
+const GalleryRoutes = require("./routes/Gallery.js")
 // const PersonalRoutes = require("./routes/Personal")
 const app = express()
 
@@ -187,6 +188,7 @@ app.use("/api/stats", StatRoutes)
 app.use("/api/comment", CommentRoutes)
 app.use("/api/daily", DailyRouter)
 app.use("/api/vault", VaultRouter)
+app.use("/api/gallery", GalleryRoutes)
 app.use('/uploads', (req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
