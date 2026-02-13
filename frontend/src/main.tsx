@@ -29,6 +29,7 @@ import Login from './Pages/Auth/Login.tsx';
 import Register from './Pages/Auth/Register.tsx';
 import Gallery from './Pages/Gallery/Gallery.tsx';
 import CV from './Pages/CV/CV.tsx';
+import YKS from './Pages/YKS/YKS.tsx';
 
 const AppRouter = () => {
   const [isSystemOnline, setIsSystemOnline] = useState<boolean | null>(null);
@@ -76,6 +77,7 @@ const AppRouter = () => {
       <Route path="/admin/panic" element={<Panic />} />
 
       <Route path="/cv" element={<CV />} />
+      <Route path='/yks' element={<YKS/>}/>
 
       {/* Gallery */}
       <Route path='/gallery' element={<Gallery/>}/>
