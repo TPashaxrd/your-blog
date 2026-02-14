@@ -41,7 +41,7 @@ export default function Header() {
 
   const socialLinks = [
     { icon: <DiGithubBadge size={22} />, url: "https://github.com/TPashaxrd" },
-    { icon: <BsInstagram size={18} />, url: "https://instagram.com/toprak.altins" },
+    { icon: <BsInstagram size={18} />, url: "https://instagram.com/toprakdoganim" },
   ];
 
   const handleLogout = async () => {
