@@ -30,6 +30,7 @@ import Register from './Pages/Auth/Register.tsx';
 import Gallery from './Pages/Gallery/Gallery.tsx';
 import CV from './Pages/CV/CV.tsx';
 import YKS from './Pages/YKS/YKS.tsx';
+import Ataturk from './Pages/Ataturk/Ataturk.tsx';
 
 const AppRouter = () => {
   const [isSystemOnline, setIsSystemOnline] = useState<boolean | null>(null);
@@ -88,6 +89,8 @@ const AppRouter = () => {
 
       <Route path="/repaste" element={<Repaste />} />
       <Route path="/note/:id" element={<ReadNote />} />
+
+      <Route path='/ataturk' element={<Ataturk/>}/>
 
       <Route path="/game/play" element={<Play />} />
       <Route path="/game/start" element={<Start />} />
